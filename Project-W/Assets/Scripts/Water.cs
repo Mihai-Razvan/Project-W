@@ -20,6 +20,10 @@ public class Water : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         CreateShape();
         UpdateMesh();
+    }
+
+    private void Update()
+    {
         Vector3 playerPos = FindObjectOfType<Player>().getPosition();
         transform.position = new Vector3(playerPos.x - xSize / 2, 0, playerPos.z - zSize / 2);
     }
