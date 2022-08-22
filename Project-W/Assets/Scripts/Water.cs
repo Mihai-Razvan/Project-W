@@ -13,6 +13,7 @@ public class Water : MonoBehaviour
     Vector3[] vertices;
     int[] triangles;
     Vector2[] uvs;
+    float squareScale = 3f;  //used to determine the size of the squares and triangles. If we need lower poly increase the number; if we need more polished decrease the number
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class Water : MonoBehaviour
     private void Update()
     {
         Vector3 playerPos = FindObjectOfType<Player>().getPosition();
-        transform.position = new Vector3(playerPos.x - xSize / 2, 0, playerPos.z - zSize / 2);
+        transform.position = new Vector3(playerPos.x - (xSize * squareScale) / 2, 0, playerPos.z - (zSize * squareScale) / 2);
     }
 
     void CreateShape()
@@ -37,7 +38,7 @@ public class Water : MonoBehaviour
         {
             for (int x = 0; x <= xSize; x++)
             {
-                vertices[i] = new Vector3(x, 0, z);
+                vertices[i] = new Vector3(x * squareScale, 0, z * squareScale);
                 uvs[i] = new Vector2(((float)(x + (xSize / 2)) / xSize), ((float)(z + (zSize / 2)) / zSize));
                 i++;
             }
