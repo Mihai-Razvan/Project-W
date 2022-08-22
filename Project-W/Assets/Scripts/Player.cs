@@ -4,34 +4,31 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    float speed;
+    string state;
 
     void Start()
     {
-        
+        state = "WALKING";
     }
 
     void Update()
     {
-        movement();
-    }
-
-    private void movement()
-    {
-        if (Input.GetKey(KeyCode.W))
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * Time.deltaTime);
-        else if (Input.GetKey(KeyCode.S))
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - speed * Time.deltaTime);
-
-        if (Input.GetKey(KeyCode.A))
-            transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, transform.position.y, transform.position.z);
-        else if (Input.GetKey(KeyCode.D))
-            transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y, transform.position.z);
+        FindObjectOfType<PlayerMovement>().movement(state, transform);
+        FindObjectOfType<CameraLook>().rotateCamera(transform);
     }
 
     public Vector3 getPosition()
     {
         return new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    }
+
+    public void setState(string state)
+    {
+        this.state = state;
+    }
+
+    public string getState()
+    {
+        return state;
     }
 }

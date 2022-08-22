@@ -3,37 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
-public class Water : MonoBehaviour
+public class OceanMesh : MonoBehaviour
 {
-    [SerializeField]
-    int xSize;
-    [SerializeField]
-    int zSize;
-    Mesh mesh;
-    Vector3[] vertices;
-    int[] triangles;
-    Vector2[] uvs;
-    float squareScale = 3f;  //used to determine the size of the squares and triangles. If we need lower poly increase the number; if we need more polished decrease the number
-
-    void Start()
-    {
-        mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = mesh;
-        CreateShape();
-        UpdateMesh();
-    }
-
-    private void Update()
-    {
-        Vector3 playerPos = FindObjectOfType<Player>().getPosition();
-        transform.position = new Vector3(playerPos.x - (xSize * squareScale) / 2, 0, playerPos.z - (zSize * squareScale) / 2);
-    }
-
-    void CreateShape()
+    static Vector3[] vertices;
+    static int[] triangles;
+    static Vector2[] uvs;
+    public static void renderMesh(int xSize, int zSize, float squareScale, Mesh mesh)
     {
         vertices = new Vector3[(xSize + 1) * (zSize + 1)];
+        triangles = new int[xSize * zSize * 6];
         uvs = new Vector2[(xSize + 1) * (zSize + 1)];
 
+        CreateShape(xSize, zSize, squareScale);
+        UpdateMesh(mesh);
+    }
+
+    static void CreateShape(int xSize, int zSize, float squareScale)
+    {
         for (int i = 0, z = 0; z <= zSize; z++)
         {
             for (int x = 0; x <= xSize; x++)
@@ -43,8 +29,6 @@ public class Water : MonoBehaviour
                 i++;
             }
         }
-
-        triangles = new int[xSize * zSize * 6];
 
         int vert = 0;
         int tris = 0;
@@ -68,7 +52,7 @@ public class Water : MonoBehaviour
 
     }
 
-    void UpdateMesh()
+    static void UpdateMesh(Mesh mesh)
     {
         mesh.Clear();
         mesh.vertices = vertices;
