@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ocean : MonoBehaviour
+public class CloudLayer: MonoBehaviour
 {
     [SerializeField]
     int xSize;
@@ -13,7 +13,7 @@ public class Ocean : MonoBehaviour
 
     void Start()
     {
-        OceanMesh.renderMesh(xSize, zSize, squareScale, GetComponent<MeshFilter>().mesh);
+        CloudLayerMesh.renderMesh(xSize, zSize, squareScale, GetComponent<MeshFilter>().mesh);
     }
 
     void Update()

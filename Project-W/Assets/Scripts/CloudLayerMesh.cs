@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
-public class OceanMesh : MonoBehaviour
+public class CloudLayerMesh : MonoBehaviour
 {
     static Vector3[] vertices;
     static int[] triangles;
