@@ -1,0 +1,6 @@
+Item Code - the number
+Item Tag - "Item_xxx"
+Item Name - "copper"
+
+1 - silicone
+2 - grappler

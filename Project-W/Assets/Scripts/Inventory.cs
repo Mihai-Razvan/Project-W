@@ -9,6 +9,19 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     int[] quantityArray;
 
+    int selectedInventorySlot;
+    KeyCode[] keyCodes = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9};
+
+    private void Start()
+    {
+        selectedInventorySlot = 0;
+    }
+
+    void Update()
+    {
+        selectInventorySlot();
+    }
+
     public void addItem(string itemTag, int quantity)
     {
         int itemCode = Item.getItemCode(itemTag);
@@ -20,5 +33,26 @@ public class Inventory : MonoBehaviour
                 quantityArray[i] += quantity;
                 break;
             }
+    }
+
+    void selectInventorySlot()     //when you press a numeric key on keyboard it will select that slot in inventory bar
+    {
+        bool newSelection = false;
+
+        for(int i = 1; i <= 9; i++)
+            if(Input.GetKeyDown(keyCodes[i - 1]))
+            {
+                selectedInventorySlot = i - 1;
+                newSelection = true;
+                break;
+            }
+
+        if(newSelection)
+            Item.destroyUsedObject();
+    }
+
+    public int getSelectedItem()  //return the itemCode for the selected item
+    {
+        return itemCodeArray[selectedInventorySlot];
     }
 }

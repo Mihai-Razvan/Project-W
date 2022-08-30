@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Resource : MonoBehaviour
 {
     [SerializeField]
     float cloudLevel;    //the z coordinates for the cloud layer; if a ressource falls under this level it despawns
@@ -19,19 +19,7 @@ public class Item : MonoBehaviour
         {
             Destroy(GetComponent<Rigidbody>());
             GetComponent<BoxCollider>().isTrigger = true;
-            Destroy(GetComponent<Item>());
+            Destroy(GetComponent<Resource>());
         }
     }
-
-    public static int getItemCode(string itemTag)
-    {
-        switch(itemTag)
-        {
-            case "Item_001":
-                return 1;
-            default:
-                return 0;
-        }
-    }
-
 }

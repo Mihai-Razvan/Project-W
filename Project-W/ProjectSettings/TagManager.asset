@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Structure
   - Item_001
+  - Item_002
   layers:
   - Default
   - TransparentFX
