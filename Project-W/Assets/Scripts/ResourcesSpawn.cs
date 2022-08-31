@@ -11,7 +11,7 @@ public class ResourcesSpawn : MonoBehaviour
     [SerializeField]
     float spawnRadius;
     [SerializeField]
-    float spawnFrequency;        //the interval between 2 resources spawn
+    float spawnTimeInterval;        //the interval between 2 resources spawn
     float spawnTimeElapsed;      //the time passed since a resource was spawned
     [SerializeField]
     GameObject[] resourcePrefabs;
@@ -31,11 +31,13 @@ public class ResourcesSpawn : MonoBehaviour
     {
         spawnTimeElapsed += Time.deltaTime;
 
-        if(spawnTimeElapsed >= 1f)
+        if(spawnTimeElapsed >= spawnTimeInterval)
         {
             Vector2 randomPos = new Vector2(playerTransform.position.x, playerTransform.position.z) + Random.insideUnitCircle * spawnRadius;
             Vector3 spawnPos = new Vector3(randomPos.x, playerTransform.position.y + spawnHeight, randomPos.y);
-            Instantiate(resourcePrefabs[0], spawnPos, Quaternion.Euler(0, 0, 0));
+            float ranRot = Random.Range(0, 180);
+            
+            Instantiate(resourcePrefabs[0], spawnPos, Quaternion.Euler(ranRot, ranRot, ranRot));  
 
             spawnTimeElapsed = 0f;
         }
