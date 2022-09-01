@@ -11,6 +11,8 @@ public class Item_002 : Tool
     int maxLaserSize;
     [SerializeField]
     float laserExpansionSpeed;    //the speed at which the laser is expansing or retrating
+    [SerializeField]
+    float rayRadius;               //the radius for the capsule collider that si cheking for the ray collision
     string laserState;
     Transform rayStartPosition;
      
@@ -72,12 +74,25 @@ public class Item_002 : Tool
         }
     }
 
-    void makeCollider()
+    void makeCollider()    //creates and manages the collider around the ray to check for resources
     {
-        Collider[] colliders = Physics.OverlapCapsule(rayStartPosition.position, Camera.main.transform.position + Camera.main.transform.forward * laserSize, 1);
+        Collider[] colliders = Physics.OverlapCapsule(rayStartPosition.position, Camera.main.transform.position + Camera.main.transform.forward * laserSize, rayRadius);
 
         for (int i = 0; i < colliders.Length; i++)
             Destroy(colliders[i].gameObject.GetComponent<Rigidbody>());
+
+        if(colliders.Length == 1)
+        {
+            laserState = "RETRACTING";
+            laserSize = Vector3.Distance(colliders[0].transform.position, rayStartPosition.position);
+            colliders[0].transform.position = Camera.main.transform.position + Camera.main.transform.forward * laserSize;
+            if (laserSize < 2)
+            {
+                FindObjectOfType<Inventory>().addItem(colliders[0].tag, 1);
+                Destroy(colliders[0].gameObject);
+            }
+        }
+
     }
 
 
