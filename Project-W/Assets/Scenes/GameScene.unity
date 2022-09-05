@@ -1766,8 +1766,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3512864192841419790, guid: 2b34355b9e05aa0419d71005f855ce48, type: 3}
   parentObject: {fileID: 447373184}
-  laserExpansionSpeed: 3
+  maxLaserSize: 50
+  laserExpansionSpeed: 10
   rayRadius: 0.1
+  resourcesMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &1232542222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2095735944723773755, guid: ec78c702804575e4bb1d37d79d8ede0f, type: 3}
@@ -2445,7 +2449,7 @@ MonoBehaviour:
   playerTransform: {fileID: 885755179}
   spawnHeight: 70
   spawnRadius: 20
-  spawnTimeInterval: 1
+  spawnTimeInterval: 0.3
   resourcePrefabs:
   - {fileID: 5844576332225770077, guid: ac6a04297f3e60e4ca5361234673fe46, type: 3}
 --- !u!4 &1644724144
