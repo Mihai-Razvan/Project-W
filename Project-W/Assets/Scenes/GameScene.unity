@@ -1768,7 +1768,7 @@ MonoBehaviour:
   parentObject: {fileID: 447373184}
   maxLaserSize: 50
   laserExpansionSpeed: 10
-  rayRadius: 0.1
+  rayRadius: 0.5
   resourcesMask:
     serializedVersion: 2
     m_Bits: 64

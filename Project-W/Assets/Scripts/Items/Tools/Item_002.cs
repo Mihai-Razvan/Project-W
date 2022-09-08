@@ -18,12 +18,16 @@ public class Item_002 : Tool
     Transform rayStartPosition;
     [SerializeField]
     LayerMask resourcesMask;
+    Dictionary<GameObject, float> objectsList;   //the second attribute "float" represents the distance between rayStart and object
+    List<GameObject> keyList;    //we use this to store the gameobjects that are keys for the above dictionary so we can delete entries from the dictionary safe 
      
     void Start()
     {
         itemCode = 2;
         laserSize = 0;
         laserState = "UNUSED";
+        objectsList = new Dictionary<GameObject, float>();
+        keyList = new List<GameObject>();
     }
 
     void Update()
@@ -52,9 +56,8 @@ public class Item_002 : Tool
         
         laserLine.positionCount = 2;         //so the ray appears; if we don't do this after setting it to 0 rat won't display
         laserLine.SetPosition(0, rayStartPosition.position);
-      
+
         laserLine.SetPosition(1, rayStartPosition.position + rayStartPosition.forward * laserSize);
-        Debug.Log(laserSize);
 
         switch(laserState)
         {
@@ -81,34 +84,40 @@ public class Item_002 : Tool
     {
         Collider[] colliders = Physics.OverlapCapsule(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * laserSize, rayRadius, resourcesMask);
 
-        if(colliders.Length != 0)
-            switch(laserState)
+        if (colliders.Length != 0)
+            for (int i = 0; i < colliders.Length; i++)
             {
-                case "EXPANDING":  //if is expanding and we have a collision it means it is the only resources colliding since there are virtually 0 chances to have 2 resources colliding for the first time in the same frame
+                if (!keyList.Contains(colliders[0].gameObject)) //it means we are in the frame when this object collided for the first time
+                {
+                    colliders[i].transform.position = rayStartPosition.position + rayStartPosition.forward * Vector3.Distance(rayStartPosition.position, colliders[i].transform.position);
+                    objectsList.Add(colliders[i].gameObject, Vector3.Distance(rayStartPosition.position, colliders[i].transform.position));
+                    keyList.Add(colliders[0].gameObject);
+                }
+
+                if (colliders[0].gameObject.GetComponent<Rigidbody>() != null)  
+                    Destroy(colliders[0].gameObject.GetComponent<Rigidbody>());
+
+                if(colliders.Length == 1)
+                {
                     laserState = "RETRACTING";
                     laserSize = Vector3.Distance(colliders[0].transform.position, rayStartPosition.position);
-                    colliders[0].transform.position = rayStartPosition.position + rayStartPosition.forward * laserSize;
-                    Destroy(colliders[0].gameObject.GetComponent<Rigidbody>());
-                    break;
-                case "RETRACTING":
-                    for (int i = 0; i < colliders.Length; i++)
-                    {
-                        if (colliders[i].gameObject.GetComponent<Rigidbody>() != null)
-                        {
-                            Destroy(colliders[i].gameObject.GetComponent<Rigidbody>());
-                            colliders[i].transform.position = rayStartPosition.position + rayStartPosition.forward * Vector3.Distance(rayStartPosition.position, colliders[i].transform.position);
-                        }
+                }         
+            }
 
-                       colliders[i].transform.position = colliders[i].transform.position - rayStartPosition.forward * laserExpansionSpeed * Time.deltaTime;   //it gets closer everty frame
+        for (int i = 0; i < keyList.Count; i++)
+        {
+            objectsList[keyList[i]] = Vector3.Distance(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * (objectsList[keyList[i]] - laserExpansionSpeed * Time.deltaTime));
+            keyList[i].transform.position = rayStartPosition.position + rayStartPosition.forward * objectsList[keyList[i]];
+        }
 
-                        if(Vector3.Distance(colliders[i].transform.position, rayStartPosition.position) < 0.5f)
-                        {
-                            FindObjectOfType<Inventory>().addItem(colliders[i].tag, 1);
-                            Destroy(colliders[i].gameObject);
-                        }
-                    }
-
-                    break;
+        for(int i = 0; i < keyList.Count; i++)
+            if (Vector3.Distance(keyList[i].transform.position, rayStartPosition.position) < 0.5f)
+            {
+                FindObjectOfType<Inventory>().addItem(keyList[i].tag, 1);
+                objectsList.Remove(keyList[i]);
+                GameObject objectToDestroy = keyList[i];
+                keyList.Remove(keyList[i]);
+                Destroy(objectToDestroy);
             }
     }
 
