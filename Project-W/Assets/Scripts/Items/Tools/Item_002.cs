@@ -92,6 +92,7 @@ public class Item_002 : Tool
                     colliders[i].transform.position = rayStartPosition.position + rayStartPosition.forward * Vector3.Distance(rayStartPosition.position, colliders[i].transform.position);
                     objectsList.Add(colliders[i].gameObject, Vector3.Distance(rayStartPosition.position, colliders[i].transform.position));
                     keyList.Add(colliders[0].gameObject);
+                    colliders[i].gameObject.AddComponent<Outline>();      //it adds the script that creates the encapsulate outline
                 }
 
                 if (colliders[0].gameObject.GetComponent<Rigidbody>() != null)  
