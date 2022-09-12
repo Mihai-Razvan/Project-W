@@ -18,6 +18,7 @@ public class Item_002 : Tool
     Transform rayStartPosition;
     [SerializeField]
     LayerMask resourcesMask;
+    GameObject beamStartEffect;
     Dictionary<GameObject, float> objectsList;   //the second attribute "float" represents the distance between rayStart and object
     List<GameObject> keyList;    //we use this to store the gameobjects that are keys for the above dictionary so we can delete entries from the dictionary safe 
      
@@ -33,8 +34,9 @@ public class Item_002 : Tool
     void Update()
     {
         if (checkSelected())
-        {
-            displayPrefab();
+        {          
+            displayPrefab();   //this also sets the usedObject
+            beamStartEffect = getUsedObject().transform.GetChild(1).gameObject;
             rayStartPosition = getUsedObject().transform.GetChild(0).transform.GetChild(0);
             laserLine = getUsedObject().GetComponent<LineRenderer>();
 
@@ -42,11 +44,13 @@ public class Item_002 : Tool
             {
                 drawLaser();
                 makeCollider();
+                beamStartEffect.SetActive(true);
             }
             else
             {
                 laserLine.positionCount = 0;     //so the ray disappears
                 laserSize = 0;
+                beamStartEffect.SetActive(false);
             }
         }
     }
@@ -92,7 +96,8 @@ public class Item_002 : Tool
                     colliders[i].transform.position = rayStartPosition.position + rayStartPosition.forward * Vector3.Distance(rayStartPosition.position, colliders[i].transform.position);
                     objectsList.Add(colliders[i].gameObject, Vector3.Distance(rayStartPosition.position, colliders[i].transform.position));
                     keyList.Add(colliders[0].gameObject);
-                    colliders[i].gameObject.AddComponent<Outline>();      //it adds the script that creates the encapsulate outline
+                         colliders[i].gameObject.AddComponent<Outline>();      //it adds the script that creates the encapsulate outline
+                 //   colliders[i].gameObject.GetComponent<Outline>().enabled = true;
                 }
 
                 if (colliders[0].gameObject.GetComponent<Rigidbody>() != null)  

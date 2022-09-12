@@ -2447,7 +2447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 885755179}
-  spawnHeight: 70
+  spawnHeight: 20
   spawnRadius: 20
   spawnTimeInterval: 0.3
   resourcePrefabs:
