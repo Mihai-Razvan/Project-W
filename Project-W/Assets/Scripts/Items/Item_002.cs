@@ -16,6 +16,8 @@ public class Item_002 : Tool
     [SerializeField]
     float laserExpansionSpeed;    //the speed at which the laser is expansing or retrating
     [SerializeField]
+    float laserRetractingSlowDown;     //retracting is slower when we got object retracting
+    [SerializeField]
     float rayRadius;               //the radius for the capsule collider that si cheking for the ray collision
     string laserState;
     Transform rayStartPosition;
@@ -105,7 +107,13 @@ public class Item_002 : Tool
         else
         {
             if (laserSize > 0)
-                laserSize = laserSize - laserExpansionSpeed * Time.deltaTime;
+            {
+                float slowDown = 1;
+                if (keyList.Count != 0)         //if we are retracting objects the retraction speed is slower
+                    slowDown = laserRetractingSlowDown;
+
+                laserSize = laserSize - laserExpansionSpeed * Time.deltaTime * slowDown;
+            }
             else
                 laserState = "UNUSED";
         }
@@ -140,7 +148,7 @@ public class Item_002 : Tool
 
         for (int i = 0; i < keyList.Count; i++)
         {
-            objectsList[keyList[i]] = Vector3.Distance(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * (objectsList[keyList[i]] - laserExpansionSpeed * Time.deltaTime));
+            objectsList[keyList[i]] = Vector3.Distance(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * (objectsList[keyList[i]] - laserExpansionSpeed * Time.deltaTime * laserRetractingSlowDown));
             keyList[i].transform.position = rayStartPosition.position + rayStartPosition.forward * objectsList[keyList[i]];
         }
 
@@ -153,5 +161,20 @@ public class Item_002 : Tool
                 keyList.Remove(keyList[i]);
                 Destroy(objectToDestroy);
             }
+    }
+
+    public float getChargeTime()
+    {
+        return chargeTime;
+    }
+
+    public float getMaxChargeTime()
+    {
+        return maxChargeTime;
+    }
+
+    public string getLaserState()
+    {
+        return laserState;
     }
 }
