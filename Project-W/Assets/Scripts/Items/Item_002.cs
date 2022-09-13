@@ -9,7 +9,10 @@ public class Item_002 : Tool
     LineRenderer laserLine;
     float laserSize;   //the laser isn't full size since beginning, it is expanding during a few seconds; it starts from 0 and then increase, until reaches it final destination
     [SerializeField]
-    int maxLaserSize;
+    int laserSizePerSecond;    //the size laser expands for every second charged; for ex if this value is 10 and you charge 2.5 sec laser will go 25
+    [SerializeField]
+    float maxChargeTime;
+    float chargeTime;
     [SerializeField]
     float laserExpansionSpeed;    //the speed at which the laser is expansing or retrating
     [SerializeField]
@@ -21,12 +24,16 @@ public class Item_002 : Tool
     GameObject beamStartEffect;
     Dictionary<GameObject, float> objectsList;   //the second attribute "float" represents the distance between rayStart and object
     List<GameObject> keyList;    //we use this to store the gameobjects that are keys for the above dictionary so we can delete entries from the dictionary safe 
+
      
     void Start()
     {
+        Inventory.onItemSelected += displayPrefab;
+       
         itemCode = 2;
         laserSize = 0;
         laserState = "UNUSED";
+        chargeTime = 0;
         objectsList = new Dictionary<GameObject, float>();
         keyList = new List<GameObject>();
     }
@@ -34,25 +41,50 @@ public class Item_002 : Tool
     void Update()
     {
         if (checkSelected())
-        {          
-            displayPrefab();   //this also sets the usedObject
+        {
             beamStartEffect = getUsedObject().transform.GetChild(1).gameObject;
             rayStartPosition = getUsedObject().transform.GetChild(0).transform.GetChild(0);
             laserLine = getUsedObject().GetComponent<LineRenderer>();
 
-            if (Input.GetKey(KeyCode.Mouse0))
+            switch (laserState)
             {
-                drawLaser();
-                makeCollider();
-                beamStartEffect.SetActive(true);
-            }
-            else
-            {
-                laserLine.positionCount = 0;     //so the ray disappears
-                laserSize = 0;
-                beamStartEffect.SetActive(false);
+                case "UNUSED":
+                    if (Input.GetKey(KeyCode.Mouse0))
+                    {
+                        chargeLaser();
+                        beamStartEffect.SetActive(true);
+                    }
+                    else if (Input.GetKeyUp(KeyCode.Mouse0))
+                        laserState = "EXPANDING";
+                    else
+                        beamStartEffect.SetActive(false);
+
+                    break;
+                case "EXPANDING":
+                    drawLaser();
+                    makeCollider();
+                    break;
+                case "RETRACTING":
+                    drawLaser();
+                    makeCollider();
+                    if (laserState.Equals("UNUSED"))   //in case it became UNUSED in drawLaser()
+                    {
+                        chargeTime = 0;
+                        laserLine.positionCount = 0;     //so the ray disappears
+                        laserSize = 0;
+                    }
+
+                    break;
             }
         }
+    }
+
+    void chargeLaser()
+    {
+        chargeTime += Time.deltaTime;
+
+        if(chargeTime >= maxChargeTime)
+            chargeTime = maxChargeTime;    //in case charge time is greater
     }
 
     void drawLaser()
@@ -63,25 +95,21 @@ public class Item_002 : Tool
 
         laserLine.SetPosition(1, rayStartPosition.position + rayStartPosition.forward * laserSize);
 
-        switch(laserState)
+        if (laserState.Equals("EXPANDING"))
         {
-            case "UNUSED":
+            if (laserSize < laserSizePerSecond * chargeTime)
                 laserSize = laserSize + laserExpansionSpeed * Time.deltaTime;
-                laserState = "EXPANDING";
-                break;
-            case "EXPANDING":
-                if (laserSize < maxLaserSize)
-                    laserSize = laserSize + laserExpansionSpeed * Time.deltaTime;
-                else
-                    laserState = "RETRACTING";
-                break;
-            case "RETRACTING":
-                if (laserSize > 0)
-                    laserSize = laserSize - laserExpansionSpeed * Time.deltaTime;
-                else
-                    laserState = "UNUSED";
-                break;
+            else
+                laserState = "RETRACTING";
         }
+        else
+        {
+            if (laserSize > 0)
+                laserSize = laserSize - laserExpansionSpeed * Time.deltaTime;
+            else
+                laserState = "UNUSED";
+        }
+        
     }
 
     void makeCollider()    //creates and manages the collider around the ray to check for resources
@@ -126,6 +154,4 @@ public class Item_002 : Tool
                 Destroy(objectToDestroy);
             }
     }
-
-
 }

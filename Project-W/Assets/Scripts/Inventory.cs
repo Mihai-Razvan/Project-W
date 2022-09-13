@@ -12,9 +12,13 @@ public class Inventory : MonoBehaviour
     int selectedInventorySlot;
     KeyCode[] keyCodes = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9};
 
-    private void Start()
+    public delegate void OnItemSelected();
+    public static OnItemSelected onItemSelected;
+
+    private void Awake()
     {
         selectedInventorySlot = 0;
+        onItemSelected += Item.destroyUsedObject;
     }
 
     void Update()
@@ -47,8 +51,8 @@ public class Inventory : MonoBehaviour
                 break;
             }
 
-        if(newSelection)
-            Item.destroyUsedObject();
+        if (newSelection)
+            onItemSelected();
     }
 
     public int getSelectedItem()  //return the itemCode for the selected item

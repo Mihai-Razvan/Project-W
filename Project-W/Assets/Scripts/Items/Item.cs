@@ -8,6 +8,7 @@ public class Item : MonoBehaviour
 
     static GameObject usedObject;           //the object that is currently used (ex tools, weapons, building you are placing); is null if it is an object you won't have in hands
                                             //when it is selected from inventory (ex resources)
+
     protected bool checkSelected()
     {
         return FindObjectOfType<Inventory>().getSelectedItem() == itemCode;
