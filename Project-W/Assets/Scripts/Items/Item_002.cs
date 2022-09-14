@@ -44,7 +44,7 @@ public class Item_002 : Tool
     {
         if (checkSelected())
         {
-            beamStartEffect = getUsedObject().transform.GetChild(1).gameObject;
+            beamStartEffect = getUsedObject().transform.GetChild(0).transform.GetChild(1).gameObject;
             rayStartPosition = getUsedObject().transform.GetChild(0).transform.GetChild(0);
             laserLine = getUsedObject().GetComponent<LineRenderer>();
 

@@ -2604,6 +2604,7 @@ GameObject:
   - component: {fileID: 1644724143}
   - component: {fileID: 1644724142}
   - component: {fileID: 1644724145}
+  - component: {fileID: 1644724146}
   m_Layer: 0
   m_Name: Scripts-Manager
   m_TagString: Untagged
@@ -2641,9 +2642,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 885755179}
-  spawnHeight: 20
+  spawnHeight: 60
   spawnRadius: 20
-  spawnTimeInterval: 0.3
+  spawnTimeInterval: 0.2
   resourcePrefabs:
   - {fileID: 5844576332225770077, guid: ac6a04297f3e60e4ca5361234673fe46, type: 3}
 --- !u!4 &1644724144
@@ -2676,6 +2677,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCodeArray: 000000000200000000000000
   quantityArray: 000000000100000000000000
+--- !u!114 &1644724146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644724141}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59381eedc1f63834eadf2caf2d8c732e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1670654572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2095735944723773755, guid: ec78c702804575e4bb1d37d79d8ede0f, type: 3}
