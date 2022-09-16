@@ -99,8 +99,19 @@ public class Inventory : MonoBehaviour
         return itemCodeArray[selectedInventorySlot];
     }
 
-    public int getItem(int slot)    //return the item code for the given inventory slot
+    public int getItemCode(int slot)    //return the item code for the given inventory slot
     {
         return itemCodeArray[slot];
+    }
+
+    public int getQuantity(int slot)
+    {
+        return quantityArray[slot];
+    }
+
+    public void setSlot(int slot, int itemCode, int quantity)      //sets the code and quantity for the given slot
+    {
+        itemCodeArray[slot] = itemCode;
+        quantityArray[slot] = quantity;
     }
 }
