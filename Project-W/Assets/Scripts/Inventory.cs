@@ -31,14 +31,49 @@ public class Inventory : MonoBehaviour
     public void addItem(string itemTag, int quantity)
     {
         int itemCode = Item.getItemCode(itemTag);
+        int inventoryLimit = FindObjectOfType<ItemsList>().getInventoryLimit(itemCode);
 
         for(int i = 0; i < itemCodeArray.Length; i++)
-            if(itemCodeArray[i] == itemCode || itemCodeArray[i] == 0)
+            if(itemCodeArray[i] == itemCode)
             {
-                itemCodeArray[i] = itemCode;
-                quantityArray[i] += quantity;
-                break;
+                if(quantityArray[i] + quantity < inventoryLimit)
+                {
+                    quantityArray[i] += quantity;
+                    quantity = 0;
+                }
+                else
+                {
+                    quantity -= inventoryLimit - quantityArray[i];
+                    quantityArray[i] = inventoryLimit;
+                }
+
+                if (quantity == 0)
+                    break;
             }
+
+        if (quantity != 0)         //after filling all slots that already got this item, if we still have remaining quantity we search for a free slot to add
+            for (int i = 0; i < itemCodeArray.Length; i++)
+                if (itemCodeArray[i] == 0)
+                {
+                    if(quantity <= inventoryLimit)
+                    {
+                        itemCodeArray[i] = itemCode;
+                        quantityArray[i] = quantity;
+                        quantity = 0;
+                    }
+                    else
+                    {
+                        itemCodeArray[i] = itemCode;
+                        quantity -= inventoryLimit;
+                        quantityArray[i] = inventoryLimit;
+                    }
+
+                    if (quantity == 0)
+                        break;
+                }
+
+        if (quantity != 0)                 //it isn't enought space in the inventory for all the quantity
+            Debug.Log("Not enought space: " + quantity + " remained!");
 
         onInventoryChange();
     }
