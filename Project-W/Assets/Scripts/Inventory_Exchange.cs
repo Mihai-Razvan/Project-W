@@ -38,7 +38,10 @@ public class Inventory_Exchange : MonoBehaviour
         dragQuantity = quantity;
         dragSlot = slot;
 
-        FindObjectOfType<Inventory>().setSlot(dragSlot, 0, 0);
+        if (dragItemCode == 0)     //in case drag begins on an emty slot
+            return;
+
+      //  FindObjectOfType<Inventory>().setSlot(dragSlot, 0, 0);
 
         Inventory.onInventoryChange();
         state = "ACTIVE";
@@ -52,8 +55,46 @@ public class Inventory_Exchange : MonoBehaviour
         targetQuantity = quantity;
         targetSlot = slot;
 
-        FindObjectOfType<Inventory>().setSlot(targetSlot, dragItemCode, dragQuantity);
-        FindObjectOfType<Inventory>().setSlot(dragSlot, targetItemCode, targetQuantity);
+        if(targetSlot == dragSlot)
+        {
+            state = "INACTIVE";
+            itemImage.enabled = false;
+            return;
+        }
+
+        if (targetItemCode != dragItemCode)
+        {
+            if (dragQuantity == FindObjectOfType<Inventory>().getQuantity(dragSlot))   
+            {
+                FindObjectOfType<Inventory>().setSlot(targetSlot, dragItemCode, dragQuantity);
+                FindObjectOfType<Inventory>().setSlot(dragSlot, targetItemCode, targetQuantity);
+            }
+            else      // it is a rightclick drag
+            {
+                if(targetItemCode == 0)    //target is empty
+                {
+                    FindObjectOfType<Inventory>().setSlot(targetSlot, dragItemCode, dragQuantity);    
+                    FindObjectOfType<Inventory>().setSlot(dragSlot, dragItemCode, FindObjectOfType<Inventory>().getQuantity(dragSlot) - dragQuantity);
+                }
+                //else nothing happens
+            }
+        }
+        else
+        {
+            if(targetQuantity + dragQuantity <= FindObjectOfType<ItemsList>().getInventoryLimit(targetItemCode))
+            {
+                FindObjectOfType<Inventory>().setSlot(targetSlot, dragItemCode, targetQuantity + dragQuantity);
+                if(FindObjectOfType<Inventory>().getQuantity(dragSlot) - dragQuantity == 0)     //this is for left drag
+                    FindObjectOfType<Inventory>().setSlot(dragSlot, 0, FindObjectOfType<Inventory>().getQuantity(dragSlot) - dragQuantity);
+                else
+                    FindObjectOfType<Inventory>().setSlot(dragSlot, dragItemCode, FindObjectOfType<Inventory>().getQuantity(dragSlot) - dragQuantity);
+            }
+            else
+            {
+                FindObjectOfType<Inventory>().setSlot(dragSlot, targetItemCode, dragQuantity + targetQuantity - FindObjectOfType<ItemsList>().getInventoryLimit(targetItemCode));
+                FindObjectOfType<Inventory>().setSlot(targetSlot, dragItemCode, FindObjectOfType<ItemsList>().getInventoryLimit(targetItemCode));
+            }
+        }
 
         Inventory.onInventoryChange();
         state = "INACTIVE";
