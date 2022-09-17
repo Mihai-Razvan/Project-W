@@ -114,4 +114,6 @@ public class Inventory : MonoBehaviour
         itemCodeArray[slot] = itemCode;
         quantityArray[slot] = quantity;
     }
+
+
 }

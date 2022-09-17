@@ -38,13 +38,12 @@ public class Inventory_Exchange : MonoBehaviour
         dragQuantity = quantity;
         dragSlot = slot;
 
-        if (dragItemCode == 0)     //in case drag begins on an emty slot
-            return;
-
-      //  FindObjectOfType<Inventory>().setSlot(dragSlot, 0, 0);
-
         Inventory.onInventoryChange();
         state = "ACTIVE";
+
+        if (dragItemCode == 0)     //in case drag begins on an empty slot; we can't do this at the beginning of the method because dragEnd will still be detected so we need the above info
+            return;
+
         itemImage.enabled = true;
         itemImage.sprite = FindObjectOfType<ItemsList>().getSprite(dragItemCode);
     }
@@ -99,5 +98,10 @@ public class Inventory_Exchange : MonoBehaviour
         Inventory.onInventoryChange();
         state = "INACTIVE";
         itemImage.enabled = false;
+    }
+
+    public string getState()
+    {
+        return state;
     }
 }
