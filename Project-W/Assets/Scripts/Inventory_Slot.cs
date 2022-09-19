@@ -18,19 +18,20 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
     {
         itemImage.gameObject.SetActive(false);
         quantityText.gameObject.SetActive(false);
-        Inventory.onInventoryChange += onChange;
+        Player_Inventory.onInventoryChange += onChange;
+        onChange();
     }
 
     void onChange()
     {
-        int itemCode = FindObjectOfType<Inventory>().getItemCode(slot);
+        int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
 
         if (itemCode != 0)
         {
             itemImage.gameObject.SetActive(true);
             itemImage.sprite = FindObjectOfType<ItemsList>().getSprite(itemCode);
             quantityText.gameObject.SetActive(true);
-            quantityText.text = FindObjectOfType<Inventory>().getQuantity(slot).ToString();
+            quantityText.text = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot).ToString();
         }
         else
         {
@@ -41,31 +42,31 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        int itemCode = FindObjectOfType<Inventory>().getItemCode(slot);
+        int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
         int quantity = 0;
 
         if (eventData.button == PointerEventData.InputButton.Left)
-            quantity = FindObjectOfType<Inventory>().getQuantity(slot);
+            quantity = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
         else if (eventData.button == PointerEventData.InputButton.Right)
             quantity = 1;
 
-        FindObjectOfType<Inventory_Exchange>().dragStart(itemCode, quantity, slot);
+        FindObjectOfType<Inventory_Exchange>().dragStart(itemCode, quantity, this.gameObject);
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        int itemCode = FindObjectOfType<Inventory>().getItemCode(slot);
-        int quantity = FindObjectOfType<Inventory>().getQuantity(slot);
+        int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
+        int quantity = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
 
-        FindObjectOfType<Inventory_Exchange>().dragEnd(itemCode, quantity, slot);
+        FindObjectOfType<Inventory_Exchange>().dragEnd(itemCode, quantity, this.gameObject);
     }
 
     public void OnPointerClick(PointerEventData eventData)     //in case a slot is just clicked but without any darg
     {
-        int itemCode = FindObjectOfType<Inventory>().getItemCode(slot);
-        int quantity = FindObjectOfType<Inventory>().getQuantity(slot);
+        int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
+        int quantity = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
 
-        FindObjectOfType<Inventory_Exchange>().dragEnd(itemCode, quantity, slot);
+        FindObjectOfType<Inventory_Exchange>().dragEnd(itemCode, quantity, this.gameObject);
     }
 
     public void OnDrag(PointerEventData eventData)     //if we don't have this the start and end drag don't work; idk why
@@ -73,7 +74,17 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     }
 
-    public int getSlot()
+    public GameObject getInventoryHolder()          //the object that holds the inventory script
+    {
+        GameObject inventoryHolder = this.gameObject;
+
+        while (inventoryHolder.GetComponent<Inventory>() == null)
+            inventoryHolder = inventoryHolder.transform.parent.gameObject;
+
+        return inventoryHolder;
+    }
+
+    public int getSlotNumber()
     {
         return slot;
     }

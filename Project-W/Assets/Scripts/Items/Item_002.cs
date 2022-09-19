@@ -30,8 +30,9 @@ public class Item_002 : Tool
      
     void Start()
     {
-        Inventory.onItemSelected += displayPrefab;
-       
+        Player_Inventory.onItemSelected += displayPrefab;
+        Player_Inventory.onItemDeselected += deselectItem;
+
         itemCode = 2;
         laserSize = 0;
         laserState = "UNUSED";
@@ -42,7 +43,7 @@ public class Item_002 : Tool
 
     void Update()
     {
-        if (checkSelected())
+        if (checkSelected() && getUsedObject() != null)     //we use getusedobject() in case the object appears on selected slot when slot is already selected
         {
             beamStartEffect = getUsedObject().transform.GetChild(0).transform.GetChild(1).gameObject;
             rayStartPosition = getUsedObject().transform.GetChild(0).transform.GetChild(0);
@@ -65,10 +66,12 @@ public class Item_002 : Tool
                 case "EXPANDING":
                     drawLaser();
                     makeCollider();
+
                     break;
                 case "RETRACTING":
                     drawLaser();
                     makeCollider();
+
                     if (laserState.Equals("UNUSED"))   //in case it became UNUSED in drawLaser()
                     {
                         chargeTime = 0;
@@ -78,6 +81,8 @@ public class Item_002 : Tool
 
                     break;
             }
+
+            actionLock = chargeTime != 0;   //if chargeTime != 0 it means it is expanding, retracting or charging, so action is loked
         }
     }
 
@@ -154,12 +159,19 @@ public class Item_002 : Tool
         for(int i = 0; i < keyList.Count; i++)
             if (Vector3.Distance(keyList[i].transform.position, rayStartPosition.position) < 0.5f)
             {
-                FindObjectOfType<Inventory>().addItem(keyList[i].tag, 1);
+                FindObjectOfType<Player_Inventory>().addItem(keyList[i].tag, 1);
                 objectsList.Remove(keyList[i]);
                 GameObject objectToDestroy = keyList[i];
                 keyList.Remove(keyList[i]);
                 Destroy(objectToDestroy);
             }
+    }
+
+    void deselectItem()
+    {
+        chargeTime = 0;  
+        laserSize = 0;
+        actionLock = false;
     }
 
     public float getChargeTime()

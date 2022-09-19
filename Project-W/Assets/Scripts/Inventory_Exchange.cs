@@ -10,10 +10,12 @@ public class Inventory_Exchange : MonoBehaviour
     string state;             //"ACTIVE" if dragging is happening, "INACTIVE" oTHERWISE
     int dragItemCode;         //the cpde of the item that is dragged
     int dragQuantity;
-    int dragSlot;             //the slot where the drag begins 
+    GameObject dragSlotObject;             //the slot where the drag begins 
+    int dragSlotNumber;
     int targetItemCode;       //the code of the item in the target slot
     int targetQuantity;
-    int targetSlot;
+    GameObject targetSlotObject;
+    int targetSlotNumber;
     [SerializeField]
     Image itemImage;          
 
@@ -23,7 +25,6 @@ public class Inventory_Exchange : MonoBehaviour
         itemImage.enabled = false;
     }
 
-    
     void Update()
     {
         if(state.Equals("ACTIVE"))
@@ -32,13 +33,14 @@ public class Inventory_Exchange : MonoBehaviour
         }
     }
 
-    public void dragStart(int itemCode, int quantity, int slot)
+    public void dragStart(int itemCode, int quantity, GameObject slot)
     {
         dragItemCode = itemCode;
         dragQuantity = quantity;
-        dragSlot = slot;
+        dragSlotObject = slot;
+        dragSlotNumber = dragSlotObject.GetComponent<Inventory_Slot>().getSlotNumber();
 
-        Inventory.onInventoryChange();
+        Player_Inventory.onInventoryChange();
         state = "ACTIVE";
 
         if (dragItemCode == 0)     //in case drag begins on an empty slot; we can't do this at the beginning of the method because dragEnd will still be detected so we need the above info
@@ -48,13 +50,14 @@ public class Inventory_Exchange : MonoBehaviour
         itemImage.sprite = FindObjectOfType<ItemsList>().getSprite(dragItemCode);
     }
 
-    public void dragEnd(int itemCode, int quantity, int slot)
+    public void dragEnd(int itemCode, int quantity, GameObject slot)
     {
         targetItemCode = itemCode;
         targetQuantity = quantity;
-        targetSlot = slot;
+        targetSlotObject = slot;
+        targetSlotNumber = targetSlotObject.GetComponent<Inventory_Slot>().getSlotNumber();
 
-        if(targetSlot == dragSlot)
+        if (targetSlotNumber == dragSlotNumber)
         {
             state = "INACTIVE";
             itemImage.enabled = false;
@@ -63,17 +66,18 @@ public class Inventory_Exchange : MonoBehaviour
 
         if (targetItemCode != dragItemCode)
         {
-            if (dragQuantity == FindObjectOfType<Inventory>().getQuantity(dragSlot))   
+            if (dragQuantity == dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber))   
             {
-                FindObjectOfType<Inventory>().setSlot(targetSlot, dragItemCode, dragQuantity);
-                FindObjectOfType<Inventory>().setSlot(dragSlot, targetItemCode, targetQuantity);
+                targetSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(targetSlotNumber, dragItemCode, dragQuantity);
+                dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(dragSlotNumber, targetItemCode, targetQuantity);
             }
             else      // it is a rightclick drag
             {
                 if(targetItemCode == 0)    //target is empty
                 {
-                    FindObjectOfType<Inventory>().setSlot(targetSlot, dragItemCode, dragQuantity);    
-                    FindObjectOfType<Inventory>().setSlot(dragSlot, dragItemCode, FindObjectOfType<Inventory>().getQuantity(dragSlot) - dragQuantity);
+                    targetSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(targetSlotNumber, dragItemCode, dragQuantity);
+                    dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(dragSlotNumber, dragItemCode,
+                        dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber) - dragQuantity);
                 }
                 //else nothing happens
             }
@@ -82,20 +86,22 @@ public class Inventory_Exchange : MonoBehaviour
         {
             if(targetQuantity + dragQuantity <= FindObjectOfType<ItemsList>().getInventoryLimit(targetItemCode))
             {
-                FindObjectOfType<Inventory>().setSlot(targetSlot, dragItemCode, targetQuantity + dragQuantity);
-                if(FindObjectOfType<Inventory>().getQuantity(dragSlot) - dragQuantity == 0)     //this is for left drag
-                    FindObjectOfType<Inventory>().setSlot(dragSlot, 0, FindObjectOfType<Inventory>().getQuantity(dragSlot) - dragQuantity);
+                targetSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(targetSlotNumber, dragItemCode, targetQuantity + dragQuantity);
+                if(dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber) - dragQuantity == 0)     //this is for left drag
+                    dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(dragSlotNumber, 0,
+                        dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber) - dragQuantity);
                 else
-                    FindObjectOfType<Inventory>().setSlot(dragSlot, dragItemCode, FindObjectOfType<Inventory>().getQuantity(dragSlot) - dragQuantity);
+                    dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(dragSlotNumber, dragItemCode,
+                        dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber) - dragQuantity);
             }
             else
             {
-                FindObjectOfType<Inventory>().setSlot(dragSlot, targetItemCode, dragQuantity + targetQuantity - FindObjectOfType<ItemsList>().getInventoryLimit(targetItemCode));
-                FindObjectOfType<Inventory>().setSlot(targetSlot, dragItemCode, FindObjectOfType<ItemsList>().getInventoryLimit(targetItemCode));
+                dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(dragSlotNumber, targetItemCode, dragQuantity + targetQuantity - FindObjectOfType<ItemsList>().getInventoryLimit(targetItemCode));
+                targetSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(targetSlotNumber, dragItemCode, FindObjectOfType<ItemsList>().getInventoryLimit(targetItemCode));
             }
         }
 
-        Inventory.onInventoryChange();
+        Player_Inventory.onInventoryChange();
         state = "INACTIVE";
         itemImage.enabled = false;
     }
