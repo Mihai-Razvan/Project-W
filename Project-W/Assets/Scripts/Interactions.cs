@@ -23,7 +23,7 @@ public class Interactions : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                FindObjectOfType<Player_Inventory>().addItem(colliders[0].tag, 1);
+                FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(colliders[0].tag, 1);
                 Destroy(colliders[0].gameObject);
             }
         }

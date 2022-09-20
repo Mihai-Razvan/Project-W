@@ -8,6 +8,13 @@ public class Inventory : MonoBehaviour
     int[] itemCodeArray;    
     [SerializeField]
     int[] quantityArray;
+    public delegate void OnInventoryChange();
+    public OnInventoryChange onInventoryChange;
+
+    private void Start()
+    {
+        
+    }
 
     public void addItem(string itemTag, int quantity)
     {
@@ -55,6 +62,13 @@ public class Inventory : MonoBehaviour
 
         if (quantity != 0)                 //it isn't enought space in the inventory for all the quantity
             Debug.Log("Not enought space: " + quantity + " remained!");
+
+        onInventoryChange();
+    }
+
+    public void executeOnInventoryChange()
+    {
+        onInventoryChange();
     }
 
     public int getNumberOfSlots()
@@ -76,6 +90,7 @@ public class Inventory : MonoBehaviour
     {
         itemCodeArray[slot] = itemCode;
         quantityArray[slot] = quantity;
-    }
 
+        onInventoryChange();
+    }
 }

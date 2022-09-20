@@ -18,7 +18,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
     {
         itemImage.gameObject.SetActive(false);
         quantityText.gameObject.SetActive(false);
-        Player_Inventory.onInventoryChange += onChange;
+        getInventoryHolder().GetComponent<Inventory>().onInventoryChange += onChange;
         onChange();
     }
 
@@ -42,6 +42,9 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+            return;
+
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
         int quantity = 0;
 
@@ -63,6 +66,9 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     public void OnPointerClick(PointerEventData eventData)     //in case a slot is just clicked but without any darg
     {
+        if (!FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+            return;
+
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
         int quantity = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
 

@@ -16,8 +16,8 @@ public class Player_Inventory : MonoBehaviour
     public static OnItemSelected onItemSelected;
     public delegate void OnItemDeselected();
     public static OnItemDeselected onItemDeselected;
-    public delegate void OnInventoryChange();    //when a modification occurs in the inventory
-    public static OnInventoryChange onInventoryChange;
+  //  public delegate void OnInventoryChange();    //when a modification occurs in the inventory
+  //  public static OnInventoryChange onInventoryChange;
 
     private void Awake()
     {
@@ -50,12 +50,6 @@ public class Player_Inventory : MonoBehaviour
         }
 
         selectInventorySlot();
-    }
-
-    public void addItem(string itemTag, int quantity)
-    {
-        getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemTag, quantity); 
-        onInventoryChange();
     }
 
     void selectInventorySlot()     //when you press a numeric key on keyboard it will select that slot in inventory bar

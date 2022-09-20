@@ -35,15 +35,10 @@ public class Inventory_Exchange : MonoBehaviour
 
     public void dragStart(int itemCode, int quantity, GameObject slot)
     {
-        if (!FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
-            return;
-
         dragItemCode = itemCode;
         dragQuantity = quantity;
         dragSlotObject = slot;
         dragSlotNumber = dragSlotObject.GetComponent<Inventory_Slot>().getSlotNumber();
-
-        Player_Inventory.onInventoryChange();
         state = "ACTIVE";
 
         if (dragItemCode == 0)     //in case drag begins on an empty slot; we can't do this at the beginning of the method because dragEnd will still be detected so we need the above info
@@ -54,10 +49,7 @@ public class Inventory_Exchange : MonoBehaviour
     }
 
     public void dragEnd(int itemCode, int quantity, GameObject slot)
-    {
-        if (!FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
-            return;
-
+    {    
         targetItemCode = itemCode;
         targetQuantity = quantity;
         targetSlotObject = slot;
@@ -107,7 +99,8 @@ public class Inventory_Exchange : MonoBehaviour
             }
         }
 
-        Player_Inventory.onInventoryChange();
+        dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().executeOnInventoryChange();
+        targetSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().executeOnInventoryChange();
         state = "INACTIVE";
         itemImage.enabled = false;
     }
@@ -115,5 +108,16 @@ public class Inventory_Exchange : MonoBehaviour
     public string getState()
     {
         return state;
+    }
+
+    public void disableItemImage()
+    {
+        state = "INACTIVE";
+        itemImage.enabled = false;
+    }
+
+    public GameObject getDragSlotObject()
+    {
+        return dragSlotObject;
     }
 }

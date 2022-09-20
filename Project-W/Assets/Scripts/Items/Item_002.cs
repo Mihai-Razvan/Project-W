@@ -87,6 +87,7 @@ public class Item_002 : Tool
             else
                 FindObjectOfType<Player>().setActionLock("UNLOCKED");
         }
+      
     }
 
     void chargeLaser()
@@ -162,7 +163,7 @@ public class Item_002 : Tool
         for(int i = 0; i < keyList.Count; i++)
             if (Vector3.Distance(keyList[i].transform.position, rayStartPosition.position) < 0.5f)
             {
-                FindObjectOfType<Player_Inventory>().addItem(keyList[i].tag, 1);
+                FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(keyList[i].tag, 1);
                 objectsList.Remove(keyList[i]);
                 GameObject objectToDestroy = keyList[i];
                 keyList.Remove(keyList[i]);
@@ -174,7 +175,6 @@ public class Item_002 : Tool
     {
         chargeTime = 0;  
         laserSize = 0;
-        FindObjectOfType<Player>().setActionLock("UNLOCKED");
     }
 
     public float getChargeTime()
