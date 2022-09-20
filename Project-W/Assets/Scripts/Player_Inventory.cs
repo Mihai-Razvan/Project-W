@@ -34,13 +34,18 @@ public class Player_Inventory : MonoBehaviour
         {
             if (inventoryTabState.Equals("CLOSED"))
             {
-                inventoryTab.SetActive(true);
-                inventoryTabState = "OPENED";
+                if (FindObjectOfType<Player>().getActionLock().Equals("UNLOCKED"))
+                {
+                    inventoryTab.SetActive(true);
+                    inventoryTabState = "OPENED";
+                    FindObjectOfType<Player>().setActionLock("INVENTORY_OPENED");
+                }
             }
             else
             {
                 inventoryTab.SetActive(false);
                 inventoryTabState = "CLOSED";
+                FindObjectOfType<Player>().setActionLock("UNLOCKED");
             }
         }
 
@@ -55,7 +60,7 @@ public class Player_Inventory : MonoBehaviour
 
     void selectInventorySlot()     //when you press a numeric key on keyboard it will select that slot in inventory bar
     {
-        if (Item.getActionLock() == true)
+        if (FindObjectOfType<Player>().getActionLock().Equals("ACTION_LOCKED"))
             return;
 
         bool newSelection = false;

@@ -35,6 +35,9 @@ public class Inventory_Exchange : MonoBehaviour
 
     public void dragStart(int itemCode, int quantity, GameObject slot)
     {
+        if (!FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+            return;
+
         dragItemCode = itemCode;
         dragQuantity = quantity;
         dragSlotObject = slot;
@@ -52,6 +55,9 @@ public class Inventory_Exchange : MonoBehaviour
 
     public void dragEnd(int itemCode, int quantity, GameObject slot)
     {
+        if (!FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+            return;
+
         targetItemCode = itemCode;
         targetQuantity = quantity;
         targetSlotObject = slot;

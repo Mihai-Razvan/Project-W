@@ -1,0 +1,4 @@
+actionLock: 
+-"ACTION_LOCKED": you can't do interactions (can't open invenotry, chests, settings, but you can move)
+-"UNLOCKED": can do anything, except interacting with UI (can't interchange items in inventory bar)
+-"INVENOTRY_OPEN": not only player inventory, but also chest inventory etc can be opened (can't move, access settings but can interchange items in inventory)

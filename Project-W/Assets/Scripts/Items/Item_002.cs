@@ -43,7 +43,7 @@ public class Item_002 : Tool
 
     void Update()
     {
-        if (checkSelected() && getUsedObject() != null)     //we use getusedobject() in case the object appears on selected slot when slot is already selected
+        if (checkSelected() && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))     //we use getusedobject() in case the object appears on selected slot when slot is already selected
         {
             beamStartEffect = getUsedObject().transform.GetChild(0).transform.GetChild(1).gameObject;
             rayStartPosition = getUsedObject().transform.GetChild(0).transform.GetChild(0);
@@ -82,7 +82,10 @@ public class Item_002 : Tool
                     break;
             }
 
-            actionLock = chargeTime != 0;   //if chargeTime != 0 it means it is expanding, retracting or charging, so action is loked
+            if (chargeTime != 0)
+                FindObjectOfType<Player>().setActionLock("ACTION_LOCKED");   //if chargeTime != 0 it means it is expanding, retracting or charging, so action is locked
+            else
+                FindObjectOfType<Player>().setActionLock("UNLOCKED");
         }
     }
 
@@ -171,7 +174,7 @@ public class Item_002 : Tool
     {
         chargeTime = 0;  
         laserSize = 0;
-        actionLock = false;
+        FindObjectOfType<Player>().setActionLock("UNLOCKED");
     }
 
     public float getChargeTime()

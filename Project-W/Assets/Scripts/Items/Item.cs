@@ -7,9 +7,7 @@ public class Item : MonoBehaviour
     protected int itemCode;     
 
     static GameObject usedObject;           //the object that is currently used (ex tools, weapons, building you are placing); is null if it is an object you won't have in hands
-                                            //when it is selected from inventory (ex resources
-    protected static bool actionLock = false;        //if the item is in use in some cases you can't change the selected inventory, open inventory etc slot until the item is no longer in use (ex grappler)
-
+                                            //when it is selected from inventory (ex resource)
     protected bool checkSelected()
     {
         return FindObjectOfType<Player_Inventory>().getSelectedItem() == itemCode;
@@ -38,9 +36,5 @@ public class Item : MonoBehaviour
     public static GameObject getUsedObject()
     {
         return usedObject;
-    }
-    public static bool getActionLock()
-    {
-        return actionLock;
     }
 }
