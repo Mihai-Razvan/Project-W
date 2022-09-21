@@ -11,14 +11,8 @@ public class Inventory : MonoBehaviour
     public delegate void OnInventoryChange();
     public OnInventoryChange onInventoryChange;
 
-    private void Start()
+    public void addItem(int itemCode, int quantity)
     {
-        
-    }
-
-    public void addItem(string itemTag, int quantity)
-    {
-        int itemCode = Item.getItemCode(itemTag);
         int inventoryLimit = FindObjectOfType<ItemsList>().getInventoryLimit(itemCode);
 
         for (int i = 0; i < itemCodeArray.Length; i++)
@@ -88,9 +82,18 @@ public class Inventory : MonoBehaviour
 
     public void setSlot(int slot, int itemCode, int quantity)      //sets the code and quantity for the given slot
     {
-        itemCodeArray[slot] = itemCode;
+        if (quantity == 0)
+            itemCodeArray[slot] = 0;
+        else
+            itemCodeArray[slot] = itemCode;
+
         quantityArray[slot] = quantity;
 
         onInventoryChange();
+    }
+
+    public void itemSlotEmpty(int slot)      
+    {
+        quantityArray[slot] = 0;
     }
 }

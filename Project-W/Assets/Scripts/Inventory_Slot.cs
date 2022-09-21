@@ -25,6 +25,13 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
     void onChange()
     {
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
+        int quantity = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
+
+        if (quantity == 0)
+        {
+            itemCode = 0;
+            getInventoryHolder().GetComponent<Inventory>().itemSlotEmpty(slot);
+        }
 
         if (itemCode != 0)
         {

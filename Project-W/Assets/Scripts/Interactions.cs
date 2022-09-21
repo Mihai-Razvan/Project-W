@@ -23,7 +23,15 @@ public class Interactions : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(colliders[0].tag, 1);
+                if (colliders[0].tag.Equals("Item_003"))   //dropped box
+                {
+                    int itemCode = colliders[0].GetComponent<Item_003>().getItemCode();
+                    int quantity = colliders[0].GetComponent<Item_003>().getQuantity();
+                    FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCode, quantity);
+                }
+                else
+                    FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(Item.getItemCode(colliders[0].tag), 1);
+
                 Destroy(colliders[0].gameObject);
             }
         }

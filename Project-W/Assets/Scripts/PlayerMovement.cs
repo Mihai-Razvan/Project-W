@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void movement(string state, Transform playerTransform)
     {
-        switch (FindObjectOfType<Player>().getState())
+        switch (FindObjectOfType<Player>().getMovementState())
         {
             case "WALKING":
                 walkingState(playerTransform);

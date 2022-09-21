@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    protected int itemCode;     
+    protected int itemCode;     //we can't serialize this because it won't appear in editor if we put a child class of item, only if we put item class
 
     static GameObject usedObject;           //the object that is currently used (ex tools, weapons, building you are placing); is null if it is an object you won't have in hands
                                             //when it is selected from inventory (ex resource)

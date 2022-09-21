@@ -49,7 +49,14 @@ public class Inventory_Exchange : MonoBehaviour
     }
 
     public void dragEnd(int itemCode, int quantity, GameObject slot)
-    {    
+    {
+        if (slot == null)     //in case we end the drag over UI (so count in Item_Drop script != 0) but it isn't over a slot
+        {
+            state = "INACTIVE";
+            itemImage.enabled = false;
+            return;
+        }
+
         targetItemCode = itemCode;
         targetQuantity = quantity;
         targetSlotObject = slot;
@@ -74,8 +81,8 @@ public class Inventory_Exchange : MonoBehaviour
                 if(targetItemCode == 0)    //target is empty
                 {
                     targetSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(targetSlotNumber, dragItemCode, dragQuantity);
-                    dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(dragSlotNumber, dragItemCode,
-                        dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber) - dragQuantity);
+                    int remainingQuantity = dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber) - dragQuantity;
+                    dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(dragSlotNumber, dragItemCode, remainingQuantity);
                 }
                 //else nothing happens
             }
@@ -85,12 +92,9 @@ public class Inventory_Exchange : MonoBehaviour
             if(targetQuantity + dragQuantity <= FindObjectOfType<ItemsList>().getInventoryLimit(targetItemCode))
             {
                 targetSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(targetSlotNumber, dragItemCode, targetQuantity + dragQuantity);
-                if(dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber) - dragQuantity == 0)     //this is for left drag
-                    dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(dragSlotNumber, 0,
-                        dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber) - dragQuantity);
-                else
-                    dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(dragSlotNumber, dragItemCode,
-                        dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber) - dragQuantity);
+                int remainingQuantity = dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(dragSlotNumber) - dragQuantity;
+                dragSlotObject.GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(dragSlotNumber, dragItemCode, remainingQuantity);
+                        
             }
             else
             {

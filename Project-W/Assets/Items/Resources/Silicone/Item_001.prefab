@@ -127,5 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76688879c2e766c478325fc5ce2db908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemCode: 1
   cloudLevel: 0
   fallVelocity: -7

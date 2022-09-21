@@ -7,8 +7,8 @@ public class Development : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Q))
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem("Item_001", 1);
+            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(1, 1);
         else if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.E))
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem("Item_002", 1);
+            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(2, 1);
     }
 }
