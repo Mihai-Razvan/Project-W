@@ -25,7 +25,7 @@ public class Player_Inventory : MonoBehaviour
         inventoryTab.SetActive(false);
         selectedInventorySlot = 0;
         selectedItemCode = 0;
-        onItemSelected += Item.destroyUsedObject;
+        onItemDeselected += Item.destroyUsedObject;
     }
 
     void Update()
@@ -69,9 +69,9 @@ public class Player_Inventory : MonoBehaviour
 
         if (newSelection || getPlayerInventoryHolder().GetComponent<Inventory>().getItemCode(selectedInventorySlot) != selectedItemCode)
         {
-            onItemSelected();
-            onItemDeselected();
             selectedItemCode = getPlayerInventoryHolder().GetComponent<Inventory>().getItemCode(selectedInventorySlot);
+            onItemDeselected();
+            onItemSelected();
         }
     }
 

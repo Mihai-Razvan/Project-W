@@ -8,6 +8,7 @@ TagManager:
   - Item_001
   - Item_002
   - Item_003
+  - Item_004
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Resource
-  - 
+  - PrefabMergePoint
   - 
   - 
   - 

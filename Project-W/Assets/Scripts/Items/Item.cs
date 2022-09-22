@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    protected int itemCode;     //we can't serialize this because it won't appear in editor if we put a child class of item, only if we put item class
+    [SerializeField]
+    protected int itemCode;     
 
     static GameObject usedObject;           //the object that is currently used (ex tools, weapons, building you are placing); is null if it is an object you won't have in hands
                                             //when it is selected from inventory (ex resource)
@@ -25,7 +26,10 @@ public class Item : MonoBehaviour
     public static void destroyUsedObject()   //destroys the prefab of the object you have in your hands
     {
         if (usedObject != null)
+        {
             Destroy(usedObject);
+            usedObject = null;
+        }
     }
 
     public static void setUsedObject(GameObject usedObject)

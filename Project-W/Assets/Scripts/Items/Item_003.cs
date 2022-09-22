@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_003 : MonoBehaviour
+public class Item_003 : Item
 {
-    int itemCode;
-    int quantity;
+    int holdedItemCode;
+    int holdedQuantity;
 
     public void setBox(int itemCode, int quantity)
     {
-        this.itemCode = itemCode;
-        this.quantity = quantity;
+        this.holdedItemCode = itemCode;
+        this.holdedQuantity = quantity;
     }
 
     public int getItemCode()
     {
-        return itemCode;
+        return holdedItemCode;
     }
 
     public int getQuantity()
     {
-        return quantity;
+        return holdedQuantity;
     }
 }

@@ -11,7 +11,8 @@ public class Resource : Item
 
     void Update()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(0, fallVelocity, 0);
+        if(TryGetComponent(out Rigidbody rigidBody) == true)
+            rigidBody.velocity = new Vector3(0, fallVelocity, 0);
 
         if (transform.position.y < cloudLevel)
             Destroy(gameObject);

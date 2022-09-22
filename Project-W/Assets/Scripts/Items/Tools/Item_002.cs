@@ -33,7 +33,6 @@ public class Item_002 : Tool
         Player_Inventory.onItemSelected += displayPrefab;
         Player_Inventory.onItemDeselected += deselectItem;
 
-        itemCode = 2;
         laserSize = 0;
         laserState = "UNUSED";
         chargeTime = 0;
@@ -144,8 +143,8 @@ public class Item_002 : Tool
                          colliders[i].gameObject.AddComponent<Outline>();      //it adds the script that creates the encapsulate outline
                 }
 
-                if (colliders[0].gameObject.GetComponent<Rigidbody>() != null)  
-                    Destroy(colliders[0].gameObject.GetComponent<Rigidbody>());
+                if (colliders[0].gameObject.TryGetComponent(out Rigidbody rigidBody) == true)  
+                    Destroy(rigidBody);
 
                 if(colliders.Length == 1)
                 {
