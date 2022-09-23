@@ -11,6 +11,11 @@ public class Inventory : MonoBehaviour
     public delegate void OnInventoryChange();
     public OnInventoryChange onInventoryChange;
 
+    void Awake() //we need awake because if we use start onChange() from Inventory_Slot will be assigned to onInventoryChange vefore checkEmpty
+    {
+        onInventoryChange += checkEmpty;
+    }
+
     public void addItem(int itemCode, int quantity)
     {
         int inventoryLimit = FindObjectOfType<ItemsList>().getInventoryLimit(itemCode);
@@ -60,6 +65,20 @@ public class Inventory : MonoBehaviour
         onInventoryChange();
     }
 
+    void checkEmpty()
+    {
+        for (int i = 0; i < itemCodeArray.Length; i++)
+            if (quantityArray[i] == 0)
+                itemCodeArray[i] = 0;
+    }
+
+    public void decreaseItemQuantity(int slot)    //we know the slot and decrease the quantity with 1; used when we are placing bulidings
+    {
+        quantityArray[slot]--;
+        onInventoryChange();
+    }
+
+
     public void executeOnInventoryChange()
     {
         onInventoryChange();
@@ -90,10 +109,5 @@ public class Inventory : MonoBehaviour
         quantityArray[slot] = quantity;
 
         onInventoryChange();
-    }
-
-    public void itemSlotEmpty(int slot)      
-    {
-        quantityArray[slot] = 0;
     }
 }

@@ -79,7 +79,12 @@ public class Player_Inventory : MonoBehaviour
     {
         return getPlayerInventoryHolder().GetComponent<Inventory>().getItemCode(selectedInventorySlot);
     }
-    
+
+    public int getSelectedSlot() 
+    {
+        return selectedInventorySlot;
+    }
+
     public GameObject getPlayerInventoryHolder()          //the object that holds the player invenotry script holds also the inventory
     {
         return this.gameObject;

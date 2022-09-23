@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_002 : Tool
+public class Item_002 : Tool   //grappler
 {
-    //grappler
-
     LineRenderer laserLine;
     float laserSize;   //the laser isn't full size since beginning, it is expanding during a few seconds; it starts from 0 and then increase, until reaches it final destination
     [SerializeField]

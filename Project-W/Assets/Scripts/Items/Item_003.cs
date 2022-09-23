@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_003 : Item
+public class Item_003 : Item    //dropped box
 {
     int holdedItemCode;
     int holdedQuantity;
