@@ -72,9 +72,9 @@ public class Inventory : MonoBehaviour
                 itemCodeArray[i] = 0;
     }
 
-    public void decreaseItemQuantity(int slot)    //we know the slot and decrease the quantity with 1; used when we are placing bulidings
+    public void decreaseQuantity(int quantity, int slot)    //we know the slot 
     {
-        quantityArray[slot]--;
+        quantityArray[slot] -= quantity;
         onInventoryChange();
     }
 

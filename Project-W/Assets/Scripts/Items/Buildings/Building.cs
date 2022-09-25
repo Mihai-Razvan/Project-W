@@ -28,6 +28,6 @@ public class Building : Item
     {
         Instantiate(placePrefab, getUsedObject().transform.position, Quaternion.identity);
         int slot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseItemQuantity(slot);
+        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, slot);
     }
 }
