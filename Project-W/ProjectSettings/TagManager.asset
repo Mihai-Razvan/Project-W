@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Structure
   - Item_001
   - Item_002
   - Item_003
   - Item_004
+  - Item_005
   layers:
   - Default
   - TransparentFX

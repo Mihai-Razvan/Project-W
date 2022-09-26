@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_004 : Building  //foundation
+public class Item_005_P : Building   //wall
 {
     [SerializeField]
     float checkMergeDistance;
@@ -16,7 +16,7 @@ public class Item_004 : Building  //foundation
     {
         Player_Inventory.onItemSelected += displayPrefab;
     }
- 
+
     void Update()
     {
         if (checkSelected() && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
@@ -35,43 +35,33 @@ public class Item_004 : Building  //foundation
 
         if (colliders.Length == 0)
             mergeColliderPoint = null;
-      
-        for(int i = 0; i < colliders.Length; i++)
+
+        for (int i = 0; i < colliders.Length; i++)
         {
             float distance = Vector3.Distance(sphereCenter, colliders[i].transform.position);
-            if(distance < minDistance)
+            if (distance < minDistance)
             {
                 minDistance = distance;
                 mergeColliderPoint = colliders[i].gameObject;
-            }    
+            }
         }
 
-        if (mergeColliderPoint != null && mergeColliderPoint.transform.parent.tag.Equals("Item_004"))  //foundation can be attached only to another foundation
+        if (mergeColliderPoint != null && mergeColliderPoint.transform.parent.gameObject.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation"))  //wall can be put only on foundation TYPE (not item)   
         {
-            switch(mergeColliderPoint.name)
-            {
-                case "TopPoint":
-                    getUsedObject().transform.position = mergeColliderPoint.transform.position + new Vector3(0, 0, 1.9f);
-                    break;
-                case "BottomPoint":
-                    getUsedObject().transform.position = mergeColliderPoint.transform.position + new Vector3(0, 0, -1.9f);
-                    break;
-                case "LeftPoint":
-                    getUsedObject().transform.position = mergeColliderPoint.transform.position + new Vector3(-1.9f, 0, 0);
-                    break;
-                case "RightPoint":
-                    getUsedObject().transform.position = mergeColliderPoint.transform.position + new Vector3(1.9f, 0, 0);
-                    break;
-            }
+            getUsedObject().transform.position = mergeColliderPoint.transform.position;
+            if (mergeColliderPoint.name.Equals("TopPoint") || mergeColliderPoint.name.Equals("BottomPoint"))
+                getUsedObject().transform.rotation = Quaternion.Euler(0, 90, 0);
+            else
+                getUsedObject().transform.rotation = Quaternion.identity;
         }
     }
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch
     {
-        Vector3 boxCenter = getUsedObject().transform.position;
+        Vector3 boxCenter = getUsedObject().transform.position + new Vector3(0, 2.5f, 0);
         Vector3 boxSize = placePrefab.GetComponent<BoxCollider>().size;
-        Collider[] colliders = Physics.OverlapBox(boxCenter, boxSize / 2, Quaternion.identity, buildingMask);
-     
+        Collider[] colliders = Physics.OverlapBox(boxCenter, boxSize / 2.5f, Quaternion.identity, buildingMask);
+
         if (colliders.Length == 0)
             changeMaterials(placeableMaterial);
         else

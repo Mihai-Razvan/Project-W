@@ -26,7 +26,7 @@ public class Building : Item
 
     protected void placeBuilding()
     {
-        Instantiate(placePrefab, getUsedObject().transform.position, Quaternion.identity);
+        Instantiate(placePrefab, getUsedObject().transform.position, getUsedObject().transform.rotation);
         int slot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
         FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, slot);
     }
