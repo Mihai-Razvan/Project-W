@@ -58,16 +58,27 @@ public class Item_005_P : Building   //wall
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch
     {
-        Vector3 boxCenter = getUsedObject().transform.position + new Vector3(0, 2.5f, 0);
+        Vector3 boxCenter = getUsedObject().transform.position + new Vector3(0, 3, 0);
         Vector3 boxSize = placePrefab.GetComponent<BoxCollider>().size;
-        Collider[] colliders = Physics.OverlapBox(boxCenter, boxSize / 2.5f, Quaternion.identity, buildingMask);
+        Collider[] colliders = Physics.OverlapBox(boxCenter, boxSize / 2f, Quaternion.identity, buildingMask);
+        Collider[] wallColliders = Physics.OverlapBox(boxCenter, boxSize / 4f, Quaternion.identity, buildingMask);  // to solve the collision problems with other walls
 
-        if (colliders.Length == 0)
+        bool placeable = (wallColliders.Length == 0);
+        int numOfOtherCollieders = 0;
+        
+        for(int i = 0; i < colliders.Length; i++)
+            if(colliders[i].gameObject.tag != "Item_005")
+            {
+                placeable = false;
+                numOfOtherCollieders++;
+            }
+
+        if (placeable == true)
             changeMaterials(placeableMaterial);
         else
             changeMaterials(notPlaceableMaterial);
 
-        return colliders.Length;
+        return wallColliders.Length + numOfOtherCollieders;
     }
 
     void changeMaterials(Material material)
