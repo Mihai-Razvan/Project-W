@@ -20,7 +20,7 @@ public class Resource : Item
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag.Equals("Structure"))
+        if (collision.collider.gameObject.layer.Equals("Building"))
         {
             Destroy(GetComponent<Rigidbody>());
             GetComponent<BoxCollider>().isTrigger = true;
