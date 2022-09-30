@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Item_Drop : MonoBehaviour
+public class Item_Drop : MonoBehaviour   
 {
+    //This script is placed on Canvas 
+
     [SerializeField]
     GameObject boxPrefab;
     GraphicRaycaster myRaycaster;
@@ -47,7 +49,7 @@ public class Item_Drop : MonoBehaviour
 
     void dropBox(int slot, int itemCode, int quantity)
     {
-        Vector2 pos = FindObjectOfType<Player>().getPlayerTransform().position + FindObjectOfType<Player>().getPlayerTransform().forward.normalized * 2;
+        Vector3 pos = Camera.main.transform.position + Camera.main.transform.forward * 3;
         GameObject box = Instantiate(boxPrefab, pos, Quaternion.identity); 
         box.gameObject.GetComponent<Item_003>().setBox(itemCode, quantity);
 

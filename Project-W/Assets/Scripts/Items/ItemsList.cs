@@ -9,6 +9,8 @@ public class ItemsList : MonoBehaviour
     [SerializeField]
     string[] nameArray;
     [SerializeField]
+    string[] descriptionArray;
+    [SerializeField]
     int[] inventoryLimit;      //max number per inventory slot for this item (ex 20 resources, 1 grappler)
 
     public Sprite getSprite(int itemCode)
@@ -19,6 +21,11 @@ public class ItemsList : MonoBehaviour
     public string getName(int itemCode)
     {
         return nameArray[itemCode];
+    }
+
+    public string getDescription(int itemCode)
+    {
+        return descriptionArray[itemCode];
     }
 
     public int getInventoryLimit(int itemCode)

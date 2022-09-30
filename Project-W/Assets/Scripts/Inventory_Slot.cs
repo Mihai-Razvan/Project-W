@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, IDragHandler, IPointerClickHandler
+public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, IDragHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     Image itemImage;
@@ -25,7 +25,6 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
     void onChange()
     {
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
-        int quantity = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
 
         if (itemCode != 0)
         {
@@ -74,6 +73,17 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
         int quantity = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
 
         FindObjectOfType<Inventory_Exchange>().dragEnd(itemCode, quantity, this.gameObject);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)    //used for info slot image
+    {
+        int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
+        FindObjectOfType<Player_Inventory>().setHoveredItem(itemCode);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)    //used for info slot image
+    {
+        FindObjectOfType<Player_Inventory>().setHoveredItem(0); 
     }
 
     public void OnDrag(PointerEventData eventData)     //if we don't have this the start and end drag don't work; idk why

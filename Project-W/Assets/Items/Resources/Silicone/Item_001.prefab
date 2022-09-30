@@ -130,3 +130,6 @@ MonoBehaviour:
   itemCode: 1
   cloudLevel: 0
   fallVelocity: -7
+  buildingMask:
+    serializedVersion: 2
+    m_Bits: 256

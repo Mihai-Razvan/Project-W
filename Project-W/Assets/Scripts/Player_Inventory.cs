@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player_Inventory : MonoBehaviour
 {                                        //the firt 10 slots in the inventory are for the inventory bar
@@ -8,6 +10,12 @@ public class Player_Inventory : MonoBehaviour
     string inventoryTabState;
     [SerializeField]
     GameObject inventoryTab;
+    [SerializeField]
+    Image infoSlotImage;     //the top image that shows the hovered item
+    [SerializeField]
+    TextMeshProUGUI hoveredItemName;
+    [SerializeField]
+    TextMeshProUGUI hoveredItemDescription;
     int selectedInventorySlot;
     int selectedItemCode;
     KeyCode[] keyCodes = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
@@ -16,13 +24,16 @@ public class Player_Inventory : MonoBehaviour
     public static OnItemSelected onItemSelected;
     public delegate void OnItemDeselected();
     public static OnItemDeselected onItemDeselected;
-  //  public delegate void OnInventoryChange();    //when a modification occurs in the inventory
-  //  public static OnInventoryChange onInventoryChange;
+
+
 
     private void Awake()
     {
         inventoryTabState = "CLOSED";
         inventoryTab.SetActive(false);
+        infoSlotImage.enabled = false;
+        hoveredItemName.enabled = false;
+        hoveredItemDescription.enabled = false;
         selectedInventorySlot = 0;
         selectedItemCode = 0;
         onItemDeselected += Item.destroyUsedObject;
@@ -72,6 +83,25 @@ public class Player_Inventory : MonoBehaviour
             selectedItemCode = getPlayerInventoryHolder().GetComponent<Inventory>().getItemCode(selectedInventorySlot);
             onItemDeselected();
             onItemSelected();
+        }
+    }
+
+    public void setHoveredItem(int itemCode)   //used to show the sprite, name and description for the hovered item
+    {
+        if (itemCode != 0)
+        {
+            infoSlotImage.enabled = true;
+            hoveredItemName.enabled = true;
+            hoveredItemDescription.enabled = true;
+            infoSlotImage.sprite = FindObjectOfType<ItemsList>().getSprite(itemCode);
+            hoveredItemName.text = FindObjectOfType<ItemsList>().getName(itemCode);
+            hoveredItemDescription.text = FindObjectOfType<ItemsList>().getDescription(itemCode); 
+        }
+        else
+        {
+            infoSlotImage.enabled = false;
+            hoveredItemName.enabled = false;
+            hoveredItemDescription.enabled = false;
         }
     }
 
