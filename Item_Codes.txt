@@ -6,3 +6,5 @@ Item Name - "copper"
 2 - grappler
 3 - dropped box
 4 - foundation
+5 - wall
+6 - pillar

@@ -30,4 +30,15 @@ public class Building : Item
         int slot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
         FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, slot);
     }
+
+    protected void changeMaterials(Material material)
+    {
+        Renderer usedObjectRenderer = getUsedObject().transform.GetChild(0).gameObject.GetComponent<Renderer>();
+        Material[] materials = new Material[usedObjectRenderer.materials.Length];
+
+        for (int i = 0; i < materials.Length; i++)
+            materials[i] = material;
+
+        usedObjectRenderer.materials = materials;
+    }
 }

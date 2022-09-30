@@ -27,7 +27,7 @@ public class Item_005_P : Building   //wall
         }
     }
 
-    void checkMerge()   //checks if finds another platform to merge with
+    void checkMerge()   //checks if finds a platform to merge with
     {
         Vector3 sphereCenter = Camera.main.transform.position + Camera.main.transform.forward * checkMergeDistance;
         Collider[] colliders = Physics.OverlapSphere(sphereCenter, checkMergeSphereRadius, mergeLayerMask);
@@ -46,7 +46,8 @@ public class Item_005_P : Building   //wall
             }
         }
 
-        if (mergeColliderPoint != null && mergeColliderPoint.transform.parent.gameObject.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation"))  //wall can be put only on foundation TYPE (not item)   
+        if (mergeColliderPoint != null && mergeColliderPoint.transform.parent.gameObject.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation")
+            && !mergeColliderPoint.gameObject.name.Equals("CenterPoint"))  //wall can be put only on foundation TYPE (not item)   
         {
             getUsedObject().transform.position = mergeColliderPoint.transform.position;
             if (mergeColliderPoint.name.Equals("TopPoint") || mergeColliderPoint.name.Equals("BottomPoint"))
@@ -60,7 +61,7 @@ public class Item_005_P : Building   //wall
     {
         Vector3 boxCenter = getUsedObject().transform.position + new Vector3(0, 3, 0);
         Vector3 boxSize = placePrefab.GetComponent<BoxCollider>().size;
-        Collider[] colliders = Physics.OverlapBox(boxCenter, boxSize / 2f, Quaternion.identity, buildingMask);
+        Collider[] colliders = Physics.OverlapBox(boxCenter, boxSize / 2f, getUsedObject().transform.rotation, buildingMask);
         Collider[] wallColliders = Physics.OverlapBox(boxCenter, boxSize / 4f, Quaternion.identity, buildingMask);  // to solve the collision problems with other walls
 
         bool placeable = (wallColliders.Length == 0);
@@ -72,23 +73,12 @@ public class Item_005_P : Building   //wall
                 placeable = false;
                 numOfOtherCollieders++;
             }
-
+    
         if (placeable == true)
             changeMaterials(placeableMaterial);
         else
             changeMaterials(notPlaceableMaterial);
-
+     
         return wallColliders.Length + numOfOtherCollieders;
-    }
-
-    void changeMaterials(Material material)
-    {
-        Renderer usedObjectRenderer = getUsedObject().transform.GetChild(0).gameObject.GetComponent<Renderer>();
-        Material[] materials = new Material[usedObjectRenderer.materials.Length];
-
-        for (int i = 0; i < materials.Length; i++)
-            materials[i] = material;
-
-        usedObjectRenderer.materials = materials;
     }
 }
