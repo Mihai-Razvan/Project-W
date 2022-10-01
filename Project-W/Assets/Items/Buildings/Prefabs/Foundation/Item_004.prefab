@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 2296422159101416740}
   - component: {fileID: 6015924096709214747}
   m_Layer: 7
-  m_Name: BottomPoint
+  m_Name: DownPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 6690287552824182593}
   - component: {fileID: 3926902191296481195}
   m_Layer: 7
-  m_Name: TopPoint
+  m_Name: UpPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

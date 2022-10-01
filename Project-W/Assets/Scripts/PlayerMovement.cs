@@ -24,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
                 runningState(playerTransform);
                 break;
         }
+
+        if (Input.GetKey(KeyCode.LeftControl))
+            transform.position = transform.position + new Vector3(0, 5 * Time.deltaTime, 0);
+        else if (Input.GetKey(KeyCode.LeftAlt))
+            transform.position = transform.position + new Vector3(0, -2 * Time.deltaTime, 0);
     }
 
     void walkingState(Transform playerTransform)

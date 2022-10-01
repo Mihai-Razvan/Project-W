@@ -29,8 +29,8 @@ public class Item_005_P : Building   //wall
 
     void checkMerge()   //checks if finds a platform to merge with
     {
-        Vector3 sphereCenter = Camera.main.transform.position + Camera.main.transform.forward * checkMergeDistance;
-        Collider[] colliders = Physics.OverlapSphere(sphereCenter, checkMergeSphereRadius, mergeLayerMask);
+        Vector3 capsuleEnd = Camera.main.transform.position + Camera.main.transform.forward * checkMergeDistance;
+        Collider[] colliders = Physics.OverlapCapsule(Camera.main.transform.position, capsuleEnd, checkMergeSphereRadius, mergeLayerMask);
         float minDistance = int.MaxValue;
 
         if (colliders.Length == 0)
@@ -38,7 +38,7 @@ public class Item_005_P : Building   //wall
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            float distance = Vector3.Distance(sphereCenter, colliders[i].transform.position);
+            float distance = Vector3.Distance(Camera.main.transform.position, colliders[i].transform.position);
             if (distance < minDistance)
             {
                 minDistance = distance;
@@ -46,14 +46,21 @@ public class Item_005_P : Building   //wall
             }
         }
 
-        if (mergeColliderPoint != null && mergeColliderPoint.transform.parent.gameObject.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation")
-            && !mergeColliderPoint.gameObject.name.Equals("CenterPoint"))  //wall can be put only on foundation TYPE (not item)   
+        if (mergeColliderPoint != null)
         {
-            getUsedObject().transform.position = mergeColliderPoint.transform.position;
-            if (mergeColliderPoint.name.Equals("TopPoint") || mergeColliderPoint.name.Equals("BottomPoint"))
-                getUsedObject().transform.rotation = Quaternion.Euler(0, 90, 0);
-            else
-                getUsedObject().transform.rotation = Quaternion.identity;
+            if (mergeColliderPoint.transform.parent.gameObject.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation") && !mergeColliderPoint.gameObject.name.Equals("CenterPoint"))
+            {
+                getUsedObject().transform.position = mergeColliderPoint.transform.position;
+                if (mergeColliderPoint.name.Equals("UpPoint") || mergeColliderPoint.name.Equals("DownPoint"))
+                    getUsedObject().transform.rotation = Quaternion.Euler(0, 90, 0);
+                else
+                    getUsedObject().transform.rotation = Quaternion.identity;
+            }
+            else if (mergeColliderPoint.transform.parent.tag.Equals("Item_005"))
+            {
+                getUsedObject().transform.position = mergeColliderPoint.transform.position;
+                getUsedObject().transform.rotation = mergeColliderPoint.transform.parent.transform.rotation;
+            }
         }
     }
 

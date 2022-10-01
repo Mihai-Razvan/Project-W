@@ -29,31 +29,32 @@ public class Item_004_P : Building  //foundation
 
     void checkMerge()   //checks if finds another platform to merge with
     {
-        Vector3 sphereCenter = Camera.main.transform.position + Camera.main.transform.forward * checkMergeDistance;
-        Collider[] colliders = Physics.OverlapSphere(sphereCenter, checkMergeSphereRadius, mergeLayerMask);
+        Vector3 capsuleEnd = Camera.main.transform.position + Camera.main.transform.forward * checkMergeDistance;
+        Collider[] colliders = Physics.OverlapCapsule(Camera.main.transform.position, capsuleEnd, checkMergeSphereRadius, mergeLayerMask);
         float minDistance = int.MaxValue;
 
         if (colliders.Length == 0)
             mergeColliderPoint = null;
       
         for(int i = 0; i < colliders.Length; i++)
-        {
-            float distance = Vector3.Distance(sphereCenter, colliders[i].transform.position);
-            if(distance < minDistance)
+            if (checkValidMerge(colliders[i].gameObject))
             {
-                minDistance = distance;
-                mergeColliderPoint = colliders[i].gameObject;
-            }    
-        }
+                float distance = Vector3.Distance(Camera.main.transform.position, colliders[i].transform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    mergeColliderPoint = colliders[i].gameObject;
+                }
+            }
 
-        if (mergeColliderPoint != null && mergeColliderPoint.transform.parent.tag.Equals("Item_004"))  //foundation can be attached only to another foundation
+        if (mergeColliderPoint != null)  
         {
             switch(mergeColliderPoint.name)
             {
-                case "TopPoint":
+                case "UpPoint":
                     getUsedObject().transform.position = mergeColliderPoint.transform.position + new Vector3(0, 0, 1.9f);
                     break;
-                case "BottomPoint":
+                case "DownPoint":
                     getUsedObject().transform.position = mergeColliderPoint.transform.position + new Vector3(0, 0, -1.9f);
                     break;
                 case "LeftPoint":
@@ -64,6 +65,11 @@ public class Item_004_P : Building  //foundation
                     break;
             }
         }
+    }
+
+    bool checkValidMerge(GameObject mergePoint)
+    {
+        return mergePoint.transform.parent.tag.Equals("Item_004"); //foundation can be attached only to another foundation
     }
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch

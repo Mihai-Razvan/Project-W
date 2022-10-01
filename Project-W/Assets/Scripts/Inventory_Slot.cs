@@ -56,8 +56,11 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
         FindObjectOfType<Inventory_Exchange>().dragStart(itemCode, quantity, this.gameObject);
     }
 
-    public void OnDrop(PointerEventData eventData)
+    public void OnDrop(PointerEventData eventData)     //when the drag ends
     {
+        if (!FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+            return;
+
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
         int quantity = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
 

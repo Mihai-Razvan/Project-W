@@ -8,3 +8,4 @@ Item Name - "copper"
 4 - foundation
 5 - wall
 6 - pillar
+7 - floor

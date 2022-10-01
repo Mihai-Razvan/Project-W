@@ -17,7 +17,7 @@ public class Item_006_P : Building     //pillar
         Player_Inventory.onItemSelected += displayPrefab;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (checkSelected() && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
         {
@@ -29,26 +29,31 @@ public class Item_006_P : Building     //pillar
 
     void checkMerge()   //checks if finds a platform to be placed on
     {
-        Vector3 sphereCenter = Camera.main.transform.position + Camera.main.transform.forward * checkMergeDistance;
-        Collider[] colliders = Physics.OverlapSphere(sphereCenter, checkMergeSphereRadius, mergeLayerMask);
+        Vector3 capsuleEnd = Camera.main.transform.position + Camera.main.transform.forward * checkMergeDistance;
+        Collider[] colliders = Physics.OverlapCapsule(Camera.main.transform.position, capsuleEnd, checkMergeSphereRadius, mergeLayerMask);
         float minDistance = int.MaxValue;
 
         if (colliders.Length == 0)
             mergeColliderPoint = null;
 
         for (int i = 0; i < colliders.Length; i++)
-        {
-            float distance = Vector3.Distance(sphereCenter, colliders[i].transform.position);
-            if (distance < minDistance)
+            if(checkValidMerge(colliders[i].gameObject))
             {
-                minDistance = distance;
-                mergeColliderPoint = colliders[i].gameObject;
+                float distance = Vector3.Distance(Camera.main.transform.position, colliders[i].transform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    mergeColliderPoint = colliders[i].gameObject;
+                }
             }
-        }
 
-        if (mergeColliderPoint != null && mergeColliderPoint.transform.parent.gameObject.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation") && 
-            mergeColliderPoint.gameObject.name.Equals("CenterPoint"))  //pillar can be put only on foundation TYPE (not item)   
+        if (mergeColliderPoint != null)  //pillar can be put only on foundation TYPE (not item)   
             getUsedObject().transform.position = mergeColliderPoint.transform.position;
+    }
+
+    bool checkValidMerge(GameObject mergePoint)
+    {
+        return mergePoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation") && mergePoint.name.Equals("CenterPoint");        
     }
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch
