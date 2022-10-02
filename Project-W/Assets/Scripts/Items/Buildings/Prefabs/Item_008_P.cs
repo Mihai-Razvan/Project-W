@@ -50,20 +50,23 @@ public class Item_008_P : Building    //stairs
 
         if (mergeColliderPoint != null)
         {
-            switch (getUsedObject().transform.rotation.eulerAngles.y)
+            if(getUsedObject().transform.rotation.eulerAngles.y == 0 || getUsedObject().transform.rotation.eulerAngles.y == 180)
             {
-                case 0:
+                float leftDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("LeftPoint").transform.position);
+                float rightDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("RightPoint").transform.position);
+                if(leftDistance < rightDistance)
                     mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("LeftPoint").gameObject;
-                    break;
-                case 180:
+                else
                     mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("RightPoint").gameObject;
-                    break;
-                case 90:
-                    mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("DownPoint").gameObject;
-                    break;
-                case 270:
+            }
+            else
+            {
+                float upDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("UpPoint").transform.position);
+                float downDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("DownPoint").transform.position);
+                if (upDistance < downDistance)
                     mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("UpPoint").gameObject;
-                    break;
+                else
+                    mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("DownPoint").gameObject;
             }
 
             getUsedObject().transform.position = mergeColliderPoint.transform.position;

@@ -862,12 +862,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe722cc7deb0e2144bdb07335ddf8c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj:
-  - {fileID: 1639567097}
-  - {fileID: 1280448548}
-  - {fileID: 830345406}
-  - {fileID: 377459137}
-  - {fileID: 1854437854}
 --- !u!114 &199217470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1692,7 +1686,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447373184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.276, y: -0.494, z: 0.089}
+  m_LocalPosition: {x: 0.276, y: -0.4579, z: 0.1944}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2202,7 +2196,7 @@ SphereCollider:
   m_GameObject: {fileID: 560562201}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -3282,7 +3276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885755178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.8, y: 80.91, z: -20.3}
+  m_LocalPosition: {x: -7.8, y: 80.91, z: -15.99}
   m_LocalScale: {x: 1.9, y: 1.9, z: 1.9}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3316,7 +3310,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.7
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -3337,7 +3331,7 @@ MonoBehaviour:
   walkingSpeed: 5
   runningSpeed: 10
   controller: {fileID: 885755181}
-  gravity: -15
+  gravity: -100
 --- !u!1 &890304261
 GameObject:
   m_ObjectHideFlags: 0
@@ -4273,7 +4267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7566658814291334610, guid: 04aec7fce5ebd934f874f3b32ff58c90, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.78
       objectReference: {fileID: 0}
     - target: {fileID: 7566658814291334610, guid: 04aec7fce5ebd934f874f3b32ff58c90, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4281,7 +4275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7566658814291334610, guid: 04aec7fce5ebd934f874f3b32ff58c90, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.76
       objectReference: {fileID: 0}
     - target: {fileID: 7566658814291334610, guid: 04aec7fce5ebd934f874f3b32ff58c90, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5982,7 +5976,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644724141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c50f4ed26d43fed4f845f49fcce63acb, type: 3}
   m_Name: 
@@ -6026,7 +6020,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 129c6291a3e245d498c6ef2655a35824, type: 3}
   - {fileID: 21300000, guid: 16ea663c3ef2910479e8c2ae02e02c9c, type: 3}
   - {fileID: 21300000, guid: e021a92d8629fdf4996424017125d619, type: 3}
-  - {fileID: 21300000, guid: 4f0f5108c61921949b9e27c822f26d59, type: 3}
+  - {fileID: 21300000, guid: 45ae3935071ee2140b8e26b8794bcdb5, type: 3}
   nameArray:
   - 
   - Silicone
@@ -6823,7 +6817,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787754179}
   m_LocalRotation: {x: 0.14309469, y: -0, z: -0, w: 0.9897091}
-  m_LocalPosition: {x: 0.332, y: 0.973, z: 0.772}
+  m_LocalPosition: {x: 0, y: 0.973, z: 0.171}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6895,7 +6889,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 3000
   field of view: 60
   orthographic: 0

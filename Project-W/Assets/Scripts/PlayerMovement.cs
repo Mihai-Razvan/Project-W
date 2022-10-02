@@ -12,6 +12,12 @@ public class PlayerMovement : MonoBehaviour
     CharacterController controller;
     [SerializeField]
     float gravity;
+    float actualGravity;
+
+    void Start()
+    {
+        actualGravity = gravity;
+    }
 
     public void movement(string state, Transform playerTransform)
     {
@@ -25,8 +31,13 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        actualGravity = gravity;
+
+        if (Input.GetKey(KeyCode.Z))
+        {
             transform.position = transform.position + new Vector3(0, 5 * Time.deltaTime, 0);
+            actualGravity = 0;
+        }
         else if (Input.GetKey(KeyCode.LeftAlt))
             transform.position = transform.position + new Vector3(0, -2 * Time.deltaTime, 0);
     }
@@ -35,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
         float verticalMovement = Input.GetAxisRaw("Vertical");
-        Vector3 move = playerTransform.right * horizontalMovement + playerTransform.forward * verticalMovement + playerTransform.up * gravity * Time.deltaTime;
+        Vector3 move = playerTransform.right * horizontalMovement + playerTransform.forward * verticalMovement + playerTransform.up * actualGravity * Time.deltaTime;
         controller.Move(move * walkingSpeed * Time.deltaTime);
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -46,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
         float verticalMovement = Input.GetAxisRaw("Vertical");
-        Vector3 move = playerTransform.right * horizontalMovement + playerTransform.forward * verticalMovement + playerTransform.up * gravity * Time.deltaTime; 
+        Vector3 move = playerTransform.right * horizontalMovement + playerTransform.forward * verticalMovement + playerTransform.up * actualGravity * Time.deltaTime; 
         controller.Move(move * runningSpeed * Time.deltaTime);
 
         if (!Input.GetKey(KeyCode.LeftShift))
