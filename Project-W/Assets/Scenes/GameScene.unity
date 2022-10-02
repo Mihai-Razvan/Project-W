@@ -1907,6 +1907,7 @@ GameObject:
   - component: {fileID: 543532527}
   - component: {fileID: 543532528}
   - component: {fileID: 543532529}
+  - component: {fileID: 543532530}
   m_Layer: 0
   m_Name: Building-Scripts
   m_TagString: Untagged
@@ -2024,6 +2025,31 @@ MonoBehaviour:
   itemCode: 7
   dummyPrefab: {fileID: 7554292326826410685, guid: f3cf35aa97b6b7147bd21884a3b478a4, type: 3}
   placePrefab: {fileID: 7554292326826410685, guid: dc57e10abc954274bb586efb9452e2d6, type: 3}
+  placeableMaterial: {fileID: 2100000, guid: 7a43427c2db0557419aa87fb2f075ab1, type: 2}
+  notPlaceableMaterial: {fileID: 2100000, guid: d3942cf3244911f47b037e1fdf7b9846, type: 2}
+  buildingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  checkMergeDistance: 7
+  checkMergeSphereRadius: 1.5
+  mergeLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &543532530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543532524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c41ab896f1bd6474da19b1dc1eb05f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCode: 8
+  dummyPrefab: {fileID: 8487384138313657505, guid: ab3150de1cc58454398e7e656c3d39cc, type: 3}
+  placePrefab: {fileID: 8487384138313657505, guid: 48a542691b165034fb861f2c28d00826, type: 3}
   placeableMaterial: {fileID: 2100000, guid: 7a43427c2db0557419aa87fb2f075ab1, type: 2}
   notPlaceableMaterial: {fileID: 2100000, guid: d3942cf3244911f47b037e1fdf7b9846, type: 2}
   buildingMask:
@@ -4904,8 +4930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908690de47b204e41b1e2b4932720cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCodeArray: 020000000400000005000000060000000700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  quantityArray: 010000006300000063000000630000006300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  itemCodeArray: 020000000400000005000000060000000700000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  quantityArray: 010000006300000063000000630000006300000063000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &1276346411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6000,6 +6026,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 129c6291a3e245d498c6ef2655a35824, type: 3}
   - {fileID: 21300000, guid: 16ea663c3ef2910479e8c2ae02e02c9c, type: 3}
   - {fileID: 21300000, guid: e021a92d8629fdf4996424017125d619, type: 3}
+  - {fileID: 21300000, guid: 4f0f5108c61921949b9e27c822f26d59, type: 3}
   nameArray:
   - 
   - Silicone
@@ -6009,6 +6036,7 @@ MonoBehaviour:
   - Wall
   - Pillar
   - Floor
+  - Stairs
   descriptionArray:
   - 
   - Silicone Description
@@ -6018,7 +6046,8 @@ MonoBehaviour:
   - Wall Description
   - Pillar Description
   - Floor Description
-  inventoryLimit: 0000000014000000010000000100000014000000140000001400000014000000
+  - Stairs Description
+  inventoryLimit: 000000001400000001000000010000001400000014000000140000001400000014000000
 --- !u!114 &1644724148
 MonoBehaviour:
   m_ObjectHideFlags: 0
