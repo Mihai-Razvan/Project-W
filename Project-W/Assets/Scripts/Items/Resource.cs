@@ -9,9 +9,30 @@ public class Resource : Item
     [SerializeField]
     float fallVelocity;  //the speed at which the resources fall from the sky
     float time;
+    bool hasCollided;
+    bool removedRB;
+    float timeSinceCollision;
+    [SerializeField]
+    LayerMask buildingMask;
 
     void Update()
     {
+        if(hasCollided && removedRB == false)
+        {
+            timeSinceCollision += Time.deltaTime;
+            if (timeSinceCollision >= 1f)      
+            {
+                if (Physics.CheckBox(transform.position, GetComponent<BoxCollider>().size / 2, transform.rotation, buildingMask))
+                {
+                    Destroy(GetComponent<Rigidbody>());
+                    GetComponent<BoxCollider>().isTrigger = true;
+                    removedRB = true;
+                }
+                else
+                    hasCollided = false;
+            }
+        }
+
         if (TryGetComponent(out Rigidbody rigidBody) == true)
             rigidBody.velocity = new Vector3(0, fallVelocity, 0);
         else
@@ -27,10 +48,7 @@ public class Resource : Item
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.layer == 8)      //Building layer
-        {
-            Destroy(GetComponent<Rigidbody>());
-            GetComponent<BoxCollider>().isTrigger = true;
-        }
+        if(collision.collider.gameObject.layer == 8) //Building layer
+            hasCollided = true;
     }
 }

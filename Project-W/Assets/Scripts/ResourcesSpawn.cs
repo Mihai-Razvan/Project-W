@@ -37,9 +37,15 @@ public class ResourcesSpawn : MonoBehaviour
             Vector3 spawnPos = new Vector3(randomPos.x, playerTransform.position.y + spawnHeight, randomPos.y);
             float ranRot = Random.Range(0, 180);
             
-            Instantiate(resourcePrefabs[0], spawnPos, Quaternion.Euler(ranRot, ranRot, ranRot));  
+            Instantiate(resourcePrefabs[chooseResource()], spawnPos, Quaternion.Euler(ranRot, ranRot, ranRot));  
 
             spawnTimeElapsed = 0f;
         }
+    }
+
+    int chooseResource()
+    {
+        int resourcesNum = resourcePrefabs.Length;
+        return Random.Range(0, resourcesNum);
     }
 }
