@@ -11,3 +11,4 @@ Item Name - "copper"
 7 - floor
 8 - stairs
 9 - shattered glass
+10 - glass

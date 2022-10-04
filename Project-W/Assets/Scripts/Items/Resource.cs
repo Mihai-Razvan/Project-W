@@ -20,9 +20,10 @@ public class Resource : Item
         if(hasCollided && removedRB == false)
         {
             timeSinceCollision += Time.deltaTime;
-            if (timeSinceCollision >= 1f)      
+            if (timeSinceCollision >= 2f)      
             {
-                if (Physics.CheckBox(transform.position, GetComponent<BoxCollider>().size / 2, transform.rotation, buildingMask))
+                Collider[] colliders = Physics.OverlapBox(transform.position, GetComponent<BoxCollider>().size, transform.rotation, buildingMask);
+                if (colliders.Length == 0)
                 {
                     Destroy(GetComponent<Rigidbody>());
                     GetComponent<BoxCollider>().isTrigger = true;
@@ -33,8 +34,8 @@ public class Resource : Item
             }
         }
 
-        if (TryGetComponent(out Rigidbody rigidBody) == true)
-            rigidBody.velocity = new Vector3(0, fallVelocity, 0);
+        if (removedRB == false)
+            GetComponent<Rigidbody>().velocity = new Vector3(0, fallVelocity, 0);
         else
         {
             time += Time.deltaTime;
@@ -48,7 +49,7 @@ public class Resource : Item
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.gameObject.layer == 8) //Building layer
+        if (collision.collider.gameObject.layer == 8) //Building layer
             hasCollided = true;
     }
 }
