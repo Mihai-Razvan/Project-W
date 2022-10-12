@@ -10,7 +10,7 @@ public class Resource : Item
     float fallVelocity;  //the speed at which the resources fall from the sky
     float time;
     bool hasCollided;
-    bool removedRB;
+    bool removedRB;    //this becomes true only when RB is removed because it falls on the ground; when it is removed because is attracted by grappler it is still true
     float timeSinceCollision;
     [SerializeField]
     LayerMask buildingMask;
@@ -34,8 +34,8 @@ public class Resource : Item
             }
         }
 
-        if (removedRB == false)
-            GetComponent<Rigidbody>().velocity = new Vector3(0, fallVelocity, 0);
+        if (TryGetComponent(out Rigidbody rb))
+            rb.velocity = new Vector3(0, fallVelocity, 0);
         else
         {
             time += Time.deltaTime;

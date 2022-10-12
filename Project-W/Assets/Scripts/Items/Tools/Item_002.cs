@@ -150,7 +150,7 @@ public class Item_002 : Tool   //grappler
                     laserSize = Vector3.Distance(colliders[0].transform.position, rayStartPosition.position);
                 }         
             }
-
+   
         for (int i = 0; i < keyList.Count; i++)
         {
             objectsList[keyList[i]] = Vector3.Distance(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * (objectsList[keyList[i]] - laserExpansionSpeed * Time.deltaTime * laserRetractingSlowDown));

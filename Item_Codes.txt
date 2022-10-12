@@ -2,7 +2,7 @@ Item Code - the number
 Item Tag - "Item_xxx"
 Item Name - "copper"
 
-1 - silicone
+1 - cobalt
 2 - grappler
 3 - dropped box
 4 - foundation
@@ -12,3 +12,4 @@ Item Name - "copper"
 8 - stairs
 9 - shattered glass
 10 - glass
+11 - scrap metal
