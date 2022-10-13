@@ -56,7 +56,7 @@ public class Item_005_P : Building   //wall
                 else
                     getUsedObject().transform.rotation = Quaternion.identity;
             }
-            else if (mergeColliderPoint.transform.parent.tag.Equals("Item_005"))
+            else if (mergeColliderPoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Wall"))
             {
                 getUsedObject().transform.position = mergeColliderPoint.transform.position;
                 getUsedObject().transform.rotation = mergeColliderPoint.transform.parent.transform.rotation;
@@ -66,7 +66,7 @@ public class Item_005_P : Building   //wall
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch
     {
-        Vector3 boxCenter = getUsedObject().transform.position + new Vector3(0, 3, 0);
+        Vector3 boxCenter = getUsedObject().transform.GetChild(0).transform.position;
         Vector3 boxSize = placePrefab.GetComponent<BoxCollider>().size;
         Collider[] colliders = Physics.OverlapBox(boxCenter, boxSize / 2f, getUsedObject().transform.rotation, buildingMask);
         Collider[] wallColliders = Physics.OverlapBox(boxCenter, boxSize / 4f, Quaternion.identity, buildingMask);  // to solve the collision problems with other walls

@@ -13,3 +13,4 @@ Item Name - "copper"
 9 - shattered glass
 10 - glass
 11 - scrap metal
+12 - inclined wall

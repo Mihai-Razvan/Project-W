@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_008_P : Building    //stairs
+public class Item_012_P : Building     //inclined wall
 {
     [SerializeField]
     float checkMergeDistance;
@@ -50,23 +50,32 @@ public class Item_008_P : Building    //stairs
 
         if (mergeColliderPoint != null)
         {
-            if(getUsedObject().transform.rotation.eulerAngles.y == 0 || getUsedObject().transform.rotation.eulerAngles.y == 180)
+            if (mergeColliderPoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation"))
             {
-                float leftDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("LeftPoint").transform.position);
-                float rightDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("RightPoint").transform.position);
-                if(leftDistance < rightDistance)
-                    mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("LeftPoint").gameObject;
+                if (getUsedObject().transform.rotation.eulerAngles.y == 0 || getUsedObject().transform.rotation.eulerAngles.y == 180)
+                {
+                    float leftDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("LeftPoint").transform.position);
+                    float rightDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("RightPoint").transform.position);
+                    if (leftDistance < rightDistance)
+                        mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("LeftPoint").gameObject;
+                    else
+                        mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("RightPoint").gameObject;
+                }
                 else
-                    mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("RightPoint").gameObject;
+                {
+                    float upDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("UpPoint").transform.position);
+                    float downDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("DownPoint").transform.position);
+                    if (upDistance < downDistance)
+                        mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("UpPoint").gameObject;
+                    else
+                        mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("DownPoint").gameObject;
+                }
             }
-            else
+            else if (mergeColliderPoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Wall"))
             {
-                float upDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("UpPoint").transform.position);
-                float downDistance = Vector3.Distance(mergeColliderPoint.transform.position, mergeColliderPoint.transform.parent.transform.Find("DownPoint").transform.position);
-                if (upDistance < downDistance)
-                    mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("UpPoint").gameObject;
-                else
-                    mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("DownPoint").gameObject;
+                double rotationDifference = Mathf.Abs(getUsedObject().transform.rotation.eulerAngles.y - mergeColliderPoint.transform.parent.transform.rotation.eulerAngles.y);
+                if (rotationDifference == 90 || rotationDifference == 270)
+                    getUsedObject().transform.rotation *= Quaternion.Euler(0, 90, 0);
             }
 
             getUsedObject().transform.position = mergeColliderPoint.transform.position;
@@ -75,7 +84,8 @@ public class Item_008_P : Building    //stairs
 
     bool checkValidMerge(GameObject mergePoint)
     {
-        return mergePoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation") && !mergePoint.name.Equals("CenterPoint"); 
+        return (mergePoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation") && !mergePoint.name.Equals("CenterPoint"))
+            || mergePoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Wall"); 
     }
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch
@@ -83,7 +93,7 @@ public class Item_008_P : Building    //stairs
         Vector3 boxCenter = getUsedObject().transform.GetChild(0).transform.position;
         Vector3 boxSize = placePrefab.GetComponent<BoxCollider>().size;
         Collider[] colliders = Physics.OverlapBox(boxCenter, boxSize / 2f, getUsedObject().transform.rotation, buildingMask);
-      
+
         if (colliders.Length == 0)
             changeMaterials(placeableMaterial);
         else
@@ -97,7 +107,8 @@ public class Item_008_P : Building    //stairs
         if (Input.GetKeyDown(KeyCode.R))
         {
             getUsedObject().transform.rotation *= Quaternion.Euler(0, 90, 0);
-            
+            if(mergeColliderPoint != null && mergeColliderPoint.transform.parent.GetComponent<Prefab_Data>().Equals("Wall"))
+                getUsedObject().transform.rotation *= Quaternion.Euler(0, 90, 0);
         }
     }
 }

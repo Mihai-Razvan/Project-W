@@ -1902,6 +1902,7 @@ GameObject:
   - component: {fileID: 543532528}
   - component: {fileID: 543532529}
   - component: {fileID: 543532530}
+  - component: {fileID: 543532531}
   m_Layer: 0
   m_Name: Building-Scripts
   m_TagString: Untagged
@@ -2044,6 +2045,31 @@ MonoBehaviour:
   itemCode: 8
   dummyPrefab: {fileID: 8487384138313657505, guid: ab3150de1cc58454398e7e656c3d39cc, type: 3}
   placePrefab: {fileID: 8487384138313657505, guid: 48a542691b165034fb861f2c28d00826, type: 3}
+  placeableMaterial: {fileID: 2100000, guid: 7a43427c2db0557419aa87fb2f075ab1, type: 2}
+  notPlaceableMaterial: {fileID: 2100000, guid: d3942cf3244911f47b037e1fdf7b9846, type: 2}
+  buildingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  checkMergeDistance: 7
+  checkMergeSphereRadius: 1.5
+  mergeLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &543532531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543532524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b956eb38578f23d408946055a31852ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCode: 12
+  dummyPrefab: {fileID: 1789536102469780488, guid: a91a402a67fd0594ba435b2da649dd2d, type: 3}
+  placePrefab: {fileID: 1789536102469780488, guid: 43ef8c44454cd3c4196b1b1dd3855f24, type: 3}
   placeableMaterial: {fileID: 2100000, guid: 7a43427c2db0557419aa87fb2f075ab1, type: 2}
   notPlaceableMaterial: {fileID: 2100000, guid: d3942cf3244911f47b037e1fdf7b9846, type: 2}
   buildingMask:
@@ -4924,8 +4950,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908690de47b204e41b1e2b4932720cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCodeArray: 020000000400000005000000060000000700000008000000090000000a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  quantityArray: 010000006300000063000000630000006300000063000000140000001400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  itemCodeArray: 020000000400000005000000060000000700000008000000090000000a0000000c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  quantityArray: 010000006300000063000000630000006300000063000000140000001400000014000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &1276346411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5986,8 +6012,9 @@ MonoBehaviour:
   spawnRadius: 20
   spawnTimeInterval: 1
   resourcePrefabs:
-  - {fileID: 5844576332225770077, guid: ac6a04297f3e60e4ca5361234673fe46, type: 3}
+  - {fileID: 2247620941352713416, guid: e2cbeaecec774424c9c0b3fc68b17a15, type: 3}
   - {fileID: 2931920097550189217, guid: 00018691679bae645bdda7033386391d, type: 3}
+  - {fileID: 746358726732504016, guid: e44b60cd5e8b15745b908bf6a1229fc9, type: 3}
 --- !u!114 &1644724146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6014,7 +6041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteArray:
   - {fileID: 0}
-  - {fileID: 21300000, guid: a925e76ecaa8c404386c1b30d0d72b58, type: 3}
+  - {fileID: 21300000, guid: b3faa96949dcd9b419d59d6ea00f60a0, type: 3}
   - {fileID: 21300000, guid: 28ed7ee536e791e43b359e4bf9f2b233, type: 3}
   - {fileID: 21300000, guid: 4f0f5108c61921949b9e27c822f26d59, type: 3}
   - {fileID: 21300000, guid: 12a0a67a941aebf4781afdd39c028b9e, type: 3}
@@ -6024,9 +6051,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 45ae3935071ee2140b8e26b8794bcdb5, type: 3}
   - {fileID: 21300000, guid: 9dc763223ab43c04594925a1b2473e33, type: 3}
   - {fileID: 21300000, guid: 2062ebbc62a133449a6270e69ee2ebd9, type: 3}
+  - {fileID: 21300000, guid: 0bfdd9bc8bcc9cd44bf8740ea12adc71, type: 3}
+  - {fileID: 21300000, guid: fb063b721a05ef44ebb3ef0883f19316, type: 3}
   nameArray:
   - 
-  - Silicone
+  - Cobalt
   - Grappler
   - Dropped Box
   - Foundation
@@ -6036,9 +6065,11 @@ MonoBehaviour:
   - Stairs
   - Shattered Glass
   - Glass
+  - Scrap Metal
+  - Inclined Wall
   descriptionArray:
   - 
-  - Silicone Description
+  - Cobalt Description
   - Grappler Description
   - Dropped Box Description
   - Foundation Description
@@ -6048,7 +6079,9 @@ MonoBehaviour:
   - Stairs Description
   - Shattered Glass Description
   - Glass Description
-  inventoryLimit: 0000000014000000010000000100000014000000140000001400000014000000140000001400000014000000
+  - Scrap Metal Description
+  - Inclined Wall Description
+  inventoryLimit: 000000001400000001000000010000001400000014000000140000001400000014000000140000001400000014000000
 --- !u!114 &1644724148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7512,7 +7545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &1892703216
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7534,7 +7567,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892703215}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

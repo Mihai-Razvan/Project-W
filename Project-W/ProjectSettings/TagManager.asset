@@ -14,6 +14,7 @@ TagManager:
   - Item_008
   - Item_009
   - Item_011
+  - Item_012
   layers:
   - Default
   - TransparentFX
