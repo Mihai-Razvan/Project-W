@@ -6002,7 +6002,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644724141}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c50f4ed26d43fed4f845f49fcce63acb, type: 3}
   m_Name: 
@@ -6015,6 +6015,7 @@ MonoBehaviour:
   - {fileID: 2247620941352713416, guid: e2cbeaecec774424c9c0b3fc68b17a15, type: 3}
   - {fileID: 2931920097550189217, guid: 00018691679bae645bdda7033386391d, type: 3}
   - {fileID: 746358726732504016, guid: e44b60cd5e8b15745b908bf6a1229fc9, type: 3}
+  - {fileID: 7283300774002538992, guid: 4154aab2be401ec4596c78a63657b562, type: 3}
 --- !u!114 &1644724146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6053,6 +6054,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2062ebbc62a133449a6270e69ee2ebd9, type: 3}
   - {fileID: 21300000, guid: 0bfdd9bc8bcc9cd44bf8740ea12adc71, type: 3}
   - {fileID: 21300000, guid: fb063b721a05ef44ebb3ef0883f19316, type: 3}
+  - {fileID: 21300000, guid: 4f0f5108c61921949b9e27c822f26d59, type: 3}
   nameArray:
   - 
   - Cobalt
@@ -6067,6 +6069,7 @@ MonoBehaviour:
   - Glass
   - Scrap Metal
   - Inclined Wall
+  - Box
   descriptionArray:
   - 
   - Cobalt Description
@@ -6081,7 +6084,8 @@ MonoBehaviour:
   - Glass Description
   - Scrap Metal Description
   - Inclined Wall Description
-  inventoryLimit: 000000001400000001000000010000001400000014000000140000001400000014000000140000001400000014000000
+  - Box Description
+  inventoryLimit: 0000000014000000010000000100000014000000140000001400000014000000140000001400000014000000140000001400000014000000
 --- !u!114 &1644724148
 MonoBehaviour:
   m_ObjectHideFlags: 0

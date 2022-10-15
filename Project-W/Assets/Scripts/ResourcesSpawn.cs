@@ -45,7 +45,14 @@ public class ResourcesSpawn : MonoBehaviour
 
     int chooseResource()
     {
-        int resourcesNum = resourcePrefabs.Length;
-        return Random.Range(0, resourcesNum);
+        int randVal =  Random.Range(1, 100);
+        if (randVal <= 31)
+            return 0;
+        else if (randVal <= 62)
+            return 1;
+        else if (randVal <= 93)
+            return 2;
+        else
+            return 3;
     }
 }

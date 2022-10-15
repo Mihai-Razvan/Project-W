@@ -50,8 +50,10 @@ public class Item_Drop : MonoBehaviour
     void dropBox(int slot, int itemCode, int quantity)
     {
         Vector3 pos = Camera.main.transform.position + Camera.main.transform.forward * 3;
-        GameObject box = Instantiate(boxPrefab, pos, Quaternion.identity); 
-        box.gameObject.GetComponent<Item_003>().setBox(itemCode, quantity);
+        GameObject box = Instantiate(boxPrefab, pos, Quaternion.identity);
+        int[] itemCodeArray = new int[] { itemCode };
+        int[] quantityArray = new int[] { quantity };
+        box.gameObject.GetComponent<ResourcesData>().setResourceData(itemCodeArray, quantityArray);
 
         int initialQuantity = FindObjectOfType<Inventory_Exchange>().getDragSlotObject().GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
         FindObjectOfType<Inventory_Exchange>().getDragSlotObject().GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(slot, itemCode, initialQuantity- quantity);

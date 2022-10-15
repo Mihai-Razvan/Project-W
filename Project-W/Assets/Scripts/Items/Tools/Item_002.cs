@@ -133,11 +133,11 @@ public class Item_002 : Tool   //grappler
         if (colliders.Length != 0)
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (!keyList.Contains(colliders[0].gameObject)) //it means we are in the frame when this object collided for the first time
+                if (!keyList.Contains(colliders[i].gameObject)) //it means we are in the frame when this object collided for the first time
                 {
                     colliders[i].transform.position = rayStartPosition.position + rayStartPosition.forward * Vector3.Distance(rayStartPosition.position, colliders[i].transform.position);
                     objectsList.Add(colliders[i].gameObject, Vector3.Distance(rayStartPosition.position, colliders[i].transform.position));
-                    keyList.Add(colliders[0].gameObject);
+                    keyList.Add(colliders[i].gameObject);
                          colliders[i].gameObject.AddComponent<Outline>();      //it adds the script that creates the encapsulate outline
                 }
 
@@ -160,7 +160,11 @@ public class Item_002 : Tool   //grappler
         for(int i = 0; i < keyList.Count; i++)
             if (Vector3.Distance(keyList[i].transform.position, rayStartPosition.position) < 0.5f)
             {
-                FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(Item.getItemCode(keyList[i].tag), 1);
+                int[] itemCodeArray = keyList[i].GetComponent<ResourcesData>().getItemCodeArray();
+                int[] quantityArray = keyList[i].GetComponent<ResourcesData>().getQuantityArray();
+                for(int j = 0; j < itemCodeArray.Length; j++)
+                    FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j]);
+
                 objectsList.Remove(keyList[i]);
                 GameObject objectToDestroy = keyList[i];
                 keyList.Remove(keyList[i]);

@@ -51,5 +51,6 @@ public class Resource : Item
     {
         if (collision.collider.gameObject.layer == 8) //Building layer
             hasCollided = true;
-    }
+    } 
+
 }
