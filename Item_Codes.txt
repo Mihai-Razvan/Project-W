@@ -15,3 +15,4 @@ Item Name - "copper"
 11 - scrap metal
 12 - inclined wall
 13 - box (the one that falls)
+14 - crop plot
