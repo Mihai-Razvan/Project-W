@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbb78a47a2b124408d05547282aca10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabType: Ramp
+  structureType: Stairs
 --- !u!1001 &6694969286024271044
 PrefabInstance:
   m_ObjectHideFlags: 0

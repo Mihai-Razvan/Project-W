@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_005_P : Building   //wall
+public class Item_005_P : Placeable   //wall
 {
     [SerializeField]
     float checkMergeDistance;
@@ -23,7 +23,7 @@ public class Item_005_P : Building   //wall
         {
             checkMerge();
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))
-                placeBuilding();
+                spawnPlacePrefab();
         }
     }
 
@@ -48,7 +48,7 @@ public class Item_005_P : Building   //wall
 
         if (mergeColliderPoint != null)
         {
-            if (mergeColliderPoint.transform.parent.gameObject.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation") && !mergeColliderPoint.gameObject.name.Equals("CenterPoint"))
+            if (mergeColliderPoint.transform.parent.gameObject.GetComponent<Placeable_Data>().getStructureType().Equals("Foundation") && !mergeColliderPoint.gameObject.name.Equals("CenterPoint"))
             {
                 getUsedObject().transform.position = mergeColliderPoint.transform.position;
                 if (mergeColliderPoint.name.Equals("UpPoint") || mergeColliderPoint.name.Equals("DownPoint"))
@@ -56,7 +56,7 @@ public class Item_005_P : Building   //wall
                 else
                     getUsedObject().transform.rotation = Quaternion.identity;
             }
-            else if (mergeColliderPoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Wall"))
+            else if (mergeColliderPoint.transform.parent.GetComponent<Placeable_Data>().getStructureType().Equals("Wall"))
             {
                 getUsedObject().transform.position = mergeColliderPoint.transform.position;
                 getUsedObject().transform.rotation = mergeColliderPoint.transform.parent.transform.rotation;

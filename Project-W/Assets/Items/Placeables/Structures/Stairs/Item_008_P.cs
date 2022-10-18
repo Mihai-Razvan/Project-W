@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_008_P : Building    //stairs
+public class Item_008_P : Placeable    //stairs
 {
     [SerializeField]
     float checkMergeDistance;
@@ -24,7 +24,7 @@ public class Item_008_P : Building    //stairs
             checkMerge();
             rotateObject();
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))
-                placeBuilding();
+                spawnPlacePrefab();
         }
     }
 
@@ -75,7 +75,7 @@ public class Item_008_P : Building    //stairs
 
     bool checkValidMerge(GameObject mergePoint)
     {
-        return mergePoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation") && !mergePoint.name.Equals("CenterPoint"); 
+        return mergePoint.transform.parent.GetComponent<Placeable_Data>().getStructureType().Equals("Foundation") && !mergePoint.name.Equals("CenterPoint"); 
     }
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_012_P : Building     //inclined wall
+public class Item_012_P : Placeable     //inclined wall
 {
     [SerializeField]
     float checkMergeDistance;
@@ -24,7 +24,7 @@ public class Item_012_P : Building     //inclined wall
             checkMerge();
             rotateObject();
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))
-                placeBuilding();
+                spawnPlacePrefab();
         }
     }
 
@@ -50,7 +50,7 @@ public class Item_012_P : Building     //inclined wall
 
         if (mergeColliderPoint != null)
         {
-            if (mergeColliderPoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation"))
+            if (mergeColliderPoint.transform.parent.GetComponent<Placeable_Data>().getStructureType().Equals("Foundation"))
             {
                 if (getUsedObject().transform.rotation.eulerAngles.y == 0 || getUsedObject().transform.rotation.eulerAngles.y == 180)
                 {
@@ -71,7 +71,7 @@ public class Item_012_P : Building     //inclined wall
                         mergeColliderPoint = mergeColliderPoint.transform.parent.transform.Find("DownPoint").gameObject;
                 }
             }
-            else if (mergeColliderPoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Wall"))
+            else if (mergeColliderPoint.transform.parent.GetComponent<Placeable_Data>().getStructureType().Equals("Wall"))
             {
                 double rotationDifference = Mathf.Abs(getUsedObject().transform.rotation.eulerAngles.y - mergeColliderPoint.transform.parent.transform.rotation.eulerAngles.y);
                 if (rotationDifference == 90 || rotationDifference == 270)
@@ -84,8 +84,8 @@ public class Item_012_P : Building     //inclined wall
 
     bool checkValidMerge(GameObject mergePoint)
     {
-        return (mergePoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Foundation") && !mergePoint.name.Equals("CenterPoint"))
-            || mergePoint.transform.parent.GetComponent<Prefab_Data>().getPrefabType().Equals("Wall"); 
+        return (mergePoint.transform.parent.GetComponent<Placeable_Data>().getStructureType().Equals("Foundation") && !mergePoint.name.Equals("CenterPoint"))
+            || mergePoint.transform.parent.GetComponent<Placeable_Data>().getStructureType().Equals("Wall"); 
     }
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch
@@ -107,7 +107,7 @@ public class Item_012_P : Building     //inclined wall
         if (Input.GetKeyDown(KeyCode.R))
         {
             getUsedObject().transform.rotation *= Quaternion.Euler(0, 90, 0);
-            if(mergeColliderPoint != null && mergeColliderPoint.transform.parent.GetComponent<Prefab_Data>().Equals("Wall"))
+            if(mergeColliderPoint != null && mergeColliderPoint.transform.parent.GetComponent<Placeable_Data>().Equals("Wall"))
                 getUsedObject().transform.rotation *= Quaternion.Euler(0, 90, 0);
         }
     }

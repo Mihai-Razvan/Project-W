@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_007_P : Building       //floor
+public class Item_007_P : Placeable       //floor
 {
     [SerializeField]
     float checkMergeDistance;
@@ -23,7 +23,7 @@ public class Item_007_P : Building       //floor
         {
             checkMerge();
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))
-                placeBuilding();
+                spawnPlacePrefab();
         }
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : Item
+public class Placeable : Item
 {
     [SerializeField]
     protected GameObject dummyPrefab;    //the prefab that will be used as usedObject 
@@ -24,7 +24,7 @@ public class Building : Item
         }
     }
 
-    protected void placeBuilding()
+    protected void spawnPlacePrefab()   //used to place the building when you click
     {
         Instantiate(placePrefab, getUsedObject().transform.position, getUsedObject().transform.rotation);
         int slot = FindObjectOfType<Player_Inventory>().getSelectedSlot();

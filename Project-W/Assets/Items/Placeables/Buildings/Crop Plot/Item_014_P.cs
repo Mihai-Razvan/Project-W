@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Item_014_P : Building           //crop plot
 {
-    [SerializeField]
-    float checkFoundationDistance;
-
     void Start()
     {
         Player_Inventory.onItemSelected += displayPrefab;
@@ -16,24 +13,11 @@ public class Item_014_P : Building           //crop plot
     {
         if (checkSelected() && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
         {
-            placement();
+            placeDummy();
             rotateObject();
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))
-                placeBuilding();
+                spawnPlacePrefab();
         }
-    }
-
-    void placement()
-    {
-        RaycastHit[] hits = Physics.RaycastAll(Camera.main.transform.position, Camera.main.transform.forward, checkFoundationDistance, buildingMask);
-        for(int i = 0; i < hits.Length; i++)
-            if(hits[i].collider.TryGetComponent(out Prefab_Data data) && data.getPrefabType().Equals("Foundation"))
-            {
-                getUsedObject().transform.position = hits[i].point; 
-                break;
-            }
-
-        
     }
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch
@@ -48,11 +32,5 @@ public class Item_014_P : Building           //crop plot
             changeMaterials(notPlaceableMaterial);
 
         return colliders.Length;
-    }
-
-    void rotateObject()
-    {
-        if (Input.GetKey(KeyCode.R))
-            getUsedObject().transform.rotation *= Quaternion.Euler(0, 90 * Time.deltaTime, 0);
     }
 }
