@@ -14,5 +14,6 @@ Item Name - "copper"
 10 - glass
 11 - scrap metal
 12 - inclined wall
-13 - box (the one that falls)
+13 - crate (the one that falls)
 14 - crop plot
+15 - patato
