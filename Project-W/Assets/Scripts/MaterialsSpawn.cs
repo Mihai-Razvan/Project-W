@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourcesSpawn : MonoBehaviour
+public class MaterialsSpawn : MonoBehaviour
 {
     [SerializeField]
     Transform playerTransform;    //spawner is positioned over the player, having the same x and z coordinates
@@ -24,10 +24,10 @@ public class ResourcesSpawn : MonoBehaviour
 
     void Update()
     {
-        spawnResource();
+        spawnMaterial();
     }
 
-    void spawnResource()
+    void spawnMaterial()
     {
         spawnTimeElapsed += Time.deltaTime;
 
@@ -37,13 +37,13 @@ public class ResourcesSpawn : MonoBehaviour
             Vector3 spawnPos = new Vector3(randomPos.x, playerTransform.position.y + spawnHeight, randomPos.y);
             float ranRot = Random.Range(0, 180);
             
-            Instantiate(resourcePrefabs[chooseResource()], spawnPos, Quaternion.Euler(ranRot, ranRot, ranRot));  
+            Instantiate(resourcePrefabs[chooseMaterial()], spawnPos, Quaternion.Euler(ranRot, ranRot, ranRot));  
 
             spawnTimeElapsed = 0f;
         }
     }
 
-    int chooseResource()
+    int chooseMaterial()
     {
         int randVal =  Random.Range(1, 100);
         if (randVal <= 31)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Resource : Item
+public class Materials : Item
 {
     [SerializeField]
     float cloudLevel;    //the z coordinates for the cloud layer; if a ressource falls under this level it despawns

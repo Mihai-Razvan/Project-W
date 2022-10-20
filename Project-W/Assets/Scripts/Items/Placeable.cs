@@ -9,9 +9,9 @@ public class Placeable : Item
     [SerializeField]
     protected GameObject placePrefab;        //the prefab that will be spawned when you place it
     [SerializeField]
-    protected Material placeableMaterial;
+    protected UnityEngine.Material placeableMaterial;
     [SerializeField]
-    protected Material notPlaceableMaterial;
+    protected UnityEngine.Material notPlaceableMaterial;
     [SerializeField]
     protected LayerMask buildingMask;
     
@@ -20,7 +20,7 @@ public class Placeable : Item
         if (getUsedObject() == null && checkSelected())
         {
             GameObject spawnedObject = Instantiate(dummyPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            setUsedObject(spawnedObject);
+            setUsedObject(spawnedObject, itemCode);
         }
     }
 
@@ -31,10 +31,10 @@ public class Placeable : Item
         FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, slot);
     }
 
-    protected void changeMaterials(Material material)
+    protected void changeMaterials(UnityEngine.Material material)
     {
         Renderer usedObjectRenderer = getUsedObject().transform.GetChild(0).gameObject.GetComponent<Renderer>();
-        Material[] materials = new Material[usedObjectRenderer.materials.Length];
+        UnityEngine.Material[] materials = new UnityEngine.Material[usedObjectRenderer.materials.Length];
 
         for (int i = 0; i < materials.Length; i++)
             materials[i] = material;

@@ -15,7 +15,7 @@ public class Tool : Item
         {
             GameObject spawnedObject = Instantiate(prefab, parentObject.transform.position, Quaternion.Euler(parentObject.transform.eulerAngles.x, parentObject.transform.eulerAngles.y, parentObject.transform.eulerAngles.z));
             spawnedObject.transform.SetParent(parentObject.transform);
-            setUsedObject(spawnedObject);
+            setUsedObject(spawnedObject, itemCode);
         }
     }
 }  

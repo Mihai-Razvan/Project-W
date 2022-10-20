@@ -11,9 +11,9 @@ public class Interactions : MonoBehaviour
     [SerializeField]
     LayerMask resourcesMask;
     [SerializeField]
-    LayerMask buildingsMask;
+    LayerMask placeablesMask;
 
-    GameObject interactingBuilding;   //the building the player can interact with; even if it s a non interactable building this will still hold the gameobject
+    GameObject inRangeBuilding;   //the building the player CAN interact with; even if it s a non interactable building this will still hold the gameobject
 
     void Update()
     {
@@ -40,15 +40,27 @@ public class Interactions : MonoBehaviour
 
     void checkBuildings()
     {
-        Collider[] colliders = Physics.OverlapCapsule(Camera.main.transform.position, Camera.main.transform.position + Camera.main.transform.forward * detectionCapsuleLength, detectionCapsuleRadius, buildingsMask);
+        Collider[] colliders = Physics.OverlapCapsule(Camera.main.transform.position, Camera.main.transform.position + Camera.main.transform.forward * detectionCapsuleLength, detectionCapsuleRadius, placeablesMask);
         if (colliders.Length > 0)
-            interactingBuilding = colliders[0].gameObject;
+        {
+            float minDistance = int.MaxValue;
+            int minIndex = 0;
+
+            for(int i = 0; i < colliders.Length; i++)
+                if(colliders[i].gameObject.GetComponent<Placeable_Data>().getPlaceableType().Equals("Building")
+                    && Vector3.Distance(colliders[i].gameObject.transform.position, Camera.main.transform.position) < minDistance)
+                {
+                    minDistance = Vector3.Distance(colliders[i].gameObject.transform.position, Camera.main.transform.position);
+                    minIndex = i;
+                }
+            inRangeBuilding = colliders[minIndex].gameObject;
+        }
         else
-            interactingBuilding = null;
+            inRangeBuilding = null;
     }
 
-    public GameObject getInteractingBuilding()
+    public GameObject getInRangeBuilding()   
     {
-        return interactingBuilding;
+        return inRangeBuilding;
     }
 }

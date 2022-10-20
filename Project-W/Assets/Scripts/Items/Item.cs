@@ -5,8 +5,9 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField]
-    protected int itemCode;     
+    protected int itemCode;
 
+    static int usedObjectItemCode;
     static GameObject usedObject;           //the object that is currently used (ex tools, weapons, building you are placing); is null if it is an object you won't have in hands
                                             //when it is selected from inventory (ex resource)
     protected bool checkSelected()
@@ -29,16 +30,23 @@ public class Item : MonoBehaviour
         {
             Destroy(usedObject);
             usedObject = null;
+            usedObjectItemCode = 0;
         }
     }
 
-    public static void setUsedObject(GameObject usedObject)
+    public static void setUsedObject(GameObject usedObject, int usedObjectItemCode)
     {
         Item.usedObject = usedObject;
+        Item.usedObjectItemCode = usedObjectItemCode;
     }
 
     public static GameObject getUsedObject()
     {
         return usedObject;
+    }
+
+    public static int getUsedObjectItemCode()
+    {
+        return usedObjectItemCode;
     }
 }

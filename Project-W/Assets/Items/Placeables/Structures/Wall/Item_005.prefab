@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbb78a47a2b124408d05547282aca10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeableType: Structure
   structureType: Wall
 --- !u!1 &4900831773976370505
 GameObject:

@@ -90,19 +90,19 @@ namespace SSSAO
         public VisualizationMode m_Visualization = VisualizationMode.None;
 
         private Shader m_SSAOShader;
-        private Material m_SSAOMaterial;
+        private UnityEngine.Material m_SSAOMaterial;
 
         private bool m_Supported;
 
-        private static Material CreateMaterial (Shader shader)
+        private static UnityEngine.Material CreateMaterial (Shader shader)
         {
             if (!shader)
                 return null;
-            Material m = new Material (shader);
+            UnityEngine.Material m = new UnityEngine.Material (shader);
             m.hideFlags = HideFlags.HideAndDontSave;
             return m;
         }
-        private static void DestroyMaterial (Material mat)
+        private static void DestroyMaterial (UnityEngine.Material mat)
         {
             if (mat)
             {
