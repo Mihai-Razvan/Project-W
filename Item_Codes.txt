@@ -17,3 +17,4 @@ Item Name - "copper"
 13 - crate (the one that falls)
 14 - crop plot
 15 - patato
+16 - wind turbine

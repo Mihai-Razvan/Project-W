@@ -31,14 +31,17 @@ public class Placeable : Item
         FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, slot);
     }
 
-    protected void changeMaterials(UnityEngine.Material material)
+    protected void changeMaterials(Material material)
     {
-        Renderer usedObjectRenderer = getUsedObject().transform.GetChild(0).gameObject.GetComponent<Renderer>();
-        UnityEngine.Material[] materials = new UnityEngine.Material[usedObjectRenderer.materials.Length];
+        for(int child = 0; child < getUsedObject().transform.childCount; child++)
+        {
+            Renderer usedObjectRenderer = getUsedObject().transform.GetChild(child).gameObject.GetComponent<Renderer>();
+            Material[] materials = new Material[usedObjectRenderer.materials.Length];
 
-        for (int i = 0; i < materials.Length; i++)
-            materials[i] = material;
+            for (int i = 0; i < materials.Length; i++)
+                materials[i] = material;
 
-        usedObjectRenderer.materials = materials;
+            usedObjectRenderer.materials = materials;
+        }
     }
 }
