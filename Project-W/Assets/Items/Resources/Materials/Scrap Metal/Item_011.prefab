@@ -156,3 +156,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCodeArray: 0b000000
   quantityArray: 01000000
+  chargeArray:
+  - 0

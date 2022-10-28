@@ -19,6 +19,7 @@ public class Item_013 : MonoBehaviour
         int resourcesNumber = Random.Range(1, 3);
         int[] itemCodeArray = new int[resourcesNumber];
         int[] quantiyArray = new int[resourcesNumber];
+        float[] chargeArray = new float[resourcesNumber];
        
         for(int i = 0; i < resourcesNumber; i++)
         {
@@ -26,6 +27,6 @@ public class Item_013 : MonoBehaviour
             quantiyArray[i] = Random.Range(1, 3);
         }
 
-        this.gameObject.GetComponent<ResourcesData>().setResourceData(itemCodeArray, quantiyArray);
+        this.gameObject.GetComponent<ResourcesData>().setResourceData(itemCodeArray, quantiyArray, chargeArray);
     }
 }

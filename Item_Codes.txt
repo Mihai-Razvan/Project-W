@@ -18,3 +18,4 @@ Item Name - "copper"
 14 - crop plot
 15 - patato
 16 - wind turbine
+17 - battery

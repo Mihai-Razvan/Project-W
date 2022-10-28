@@ -10,11 +10,14 @@ public class ResourcesData : MonoBehaviour
     int[] itemCodeArray;
     [SerializeField]
     int[] quantityArray;
+    [SerializeField]
+    float[] chargeArray;
 
-    public void setResourceData(int[] itemCodeArray, int[] quantityArray)
+    public void setResourceData(int[] itemCodeArray, int[] quantityArray, float[] chargeArray)
     {
         this.itemCodeArray = itemCodeArray;
         this.quantityArray = quantityArray;
+        this.chargeArray = chargeArray;
     }
 
     public int[] getItemCodeArray()
@@ -25,5 +28,10 @@ public class ResourcesData : MonoBehaviour
     public int[] getQuantityArray()
     {
         return quantityArray;
+    }
+
+    public float[] getChargeArray()
+    {
+        return chargeArray;
     }
 }

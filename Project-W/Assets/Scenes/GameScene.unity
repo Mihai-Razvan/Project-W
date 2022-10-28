@@ -4824,8 +4824,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908690de47b204e41b1e2b4932720cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCodeArray: 0200000004000000050000000600000007000000100000000f0000000e0000000c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  quantityArray: 0100000063000000630000006300000063000000630000001400000014000000140000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  itemCodeArray: 0200000004000000050000000600000007000000100000000f0000000e000000110000001100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  quantityArray: 0100000063000000630000006300000063000000630000001400000014000000010000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  chargeArray:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 80
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!114 &1276346411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5214,6 +5238,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1981903734}
     m_Modifications:
+    - target: {fileID: 5728824320088704745, guid: bba8d37065e874e499f21c2d1609791a, type: 3}
+      propertyPath: charge
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 7756507930865361878, guid: bba8d37065e874e499f21c2d1609791a, type: 3}
       propertyPath: slot
       value: 8
@@ -8001,6 +8029,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 70cdacd57764e8f44bc4148be24ff42e, type: 3}
   - {fileID: 21300000, guid: 03575705a17e607409e7672dfe315396, type: 3}
   - {fileID: 21300000, guid: 2c7da31080e16bc4ea9e8663e7a7fc64, type: 3}
+  - {fileID: 21300000, guid: cd06ad91e5abb744aa21d7f7810c4716, type: 3}
   nameArray:
   - 
   - Cobalt
@@ -8019,6 +8048,7 @@ MonoBehaviour:
   - Crop Plot
   - Patato
   - Wind Turbine
+  - Battery
   descriptionArray:
   - 
   - Cobalt Description
@@ -8037,7 +8067,8 @@ MonoBehaviour:
   - Crop Plot Description
   - Patato Description
   - Wind Turbine Description
-  inventoryLimit: 0000000014000000010000000100000014000000140000001400000014000000140000001400000014000000140000001400000014000000140000001400000014000000
+  - Battery Description
+  inventoryLimit: 000000001400000001000000010000001400000014000000140000001400000014000000140000001400000014000000140000001400000014000000140000001400000001000000
 --- !u!4 &2073680523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7566658814291334610, guid: 04aec7fce5ebd934f874f3b32ff58c90, type: 3}
@@ -8110,9 +8141,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2076925082}
   - component: {fileID: 2076925083}
+  - component: {fileID: 2076925085}
   - component: {fileID: 2076925084}
   m_Layer: 0
-  m_Name: Foods-Scripts
+  m_Name: Resources-Scripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8168,6 +8200,21 @@ MonoBehaviour:
   itemCodeArray: 0f000000
   cropGrowingTime:
   - 3
+--- !u!114 &2076925085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076925081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be899341738bf54cae73ddaa5aff278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCode: 17
+  prefab: {fileID: 2679601402803778529, guid: e62e6f2acc57fc541bfa3aec1dd071d8, type: 3}
+  parentObject: {fileID: 447373184}
 --- !u!4 &2079922802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7566658814291334610, guid: 04aec7fce5ebd934f874f3b32ff58c90, type: 3}

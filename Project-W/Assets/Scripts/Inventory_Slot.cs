@@ -12,12 +12,18 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
     [SerializeField]
     TextMeshProUGUI quantityText;
     [SerializeField]
+    Image chargeImage;
+    [SerializeField]
+    Image chargeImageBackground;
+    [SerializeField]
     private int slot;
 
     void Start()
     {
         itemImage.gameObject.SetActive(false);
         quantityText.gameObject.SetActive(false);
+        chargeImage.gameObject.SetActive(false);
+        chargeImageBackground.gameObject.SetActive(false);
         getInventoryHolder().GetComponent<Inventory>().onInventoryChange += onChange;
         onChange();
     }
@@ -32,11 +38,25 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
             itemImage.sprite = FindObjectOfType<ItemsList>().getSprite(itemCode);
             quantityText.gameObject.SetActive(true);
             quantityText.text = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot).ToString();
+            
+            if(Item.checkChargeableItem(itemCode))
+            {
+                chargeImage.gameObject.SetActive(true);
+                chargeImageBackground.gameObject.SetActive(true);
+                chargeImage.fillAmount = getInventoryHolder().GetComponent<Inventory>().getCharge(slot) / 100;
+            }
+            else
+            {
+                chargeImage.gameObject.SetActive(false);
+                chargeImageBackground.gameObject.SetActive(false);
+            }
         }
         else
         {
             itemImage.gameObject.SetActive(false);
             quantityText.gameObject.SetActive(false);
+            chargeImage.gameObject.SetActive(false);
+            chargeImageBackground.gameObject.SetActive(false);
         }
     }
 
@@ -46,6 +66,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
             return;
 
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
+        float charge = getInventoryHolder().GetComponent<Inventory>().getCharge(slot);
         int quantity = 0;
 
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -53,7 +74,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
         else if (eventData.button == PointerEventData.InputButton.Right)
             quantity = 1;
 
-        FindObjectOfType<Inventory_Exchange>().dragStart(itemCode, quantity, this.gameObject);
+        FindObjectOfType<Inventory_Exchange>().dragStart(itemCode, quantity, charge, this.gameObject);
     }
 
     public void OnDrop(PointerEventData eventData)     //when the drag ends
@@ -63,8 +84,9 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
         int quantity = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
+        float charge = getInventoryHolder().GetComponent<Inventory>().getCharge(slot);
 
-        FindObjectOfType<Inventory_Exchange>().dragEnd(itemCode, quantity, this.gameObject);
+        FindObjectOfType<Inventory_Exchange>().dragEnd(itemCode, quantity, charge, this.gameObject);
     }
 
     public void OnPointerClick(PointerEventData eventData)     //in case a slot is just clicked but without any darg
@@ -74,8 +96,9 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
         int quantity = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
+        float charge = getInventoryHolder().GetComponent<Inventory>().getCharge(slot);
 
-        FindObjectOfType<Inventory_Exchange>().dragEnd(itemCode, quantity, this.gameObject);
+        FindObjectOfType<Inventory_Exchange>().dragEnd(itemCode, quantity, charge, this.gameObject);
     }
 
     public void OnPointerEnter(PointerEventData eventData)    //used for info slot image

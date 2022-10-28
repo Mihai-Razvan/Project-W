@@ -33,30 +33,32 @@ public class Item_Drop : MonoBehaviour
             {
                 int slot = FindObjectOfType<Inventory_Exchange>().getDragSlotObject().GetComponent<Inventory_Slot>().getSlotNumber();
                 int itemCode = FindObjectOfType<Inventory_Exchange>().getDragSlotObject().GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
+                float charge = FindObjectOfType<Inventory_Exchange>().getDragSlotObject().GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getCharge(slot);
 
                 if (Input.GetKeyUp(KeyCode.Mouse0))
                 {    
                     int quantity = FindObjectOfType<Inventory_Exchange>().getDragSlotObject().GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
-                    dropBox(slot, itemCode, quantity);
+                    dropBox(slot, itemCode, quantity, charge);
                 }
                 else if(Input.GetKeyUp(KeyCode.Mouse1))
-                    dropBox(slot, itemCode, 1);
+                    dropBox(slot, itemCode, 1, charge);
             }
             else if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1))  
-                FindObjectOfType<Inventory_Exchange>().dragEnd(0, 0, null);
+                FindObjectOfType<Inventory_Exchange>().dragEnd(0, 0, 0, null);
         }
     }
 
-    void dropBox(int slot, int itemCode, int quantity)
+    void dropBox(int slot, int itemCode, int quantity, float charge)
     {
         Vector3 pos = Camera.main.transform.position + Camera.main.transform.forward * 3;
         GameObject box = Instantiate(boxPrefab, pos, Quaternion.identity);
         int[] itemCodeArray = new int[] { itemCode };
         int[] quantityArray = new int[] { quantity };
-        box.gameObject.GetComponent<ResourcesData>().setResourceData(itemCodeArray, quantityArray);
+        float[] chargeArray = new float[] { charge };
+        box.gameObject.GetComponent<ResourcesData>().setResourceData(itemCodeArray, quantityArray, chargeArray);
 
         int initialQuantity = FindObjectOfType<Inventory_Exchange>().getDragSlotObject().GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().getQuantity(slot);
-        FindObjectOfType<Inventory_Exchange>().getDragSlotObject().GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(slot, itemCode, initialQuantity- quantity);
+        FindObjectOfType<Inventory_Exchange>().getDragSlotObject().GetComponent<Inventory_Slot>().getInventoryHolder().GetComponent<Inventory>().setSlot(slot, itemCode, initialQuantity- quantity, charge);
         FindObjectOfType<Inventory_Exchange>().disableItemImage();
     }
 

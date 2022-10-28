@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
     int[] itemCodeArray;    
     [SerializeField]
     int[] quantityArray;
+    [SerializeField]
+    float[] chargeArray;       
     public delegate void OnInventoryChange();
     public OnInventoryChange onInventoryChange;
 
@@ -16,9 +18,10 @@ public class Inventory : MonoBehaviour
         onInventoryChange += checkEmpty;
     }
 
-    public void addItem(int itemCode, int quantity)
+    public int addItem(int itemCode, int quantity)
     {
         int inventoryLimit = FindObjectOfType<ItemsList>().getInventoryLimit(itemCode);
+        int addedSlot = -1; //this is used for the items that can be only one per slot so when you add it adds maximum to one slot; used for ex for batteries to know the slot and set slot charge
 
         for (int i = 0; i < itemCodeArray.Length; i++)
             if (itemCodeArray[i] == itemCode)
@@ -47,6 +50,7 @@ public class Inventory : MonoBehaviour
                         itemCodeArray[i] = itemCode;
                         quantityArray[i] = quantity;
                         quantity = 0;
+                        addedSlot = i;
                     }
                     else
                     {
@@ -63,13 +67,17 @@ public class Inventory : MonoBehaviour
             Debug.Log("Not enought space: " + quantity + " remained!");
 
         onInventoryChange();
+        return addedSlot;
     }
 
     void checkEmpty()
     {
         for (int i = 0; i < itemCodeArray.Length; i++)
             if (quantityArray[i] == 0)
+            {
                 itemCodeArray[i] = 0;
+                chargeArray[i] = 0;
+            }
     }
 
     public void decreaseQuantity(int quantity, int slot)    //we know the slot 
@@ -99,7 +107,7 @@ public class Inventory : MonoBehaviour
         return quantityArray[slot];
     }
 
-    public void setSlot(int slot, int itemCode, int quantity)      //sets the code and quantity for the given slot
+    public void setSlot(int slot, int itemCode, int quantity, float charge)      //sets the code and quantity for the given slot
     {
         if (quantity == 0)
             itemCodeArray[slot] = 0;
@@ -107,7 +115,25 @@ public class Inventory : MonoBehaviour
             itemCodeArray[slot] = itemCode;
 
         quantityArray[slot] = quantity;
+        chargeArray[slot] = charge;
 
         onInventoryChange();
+    }
+
+    public void setCharge(int slot, float charge)
+    {
+        chargeArray[slot] = charge;
+        onInventoryChange();
+    }
+
+    public void decreaseCharge(int slot, int decreaseAmount)
+    {
+        chargeArray[slot] -= decreaseAmount;
+        onInventoryChange();
+    }
+
+    public float getCharge(int slot)
+    {
+        return chargeArray[slot];
     }
 }
