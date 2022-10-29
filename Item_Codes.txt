@@ -19,3 +19,4 @@ Item Name - "copper"
 15 - patato
 16 - wind turbine
 17 - battery
+18 - backed patato
