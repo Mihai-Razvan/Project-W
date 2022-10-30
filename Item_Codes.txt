@@ -20,3 +20,4 @@ Item Name - "copper"
 16 - wind turbine
 17 - battery
 18 - backed patato
+19 - grill

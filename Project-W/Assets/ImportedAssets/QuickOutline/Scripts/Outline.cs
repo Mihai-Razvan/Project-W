@@ -57,7 +57,7 @@ public class Outline : MonoBehaviour {
   private Mode outlineMode = Mode.OutlineVisible;    //I changed this in code so don't need to apply the script to anything to make the changes
 
 
-    private Color outlineColor = new Color(8, 4, 0);   //I changed; the brighter the color the bigger the glow effect. Idk why, just put a darker color to get rid of glow
+    public Color outlineColor = new Color(8, 4, 0);   //I changed; the brighter the color the bigger the glow effect. Idk why, just put a darker color to get rid of glow
 
     [SerializeField, Range(0f, 10f)]
   private float outlineWidth = 4f;          //I changed 
