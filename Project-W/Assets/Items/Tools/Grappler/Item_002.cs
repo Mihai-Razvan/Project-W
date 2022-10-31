@@ -63,11 +63,13 @@ public class Item_002 : Tool   //grappler
                 case "EXPANDING":
                     drawLaser();
                     makeCollider();
+                    moveMaterials();
 
                     break;
                 case "RETRACTING":
                     drawLaser();
                     makeCollider();
+                    moveMaterials();
 
                     if (laserState.Equals("UNUSED"))   //in case it became UNUSED in drawLaser()
                     {
@@ -133,6 +135,11 @@ public class Item_002 : Tool   //grappler
         if (colliders.Length != 0)
             for (int i = 0; i < colliders.Length; i++)
             {
+                if (colliders[0].gameObject.TryGetComponent(out Rigidbody rigidBody) == true)
+                    Destroy(rigidBody);
+                else
+                    return;   //it means it is in collection vacuum
+
                 if (!keyList.Contains(colliders[i].gameObject)) //it means we are in the frame when this object collided for the first time
                 {
                     colliders[i].transform.position = rayStartPosition.position + rayStartPosition.forward * Vector3.Distance(rayStartPosition.position, colliders[i].transform.position);
@@ -141,39 +148,36 @@ public class Item_002 : Tool   //grappler
                          colliders[i].gameObject.AddComponent<Outline>();      //it adds the script that creates the encapsulate outline
                 }
 
-                if (colliders[0].gameObject.TryGetComponent(out Rigidbody rigidBody) == true)  
-                    Destroy(rigidBody);
-
                 if(colliders.Length == 1)
                 {
                     laserState = "RETRACTING";
                     laserSize = Vector3.Distance(colliders[0].transform.position, rayStartPosition.position);
                 }         
-            }
-   
-        for (int i = 0; i < keyList.Count; i++)
-        {
-            objectsList[keyList[i]] = Vector3.Distance(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * (objectsList[keyList[i]] - laserExpansionSpeed * Time.deltaTime * laserRetractingSlowDown));
-            keyList[i].transform.position = rayStartPosition.position + rayStartPosition.forward * objectsList[keyList[i]];
-        }
+            }    
+    }
 
-        for(int i = 0; i < keyList.Count; i++)
+    void moveMaterials()
+    {
+        for (int i = 0; i < keyList.Count; i++)
             if (Vector3.Distance(keyList[i].transform.position, rayStartPosition.position) < 0.5f)
             {
                 int[] itemCodeArray = keyList[i].GetComponent<ResourcesData>().getItemCodeArray();
                 int[] quantityArray = keyList[i].GetComponent<ResourcesData>().getQuantityArray();
-             //   float[] chargeArray = keyList[i].GetComponent<ResourcesData>().getChargeArray();
+                //   float[] chargeArray = keyList[i].GetComponent<ResourcesData>().getChargeArray();
                 for (int j = 0; j < itemCodeArray.Length; j++)
-                {
-                    int addedSlot = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j]);
-                 //   FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().setCharge(addedSlot, chargeArray[j]);
-                }
+                    FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j]);
 
                 objectsList.Remove(keyList[i]);
                 GameObject objectToDestroy = keyList[i];
                 keyList.Remove(keyList[i]);
                 Destroy(objectToDestroy);
             }
+
+        for (int i = 0; i < keyList.Count; i++)
+        {
+            objectsList[keyList[i]] = Vector3.Distance(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * (objectsList[keyList[i]] - laserExpansionSpeed * Time.deltaTime * laserRetractingSlowDown));
+            keyList[i].transform.position = rayStartPosition.position + rayStartPosition.forward * objectsList[keyList[i]];
+        }
     }
 
     void deselectItem()

@@ -21,3 +21,4 @@ Item Name - "copper"
 17 - battery
 18 - backed patato
 19 - grill
+20 - collection vacuum

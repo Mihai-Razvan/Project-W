@@ -4846,8 +4846,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908690de47b204e41b1e2b4932720cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCodeArray: 0200000004000000050000000600000007000000100000000f0000000e000000110000001100000012000000130000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  quantityArray: 0100000063000000630000006300000063000000630000001400000014000000010000000100000014000000140000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  itemCodeArray: 0200000004000000050000000600000007000000100000000f0000000e000000110000001100000012000000130000001400000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  quantityArray: 0100000063000000630000006300000063000000630000001400000014000000010000000100000014000000140000001400000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   chargeArray:
   - 0
   - 0
@@ -5929,7 +5929,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644724141}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c50f4ed26d43fed4f845f49fcce63acb, type: 3}
   m_Name: 
@@ -5937,7 +5937,7 @@ MonoBehaviour:
   playerTransform: {fileID: 885755179}
   spawnHeight: 60
   spawnRadius: 20
-  spawnTimeInterval: 1
+  spawnTimeInterval: 0.2
   resourcePrefabs:
   - {fileID: 746358726732504016, guid: e44b60cd5e8b15745b908bf6a1229fc9, type: 3}
   - {fileID: 2931920097550189217, guid: 00018691679bae645bdda7033386391d, type: 3}
@@ -6310,6 +6310,7 @@ GameObject:
   - component: {fileID: 1702732577}
   - component: {fileID: 1702732576}
   - component: {fileID: 1702732575}
+  - component: {fileID: 1702732581}
   m_Layer: 0
   m_Name: Structures-Scripts
   m_TagString: Untagged
@@ -6477,6 +6478,31 @@ MonoBehaviour:
   itemCode: 4
   dummyPrefab: {fileID: 21721881168520200, guid: 2e56ea317703fb54492319c44bf01d1c, type: 3}
   placePrefab: {fileID: 8158076285510463757, guid: 04aec7fce5ebd934f874f3b32ff58c90, type: 3}
+  placeableMaterial: {fileID: 2100000, guid: 7a43427c2db0557419aa87fb2f075ab1, type: 2}
+  notPlaceableMaterial: {fileID: 2100000, guid: d3942cf3244911f47b037e1fdf7b9846, type: 2}
+  buildingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  checkMergeDistance: 7
+  checkMergeSphereRadius: 1.5
+  mergeLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &1702732581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702732573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c071d87440f7fb4b8b56971c897ec39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCode: 20
+  dummyPrefab: {fileID: 1912894140207518421, guid: 8c7445862b4cb7848b60646307db0761, type: 3}
+  placePrefab: {fileID: 1912894140207518421, guid: f4a781b807a56a545adac3ceda68f88a, type: 3}
   placeableMaterial: {fileID: 2100000, guid: 7a43427c2db0557419aa87fb2f075ab1, type: 2}
   notPlaceableMaterial: {fileID: 2100000, guid: d3942cf3244911f47b037e1fdf7b9846, type: 2}
   buildingMask:
@@ -8054,6 +8080,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cd06ad91e5abb744aa21d7f7810c4716, type: 3}
   - {fileID: 21300000, guid: d16e1a2f697b83243a0d7c5e57d92f80, type: 3}
   - {fileID: 21300000, guid: 423f30b0812c75644a8e7887def98436, type: 3}
+  - {fileID: 21300000, guid: a2029575f79459f4792cc3545bcca1f6, type: 3}
   nameArray:
   - 
   - Cobalt
@@ -8075,6 +8102,7 @@ MonoBehaviour:
   - Battery
   - Backed Patato
   - Grill
+  - Collection Vacuum
   descriptionArray:
   - 
   - Cobalt Description
@@ -8096,7 +8124,8 @@ MonoBehaviour:
   - Battery Description
   - Backed Patato Description
   - Grill Description
-  inventoryLimit: 0000000014000000010000000100000014000000140000001400000014000000140000001400000014000000140000001400000014000000140000001400000014000000010000001400000014000000
+  - Collection Vacuum Description
+  inventoryLimit: 000000001400000001000000010000001400000014000000140000001400000014000000140000001400000014000000140000001400000014000000140000001400000001000000140000001400000014000000
 --- !u!4 &2073680523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7566658814291334610, guid: 04aec7fce5ebd934f874f3b32ff58c90, type: 3}

@@ -27,18 +27,16 @@ public class Interactions : MonoBehaviour
         if(colliders.Length > 0)
         {
             if(Input.GetKeyDown(KeyCode.E))
-            {
-                int[] itemCodeArray = colliders[0].GetComponent<ResourcesData>().getItemCodeArray();
-                int[] quantityArray = colliders[0].GetComponent<ResourcesData>().getQuantityArray();
-                float[] chargeArray = colliders[0].GetComponent<ResourcesData>().getChargeArray();
-                for (int j = 0; j < itemCodeArray.Length; j++)
+                for(int i = 0; i < colliders.Length; i++)
                 {
-                    int addedSlot = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j]);
-                    FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().setCharge(addedSlot, chargeArray[j]);
-                }
+                    int[] itemCodeArray = colliders[i].GetComponent<ResourcesData>().getItemCodeArray();
+                    int[] quantityArray = colliders[i].GetComponent<ResourcesData>().getQuantityArray();
+                    float[] chargeArray = colliders[i].GetComponent<ResourcesData>().getChargeArray();
+                    for (int j = 0; j < itemCodeArray.Length; j++)
+                        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j]);
 
-                Destroy(colliders[0].gameObject);
-            }
+                    Destroy(colliders[i].gameObject);
+                }
         }
     }
 
