@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Item_019 : MonoBehaviour
+public class Item_019 : MonoBehaviour   //grill
 {
     [SerializeField]
     GameObject batteryHole;
@@ -65,7 +65,7 @@ public class Item_019 : MonoBehaviour
     void interaction()
     {
         if(Item.getUsedObjectItemCode() == 17)       //battery 
-            placeBattery();
+            handleBattery();
         else
         {
             if (getIndex(Item.getUsedObjectItemCode()) != -1 && foodPlaced == false)
@@ -77,7 +77,7 @@ public class Item_019 : MonoBehaviour
         }
     }
 
-    void placeBattery()
+    void handleBattery()
     {
         if (batteryPlaced == false)
         {

@@ -18,7 +18,7 @@ public class CloudLayer: MonoBehaviour
 
     void Update()
     {
-        Vector3 playerPos = FindObjectOfType<Player>().getPosition();
-        transform.position = new Vector3(playerPos.x - (xSize * squareScale) / 2, 0, playerPos.z - (zSize * squareScale) / 2);
+     //   Vector3 playerPos = FindObjectOfType<Player>().getPosition();
+     //   transform.position = new Vector3(playerPos.x - (xSize * squareScale) / 2, 0, playerPos.z - (zSize * squareScale) / 2);
     }
 }

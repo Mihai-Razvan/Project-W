@@ -22,3 +22,6 @@ Item Name - "copper"
 18 - backed patato
 19 - grill
 20 - collection vacuum
+21 - water extractor
+22- empty can
+23- full can
