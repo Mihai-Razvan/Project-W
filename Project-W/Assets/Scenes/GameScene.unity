@@ -4872,8 +4872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908690de47b204e41b1e2b4932720cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCodeArray: 0200000004000000050000000600000007000000100000000f0000000e000000110000001100000012000000130000001400000015000000160000000000000000000000000000000000000000000000000000000000000000000000
-  quantityArray: 0100000063000000630000006300000063000000630000001400000014000000010000000100000014000000140000001400000014000000010000000000000000000000000000000000000000000000000000000000000000000000
+  itemCodeArray: 0200000004000000050000000600000007000000100000000f0000000e0000001100000011000000120000001300000014000000150000001600000017000000080000000c0000000000000000000000000000000000000000000000
+  quantityArray: 0100000063000000630000006300000063000000630000001400000014000000010000000100000014000000140000001400000014000000010000000100000014000000140000000000000000000000000000000000000000000000
   chargeArray:
   - 0
   - 0
@@ -5955,7 +5955,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644724141}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c50f4ed26d43fed4f845f49fcce63acb, type: 3}
   m_Name: 
@@ -5963,7 +5963,7 @@ MonoBehaviour:
   playerTransform: {fileID: 885755179}
   spawnHeight: 60
   spawnRadius: 20
-  spawnTimeInterval: 0.2
+  spawnTimeInterval: 1.5
   resourcePrefabs:
   - {fileID: 746358726732504016, guid: e44b60cd5e8b15745b908bf6a1229fc9, type: 3}
   - {fileID: 2931920097550189217, guid: 00018691679bae645bdda7033386391d, type: 3}
@@ -8108,8 +8108,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 423f30b0812c75644a8e7887def98436, type: 3}
   - {fileID: 21300000, guid: a2029575f79459f4792cc3545bcca1f6, type: 3}
   - {fileID: 21300000, guid: 96df300f544169a44afc331dac6cf764, type: 3}
-  - {fileID: 21300000, guid: 4f0f5108c61921949b9e27c822f26d59, type: 3}
-  - {fileID: 21300000, guid: 4f0f5108c61921949b9e27c822f26d59, type: 3}
+  - {fileID: 21300000, guid: e0d0f11271028ea4fb9fbe55838c68b7, type: 3}
+  - {fileID: 21300000, guid: 75f90d218a84431448b7922ede413a1e, type: 3}
   nameArray:
   - 
   - Cobalt
@@ -8132,7 +8132,7 @@ MonoBehaviour:
   - Backed Patato
   - Grill
   - Collection Vacuum
-  - Water Extractor
+  - Atmosphere Condensator
   - Empty Can
   - Full Can
   descriptionArray:
@@ -8157,7 +8157,7 @@ MonoBehaviour:
   - Backed Patato Description
   - Grill Description
   - Collection Vacuum Description
-  - Water Extractor Description
+  - Atmosphere Condensator Description
   - Empty Can Description
   - Full Can Description
   inventoryLimit: 000000001400000001000000010000001400000014000000140000001400000014000000140000001400000014000000140000001400000014000000140000001400000001000000140000001400000014000000140000000100000001000000
@@ -8236,6 +8236,7 @@ GameObject:
   - component: {fileID: 2076925086}
   - component: {fileID: 2076925085}
   - component: {fileID: 2076925087}
+  - component: {fileID: 2076925088}
   - component: {fileID: 2076925084}
   m_Layer: 0
   m_Name: Resources-Scripts
@@ -8339,6 +8340,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCode: 22
   prefab: {fileID: 3203504303014707486, guid: ceaaa4d3069679f4f928acd388853b8c, type: 3}
+  parentObject: {fileID: 447373184}
+--- !u!114 &2076925088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076925081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac028e5c981d844abde878a158080aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCode: 23
+  prefab: {fileID: 3203504303014707486, guid: 48863c9d2433fae49a719abc4bcf1f1c, type: 3}
   parentObject: {fileID: 447373184}
 --- !u!4 &2079922802 stripped
 Transform:
