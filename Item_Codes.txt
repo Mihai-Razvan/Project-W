@@ -24,4 +24,8 @@ Item Name - "copper"
 20 - collection vacuum
 21 - water extractor
 22- empty can
-23- full can
+23 - full can
+24 - tree crop plot
+25 - kwaki seeds
+26 - kwaki tree
+27 - kwaki
