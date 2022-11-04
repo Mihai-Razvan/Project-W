@@ -54,7 +54,7 @@ public class Item_016 : MonoBehaviour
             batteryPlaced = false;
             chargeText.text = "-";
         }
-        else if(Item.getUsedObjectItemCode() == 17)   //battery
+        else if(FindObjectOfType<Player_Inventory>().getSelectedItemCode() == 17)   //battery
         {
             int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
             batteryCharge = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getCharge(playerInventorySlot);
@@ -63,7 +63,7 @@ public class Item_016 : MonoBehaviour
             spawnedModel.transform.SetParent(batteryHole.transform);
             batteryPlaced = true;
             timeSinceCharged = 0;
-            chargeText.text = batteryCharge.ToString();
+            chargeText.text = ((int)batteryCharge).ToString();
         }
     }
 
@@ -76,7 +76,7 @@ public class Item_016 : MonoBehaviour
             {
                 batteryCharge += 1;
                 timeSinceCharged = 0;
-                chargeText.text = batteryCharge.ToString();
+                chargeText.text = ((int) batteryCharge).ToString();
             }
         }
     }

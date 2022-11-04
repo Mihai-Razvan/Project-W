@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4493633260657889523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4139847845488187061}
+  m_Layer: 8
+  m_Name: TreePlace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4139847845488187061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4493633260657889523}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4434804952059166233}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9003716082870279314
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4434804952059166233}
   - component: {fileID: 7139715693187011773}
+  - component: {fileID: 5958131900198897799}
   - component: {fileID: 5230935952758141604}
   m_Layer: 8
   m_Name: Item_024
@@ -30,7 +62,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5310610991588159924}
+  - {fileID: 4033574424474150682}
+  - {fileID: 4139847845488187061}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,8 +78,29 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8, y: 1, z: 3.8}
-  m_Center: {x: 0, y: 0.7, z: 0}
+  m_Size: {x: 5, y: 7, z: 5}
+  m_Center: {x: 0, y: 4.5, z: 0}
+--- !u!114 &5958131900198897799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9003716082870279314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71debbc7ca8bc3a41b9380d3ed7d54ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treePlace: {fileID: 4493633260657889523}
+  seedsItemCodes: 19000000
+  treesModels:
+  - {fileID: 8813351622880758290, guid: dafdceaa62aae3049bcd681dd1b8b8b6, type: 3}
+  fruitsItemCodes: 1b000000
+  fruitsModels:
+  - {fileID: 5342876978489627839, guid: 56df36627977fa947a98bc214c8b5ef5, type: 3}
+  growingTimes: 07000000
+  driedMaterial: {fileID: 2100000, guid: d7934f39e25150b4aabd8649f41cf301, type: 2}
 --- !u!114 &5230935952758141604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,17 +122,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4434804952059166233}
     m_Modifications:
+    - target: {fileID: 2146151906141630441, guid: 77179aff33449114ea745e0e502605bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 213.46342
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146151906141630441, guid: 77179aff33449114ea745e0e502605bd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 213.46342
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146151906141630441, guid: 77179aff33449114ea745e0e502605bd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 112.46183
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146151906141630441, guid: 77179aff33449114ea745e0e502605bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146151906141630441, guid: 77179aff33449114ea745e0e502605bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146151906141630441, guid: 77179aff33449114ea745e0e502605bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7170187829859662151, guid: 77179aff33449114ea745e0e502605bd, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7170187829859662151, guid: 77179aff33449114ea745e0e502605bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 7170187829859662151, guid: 77179aff33449114ea745e0e502605bd, type: 3}
       propertyPath: m_LocalScale.y
-      value: 142.75087
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 7170187829859662151, guid: 77179aff33449114ea745e0e502605bd, type: 3}
       propertyPath: m_LocalScale.z
-      value: 142.75087
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 7170187829859662151, guid: 77179aff33449114ea745e0e502605bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -86,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7170187829859662151, guid: 77179aff33449114ea745e0e502605bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 7170187829859662151, guid: 77179aff33449114ea745e0e502605bd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -126,8 +208,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77179aff33449114ea745e0e502605bd, type: 3}
---- !u!4 &5310610991588159924 stripped
+--- !u!4 &4033574424474150682 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 7170187829859662151, guid: 77179aff33449114ea745e0e502605bd, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2146151906141630441, guid: 77179aff33449114ea745e0e502605bd, type: 3}
   m_PrefabInstance: {fileID: 3040645912100112627}
   m_PrefabAsset: {fileID: 0}

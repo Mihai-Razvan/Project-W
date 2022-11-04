@@ -105,7 +105,7 @@ public class Player_Inventory : MonoBehaviour
         }
     }
 
-    public int getSelectedItem()  //return the itemCode for the selected item
+    public int getSelectedItemCode()  //return the itemCode for the selected item
     {
         return getPlayerInventoryHolder().GetComponent<Inventory>().getItemCode(selectedInventorySlot);
     }

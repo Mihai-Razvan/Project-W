@@ -22,7 +22,8 @@ public class Item_024_P : Building           //tree crop plot
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch
     {
-        Vector3 boxCenter = getUsedObject().transform.GetChild(0).transform.position;
+        // Vector3 boxCenter = getUsedObject().transform.GetChild(0).transform.position;
+        Vector3 boxCenter = getUsedObject().transform.position + placePrefab.GetComponent<BoxCollider>().center;
         Vector3 boxSize = placePrefab.GetComponent<BoxCollider>().size;
         Collider[] colliders = Physics.OverlapBox(boxCenter, boxSize / 2f, getUsedObject().transform.rotation, buildingMask);
 

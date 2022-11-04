@@ -10,19 +10,16 @@ public class ChargeRadial : MonoBehaviour
 
     void Start()
     {
-        Player_Inventory.onItemDeselected += resetBar;
+      //  Player_Inventory.onItemDeselected += resetCharge;
     }
 
-    void Update()
-    {
-        if (FindObjectOfType<Item_002>().getLaserState().Equals("UNUSED"))     
-            progressBar.fillAmount = FindObjectOfType<Item_002>().getChargeTime() / FindObjectOfType<Item_002>().getMaxChargeTime();
-        else
-            progressBar.fillAmount = 0;
-    }
-
-    void resetBar()
+    public void resetCharge()
     {
         progressBar.fillAmount = 0;
+    }
+
+    public void setCharge(float chargeValue, float maxCharge)
+    {
+        progressBar.fillAmount = chargeValue / maxCharge;
     }
 }

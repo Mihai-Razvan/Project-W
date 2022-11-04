@@ -68,7 +68,7 @@ public class Item_019 : MonoBehaviour   //grill
             handleBattery();
         else
         {
-            if (getIndex(Item.getUsedObjectItemCode()) != -1 && foodPlaced == false)
+            if (getIndex(FindObjectOfType<Player_Inventory>().getSelectedItemCode()) != -1 && foodPlaced == false)
                 putOnGrill();
             else if (foodPlaced == true && cooked == true)
                 collectFood();
@@ -115,7 +115,7 @@ public class Item_019 : MonoBehaviour   //grill
     {
         GameObject spawnedModel = Instantiate(rawFoodsPrefabs[getIndex(Item.getUsedObjectItemCode())], foodPrefabPlace.transform.position, Quaternion.identity);
         spawnedModel.transform.SetParent(foodPrefabPlace.transform);
-        placedFoodItemCode = Item.getUsedObjectItemCode();
+        placedFoodItemCode = FindObjectOfType<Player_Inventory>().getSelectedItemCode();
         int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
         FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
         timeOnGrill = 0;

@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
 
     protected bool checkSelected()
     {
-        return FindObjectOfType<Player_Inventory>().getSelectedItem() == itemCode;
+        return FindObjectOfType<Player_Inventory>().getSelectedItemCode() == itemCode;
     }
 
     public static int getItemCode(string itemTag)

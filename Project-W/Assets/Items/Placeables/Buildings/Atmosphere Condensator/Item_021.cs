@@ -48,15 +48,17 @@ public class Item_021 : Item   //Atmosphere Condensator
 
     void interaction()
     {
-        if (Item.getUsedObjectItemCode() == 17)       //battery 
+        if (FindObjectOfType<Player_Inventory>().getSelectedItemCode() == 17)       //battery 
             placeBattery();
-        else if(Item.getUsedObjectItemCode() == 22 && waterUnits != 0)    //empty can
+        else if (FindObjectOfType<Player_Inventory>().getSelectedItemCode() == 22 && waterUnits != 0)    //empty can
         {
             int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
             FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().setSlot(playerInventorySlot, 23, 1, 0);   //replace the empty cup with a full cup
             waterUnits--;
             handleWaterCubes();
         }
+        else if (batteryPlaced == true)
+            collectBattery();
     }
 
     void placeBattery()

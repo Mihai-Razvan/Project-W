@@ -55,7 +55,10 @@ public class Item_002 : Tool   //grappler
                         beamStartEffect.SetActive(true);
                     }
                     else if (Input.GetKeyUp(KeyCode.Mouse0))
+                    {
                         laserState = "EXPANDING";
+                        FindObjectOfType<ChargeRadial>().resetCharge();
+                    }
                     else
                         beamStartEffect.SetActive(false);
 
@@ -95,6 +98,8 @@ public class Item_002 : Tool   //grappler
 
         if(chargeTime >= maxChargeTime)
             chargeTime = maxChargeTime;    //in case charge time is greater
+
+        FindObjectOfType<ChargeRadial>().setCharge(chargeTime, maxChargeTime);
     }
 
     void drawLaser()
