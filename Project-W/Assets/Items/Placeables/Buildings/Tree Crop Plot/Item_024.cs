@@ -49,7 +49,7 @@ public class Item_024 : MonoBehaviour
                 grow();
                 break;
             case "DESTROYING":
-                fall();
+                dissolve();
                 break;
             case "COLLECTED":
                 if (Input.GetKeyUp(KeyCode.E) || FindObjectOfType<Interactions>().getInRangeBuilding() != this.gameObject && timeSinceStartedCharge != 0)
@@ -85,7 +85,7 @@ public class Item_024 : MonoBehaviour
         index = getIndex(FindObjectOfType<Player_Inventory>().getSelectedItemCode());
         int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
         FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
-        treeObject = Instantiate(treesModels[index], treePlace.transform.position, Quaternion.identity);
+        treeObject = Instantiate(treesModels[index], treePlace.transform.position, this.gameObject.transform.rotation);
         treeObject.transform.SetParent(treePlace.transform);
         treeObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         fruitItemCode = fruitsItemCodes[index];
@@ -116,13 +116,7 @@ public class Item_024 : MonoBehaviour
         if(treePlace.transform.GetChild(0).Find("Fruits-Places").transform.childCount == 1)     //there are no fruits left
         {
             status = "COLLECTED";
-            Renderer usedObjectRenderer = treeObject.transform.GetChild(0).gameObject.GetComponent<Renderer>();
-            Material[] materials = new Material[usedObjectRenderer.materials.Length];
-
-            for (int i = 0; i < materials.Length; i++)
-                materials[i] = driedMaterial;
-
-            usedObjectRenderer.materials = materials;
+            treeObject.GetComponent<ReplaceMats>().replaceDry();
         }
 
         FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(fruitItemCode, 1);
@@ -134,17 +128,19 @@ public class Item_024 : MonoBehaviour
         timeSinceStartedCharge += Time.deltaTime;
         FindObjectOfType<ChargeRadial>().setCharge(timeSinceStartedCharge, 1);
     
-        if (timeSinceStartedCharge >= 1)
+        if (timeSinceStartedCharge >= 1f)
         {
             status = "DESTROYING";
-            treeObject.AddComponent<Rigidbody>();
+            treeObject.GetComponent<ReplaceMats>().replaceDissolving();
+            treeObject.transform.GetChild(0).gameObject.AddComponent<DissolveExample.DissolveChilds>();
+
             timeSinceFall = 0;
             timeSinceStartedCharge = 0;
             FindObjectOfType<ChargeRadial>().resetCharge();
         }
     }
 
-    void fall()
+    void dissolve()
     {
         timeSinceFall += Time.deltaTime;
         if (timeSinceFall >= 2)
