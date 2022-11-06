@@ -19,7 +19,9 @@ public class Player : MonoBehaviour
     {
         FindObjectOfType<PlayerMovement>().movement(movementState, transform);
         FindObjectOfType<CameraLook>().rotateCamera(transform);
-       
+
+        if (Input.GetKey(KeyCode.Q))
+            Application.Quit();
     }
 
     public Vector3 getPosition()

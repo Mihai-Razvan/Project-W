@@ -6,10 +6,6 @@ using TMPro;
 
 public class Player_Inventory : MonoBehaviour
 {                                        //the firt 10 slots in the inventory are for the inventory bar
-
-    string inventoryTabState;
-    [SerializeField]
-    GameObject inventoryTab;
     [SerializeField]
     Image infoSlotImage;     //the top image that shows the hovered item
     [SerializeField]
@@ -29,8 +25,6 @@ public class Player_Inventory : MonoBehaviour
 
     private void Awake()
     {
-        inventoryTabState = "CLOSED";
-        inventoryTab.SetActive(false);
         infoSlotImage.enabled = false;
         hoveredItemName.enabled = false;
         hoveredItemDescription.enabled = false;
@@ -41,25 +35,6 @@ public class Player_Inventory : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (inventoryTabState.Equals("CLOSED"))
-            {
-                if (FindObjectOfType<Player>().getActionLock().Equals("UNLOCKED"))
-                {
-                    inventoryTab.SetActive(true);
-                    inventoryTabState = "OPENED";
-                    FindObjectOfType<Player>().setActionLock("INVENTORY_OPENED");
-                }
-            }
-            else
-            {
-                inventoryTab.SetActive(false);
-                inventoryTabState = "CLOSED";
-                FindObjectOfType<Player>().setActionLock("UNLOCKED");
-            }
-        }
-
         selectInventorySlot();
     }
 
