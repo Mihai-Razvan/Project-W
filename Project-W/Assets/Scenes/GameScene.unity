@@ -228,6 +228,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
+      propertyPath: itemSlotNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -3781,6 +3785,10 @@ PrefabInstance:
     - target: {fileID: 2118966613589597835, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: m_Name
       value: Item_Slot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
+      propertyPath: itemSlotNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7185490400525631458, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: m_Sprite

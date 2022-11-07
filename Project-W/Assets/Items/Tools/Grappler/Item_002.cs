@@ -168,9 +168,9 @@ public class Item_002 : Tool   //grappler
             {
                 int[] itemCodeArray = keyList[i].GetComponent<ResourcesData>().getItemCodeArray();
                 int[] quantityArray = keyList[i].GetComponent<ResourcesData>().getQuantityArray();
-                //   float[] chargeArray = keyList[i].GetComponent<ResourcesData>().getChargeArray();
+                float[] chargeArray = keyList[i].GetComponent<ResourcesData>().getChargeArray();
                 for (int j = 0; j < itemCodeArray.Length; j++)
-                    FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j]);
+                    FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j], chargeArray[j]);
 
                 objectsList.Remove(keyList[i]);
                 GameObject objectToDestroy = keyList[i];

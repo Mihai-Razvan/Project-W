@@ -119,7 +119,7 @@ public class Item_024 : MonoBehaviour
             treeObject.GetComponent<ReplaceMats>().replaceDry();
         }
 
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(fruitItemCode, 1);
+        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(fruitItemCode, 1, 0);
         Destroy(treePlace.transform.GetChild(0).Find("Fruits-Places").GetChild(0).gameObject);  //the plant
     }
 

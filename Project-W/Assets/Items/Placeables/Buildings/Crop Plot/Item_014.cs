@@ -63,7 +63,7 @@ public class Item_014 : Item          //crop plot
 
     void collectCrop(int plantingSlot)
     {
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(cropItemCodeArray[plantingSlot], 2);
+        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(cropItemCodeArray[plantingSlot], 2, 0);
         cropItemCodeArray[plantingSlot] = 0;
         slotStatusArray[plantingSlot] = "EMPTY";
         Destroy(plantingSpots[plantingSlot].transform.GetChild(0).gameObject);  //the dirt hole

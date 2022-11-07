@@ -127,7 +127,7 @@ public class Item_019 : MonoBehaviour   //grill
 
     void collectFood()
     {
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(cookedFoodItemCodes[getIndex(placedFoodItemCode)], 1);
+        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(cookedFoodItemCodes[getIndex(placedFoodItemCode)], 1, 0);
         Destroy(foodPrefabPlace.transform.GetChild(0).gameObject);
         foodPlaced = false;
         timeLeftText.text = "-";

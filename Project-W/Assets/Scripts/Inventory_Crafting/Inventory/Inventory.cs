@@ -18,61 +18,7 @@ public class Inventory : MonoBehaviour
         onInventoryChange += checkEmpty;
     }
 
-    public int addItem(int itemCode, int quantity)
-    {
-        int inventoryLimit = FindObjectOfType<ItemsList>().getInventoryLimit(itemCode);
-        int addedSlot = -1; //this is used for the items that can be only one per slot so when you add it adds maximum to one slot; used for ex for batteries to know the slot and set slot charge
-
-        for (int i = 0; i < itemCodeArray.Length; i++)
-            if (itemCodeArray[i] == itemCode)
-            {
-                if (quantityArray[i] + quantity < inventoryLimit)
-                {
-                    quantityArray[i] += quantity;
-                    quantity = 0;
-                }
-                else
-                {
-                    quantity -= inventoryLimit - quantityArray[i];
-                    quantityArray[i] = inventoryLimit;
-                }
-
-                if (quantity == 0)
-                    break;
-            }
-
-        if (quantity != 0)         //after filling all slots that already got this item, if we still have remaining quantity we search for a free slot to add
-            for (int i = 0; i < itemCodeArray.Length; i++)
-                if (itemCodeArray[i] == 0)
-                {
-                    if (quantity <= inventoryLimit)
-                    {
-                        itemCodeArray[i] = itemCode;
-                        quantityArray[i] = quantity;
-                        quantity = 0;
-                        addedSlot = i;
-                    }
-                    else
-                    {
-                        itemCodeArray[i] = itemCode;
-                        quantity -= inventoryLimit;
-                        quantityArray[i] = inventoryLimit;
-                    }
-
-                    if (quantity == 0)
-                        break;
-                }
-
-        if (quantity != 0)                 //it isn't enought space in the inventory for all the quantity
-        {
-            Debug.Log("Not enought space: " + quantity + " remained!");
-        }
-
-        onInventoryChange();
-        return addedSlot;
-    }
-
-    public int addItem(int itemCode, int quantity, float charge)      //here we also have the charge, this is used when an item is added to inventory by crafting or collecting
+    public int addItem(int itemCode, int quantity, float charge)    
     {
         int inventoryLimit = FindObjectOfType<ItemsList>().getInventoryLimit(itemCode);
         int addedSlot = -1; //this is used for the items that can be only one per slot so when you add it adds maximum to one slot; used for ex for batteries to know the slot and set slot charge
@@ -122,7 +68,7 @@ public class Inventory : MonoBehaviour
 
         if (quantity != 0)                 //it isn't enought space in the inventory for all the quantity
         {
-            Debug.Log("Not enought space: " + quantity + " remained!");
+         //   Debug.Log("Not enought space: " + quantity + " remained!");
             FindObjectOfType<Item_Drop>().dropBox(itemCode, quantity, charge);
         }
 
@@ -215,7 +161,7 @@ public class Inventory : MonoBehaviour
         onInventoryChange();
     }
 
-    public void setCharge(int slot, float charge)
+  /*  public void setCharge(int slot, float charge)
     {
         chargeArray[slot] = charge;
         onInventoryChange();
@@ -225,7 +171,7 @@ public class Inventory : MonoBehaviour
     {
         chargeArray[slot] -= decreaseAmount;
         onInventoryChange();
-    }
+    }*/
 
     public float getCharge(int slot)
     {

@@ -16,6 +16,8 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
     [SerializeField]
     Image chargeImageBackground;
     [SerializeField]
+    Image outline;
+    [SerializeField]
     private int slot;
 
     void Start()
@@ -26,6 +28,9 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
         chargeImageBackground.gameObject.SetActive(false);
         getInventoryHolder().GetComponent<Inventory>().onInventoryChange += onChange;
         onChange();
+
+        if (outline != null)    //it means this a player inventory slot bar, all other slots don't have an outline assigned so it's null
+            Player_Inventory.onItemSelected += setOutlineEnable;
     }
 
     void onChange()
@@ -115,6 +120,14 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
     public void OnDrag(PointerEventData eventData)     //if we don't have this the start and end drag don't work; idk why
     {
 
+    }
+
+    void setOutlineEnable()
+    {
+        if (FindObjectOfType<Player_Inventory>().getSelectedSlot() == slot)
+            outline.enabled = true;
+        else
+            outline.enabled = false;
     }
 
     public GameObject getInventoryHolder()          //the object that holds the inventory script
