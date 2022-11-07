@@ -33,7 +33,7 @@ public class Interactions : MonoBehaviour
                     int[] quantityArray = colliders[i].GetComponent<ResourcesData>().getQuantityArray();
                     float[] chargeArray = colliders[i].GetComponent<ResourcesData>().getChargeArray();
                     for (int j = 0; j < itemCodeArray.Length; j++)
-                        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j]);
+                        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j], chargeArray[j]);
 
                     Destroy(colliders[i].gameObject);
                 }

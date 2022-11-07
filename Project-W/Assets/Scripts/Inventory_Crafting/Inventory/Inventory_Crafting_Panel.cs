@@ -9,7 +9,7 @@ public class Inventory_Crafting_Panel : MonoBehaviour
     [SerializeField]
     GameObject craftingMenu;
     string status;
-    void Awake()
+    void Start()
     {
         status = "CLOSED";
         inventoryTab.SetActive(false);
@@ -28,6 +28,9 @@ public class Inventory_Crafting_Panel : MonoBehaviour
                     craftingMenu.SetActive(true);
                     status = "OPENED";
                     FindObjectOfType<Player>().setActionLock("INVENTORY_OPENED");
+
+                    FindObjectOfType<Crafting_Menu>().openCategory(0);
+                    FindObjectOfType<Craft_Panel>().setActive(false);
                 }
             }
             else

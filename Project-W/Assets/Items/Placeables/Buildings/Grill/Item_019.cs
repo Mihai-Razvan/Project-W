@@ -102,8 +102,7 @@ public class Item_019 : MonoBehaviour   //grill
     {
         if(batteryPlaced == true)
         {
-            int addedSlot = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(17, 1);
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().setCharge(addedSlot, batteryCharge);
+            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(17, 1, batteryCharge);
             Destroy(batteryHole.transform.GetChild(0).gameObject);
             batteryPlaced = false;
             battertyChargeText.text = "-";

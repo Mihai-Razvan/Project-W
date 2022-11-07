@@ -64,10 +64,95 @@ public class Inventory : MonoBehaviour
                 }
 
         if (quantity != 0)                 //it isn't enought space in the inventory for all the quantity
+        {
             Debug.Log("Not enought space: " + quantity + " remained!");
+        }
 
         onInventoryChange();
         return addedSlot;
+    }
+
+    public int addItem(int itemCode, int quantity, float charge)      //here we also have the charge, this is used when an item is added to inventory by crafting or collecting
+    {
+        int inventoryLimit = FindObjectOfType<ItemsList>().getInventoryLimit(itemCode);
+        int addedSlot = -1; //this is used for the items that can be only one per slot so when you add it adds maximum to one slot; used for ex for batteries to know the slot and set slot charge
+
+        for (int i = 0; i < itemCodeArray.Length; i++)
+            if (itemCodeArray[i] == itemCode)
+            {
+                if (quantityArray[i] + quantity < inventoryLimit)
+                {
+                    quantityArray[i] += quantity;
+                    quantity = 0;
+                }
+                else
+                {
+                    quantity -= inventoryLimit - quantityArray[i];
+                    quantityArray[i] = inventoryLimit;
+                }
+
+                if (quantity == 0)
+                    break;
+            }
+
+        if (quantity != 0)         //after filling all slots that already got this item, if we still have remaining quantity we search for a free slot to add
+            for (int i = 0; i < itemCodeArray.Length; i++)
+                if (itemCodeArray[i] == 0)
+                {
+                    if (quantity <= inventoryLimit)
+                    {
+                        itemCodeArray[i] = itemCode;
+                        quantityArray[i] = quantity;
+                        quantity = 0;
+                        addedSlot = i;
+                    }
+                    else
+                    {
+                        itemCodeArray[i] = itemCode;
+                        quantity -= inventoryLimit;
+                        quantityArray[i] = inventoryLimit;
+                    }
+
+                    if (quantity == 0)
+                        break;
+                }
+
+        if (addedSlot != -1)      //if there is a chargeable item there is max 1 per slot so there will be 1 added slot; if not and there are multiple slots, it doesn't matter anymore
+            chargeArray[addedSlot] = charge;
+
+        if (quantity != 0)                 //it isn't enought space in the inventory for all the quantity
+        {
+            Debug.Log("Not enought space: " + quantity + " remained!");
+            FindObjectOfType<Item_Drop>().dropBox(itemCode, quantity, charge);
+        }
+
+        onInventoryChange();
+        return addedSlot;     //-1 if nothing was added; if a certain quantity was added, and some dropped, it still returns the item slot where it was added
+    }
+
+    public void consumeItem(int itemCode, int quantity)
+    {
+        int quantityLeft = quantity;
+
+        for (int i = 0; i < itemCodeArray.Length; i++)
+            if (itemCodeArray[i] == itemCode)
+            {
+                if (quantityArray[i] - quantityLeft >= 0)
+                {
+                    quantityArray[i] -= quantityLeft;
+                    quantityLeft = 0;
+                }
+                else
+                {
+                    quantityLeft -= quantityArray[i];
+                    quantityArray[i] = 0;
+                }
+
+                if (quantityLeft == 0)
+                    break;
+            }
+
+        onInventoryChange();
     }
 
     void checkEmpty()
@@ -86,6 +171,16 @@ public class Inventory : MonoBehaviour
         onInventoryChange();
     }
 
+    public int getTotalQuantity(int itemCode)      //returns the total quantity of a given itemCode
+    {
+        int quantity = 0;
+
+        for (int i = 0; i < itemCodeArray.Length; i++)
+            if (itemCodeArray[i] == itemCode)
+                quantity += quantityArray[i];
+
+        return quantity;
+    }
 
     public void executeOnInventoryChange()
     {
