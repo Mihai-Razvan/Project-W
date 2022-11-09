@@ -69,7 +69,8 @@ public class Item_004_P : Placeable  //foundation
 
     bool checkValidMerge(GameObject mergePoint)
     {
-        return mergePoint.transform.parent.tag.Equals("Item_004") || mergePoint.transform.parent.tag.Equals("Item_020"); //foundation can be attached only to another foundation or collection vacuum
+        return mergePoint.transform.parent.tag.Equals("Item_004") || mergePoint.transform.parent.tag.Equals("Item_020"); 
+        //foundation can be attached only to another foundation or collection vacuum
     }
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch
