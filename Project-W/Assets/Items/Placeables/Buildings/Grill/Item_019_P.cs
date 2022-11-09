@@ -26,10 +26,14 @@ public class Item_019_P : Building           //grill
         Vector3 boxSize = placePrefab.GetComponent<BoxCollider>().size;
         Collider[] colliders = Physics.OverlapBox(boxCenter, boxSize / 2f, getUsedObject().transform.rotation, buildingMask);
 
+
         if (colliders.Length == 0)
             changeMaterials(placeableMaterial);
         else
+        {
             changeMaterials(notPlaceableMaterial);
+            Debug.Log(colliders[0].gameObject.name);
+        }
 
         return colliders.Length;
     }

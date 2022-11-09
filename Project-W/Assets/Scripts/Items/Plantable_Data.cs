@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food_Data : MonoBehaviour
+public class Plantable_Data : MonoBehaviour         //data for items that can be planted
 {
     [SerializeField]
     int[] itemCodeArray;

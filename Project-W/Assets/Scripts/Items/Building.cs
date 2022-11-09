@@ -12,8 +12,8 @@ public class Building : Placeable
         for (int i = 0; i < hits.Length; i++)
             if (hits[i].collider.TryGetComponent(out Placeable_Data data) && data.getStructureType().Equals("Foundation"))
             {
-                float zPos = hits[i].collider.transform.position.y + hits[i].collider.GetComponent<BoxCollider>().size.y / 2;
-                getUsedObject().transform.position = new Vector3(hits[i].point.x, zPos, hits[i].point.z);
+                float yPos = hits[i].collider.transform.position.y + hits[i].collider.GetComponent<BoxCollider>().size.y / 2;
+                getUsedObject().transform.position = new Vector3(hits[i].point.x, yPos, hits[i].point.z);
                 break;
             }
     }

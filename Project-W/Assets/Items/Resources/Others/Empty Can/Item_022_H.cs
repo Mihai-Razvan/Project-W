@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_022_H : Food     //empty can
+public class Item_022_H : Consumable     //empty can
 {
     void Start()
     {

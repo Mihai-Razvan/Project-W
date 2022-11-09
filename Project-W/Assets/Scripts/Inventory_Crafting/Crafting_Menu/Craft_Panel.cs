@@ -63,16 +63,14 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
         itemImage.sprite = itemSprite;
         itemNameText.text = itemName;
         itemDescriptionText.text = itemdescription;
+
+        FindObjectOfType<Craft_Button>().changeColors();
     }
 
-    void craftButtonClick()
+    void craftButtonClick()       //we handle the click here, instead of on craft_button class
     {
-        for (int i = 0; i < resourcesItemCodes.Length; i++)
-        {
-            int availableQuantity = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
-            if (availableQuantity < resourcesQuantity[i])
-                return;      //there aren't enought resources to craft this item
-        }
+        if (allResources() == false)
+            return;
 
         FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCode, 1, 100);  //we also add a charge in case the item is chargeable
 
@@ -82,5 +80,16 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
             int availableQuantity = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
             resourcesSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = availableQuantity + "/" + resourcesQuantity[i];
         }
+    }
+    public bool allResources()
+    {
+        for (int i = 0; i < resourcesItemCodes.Length; i++)
+        {
+            int availableQuantity = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
+            if (availableQuantity < resourcesQuantity[i])
+                return false;
+        }
+
+        return true;
     }
 }

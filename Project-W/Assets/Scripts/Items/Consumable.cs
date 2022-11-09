@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : Item
+public class Consumable : Item
 {
     [SerializeField]
     protected GameObject prefab;          //the prefab it will spawn in your hands

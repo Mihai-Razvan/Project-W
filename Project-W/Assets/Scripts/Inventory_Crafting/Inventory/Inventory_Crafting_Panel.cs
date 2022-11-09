@@ -30,7 +30,7 @@ public class Inventory_Crafting_Panel : MonoBehaviour
                     FindObjectOfType<Player>().setActionLock("INVENTORY_OPENED");
 
                     FindObjectOfType<Crafting_Menu>().openCategory(0);
-                    FindObjectOfType<Craft_Panel>().setActive(false);
+                    FindObjectOfType<Craft_Panel>().setActive(true);
                 }
             }
             else
@@ -38,7 +38,7 @@ public class Inventory_Crafting_Panel : MonoBehaviour
                 inventoryTab.SetActive(false);
                 craftingMenu.SetActive(false);
                 status = "CLOSED";
-                FindObjectOfType<Player>().setActionLock("UNLOCKED");
+                FindObjectOfType<Player>().setActionLock("UNLOCKED");       
             }
         }
     }

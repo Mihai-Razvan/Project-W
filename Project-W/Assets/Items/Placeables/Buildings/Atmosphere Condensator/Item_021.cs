@@ -19,17 +19,20 @@ public class Item_021 : Item   //Atmosphere Condensator
     [SerializeField]
     float batteryConsumption;
     [SerializeField]
-    int timePerUnit;
+    int fillTime;
+    [SerializeField]
+    float maxWaterCubeScale;
     bool batteryPlaced;
     float batteryCharge;
-    int waterUnits;
+    bool filled;
     float timeSinceStarted;
     
     void Start()
     {
         waterCylinder.SetActive(false);
         cylinderAnim.enabled = false;
-        handleWaterCubes();
+        smallWater.SetActive(false);
+        handleBigWaterCube();
     }
 
     void Update()
@@ -42,7 +45,7 @@ public class Item_021 : Item   //Atmosphere Condensator
             }
         }
 
-        if (batteryPlaced == true && batteryCharge > 0 && waterUnits < 2)
+        if (batteryPlaced == true && batteryCharge > 0 && filled == false)
             produceWater();
     }
 
@@ -50,12 +53,14 @@ public class Item_021 : Item   //Atmosphere Condensator
     {
         if (FindObjectOfType<Player_Inventory>().getSelectedItemCode() == 17)       //battery 
             placeBattery();
-        else if (FindObjectOfType<Player_Inventory>().getSelectedItemCode() == 22 && waterUnits != 0)    //empty can
+        else if (FindObjectOfType<Player_Inventory>().getSelectedItemCode() == 22 && filled == true)    //empty can
         {
             int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
             FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().setSlot(playerInventorySlot, 23, 1, 0);   //replace the empty cup with a full cup
-            waterUnits--;
-            handleWaterCubes();
+            filled = false;
+            timeSinceStarted = 0;
+            handleBigWaterCube();
+            smallWater.SetActive(false);
         }
         else if (batteryPlaced == true)
             collectBattery();
@@ -109,30 +114,19 @@ public class Item_021 : Item   //Atmosphere Condensator
             cylinderAnim.enabled = false;
         }
 
-        if(timeSinceStarted > timePerUnit)
+        if (timeSinceStarted > fillTime)
         {
-            timeSinceStarted = 0;
-            waterUnits++;
-            handleWaterCubes();
+            filled = true;
+            smallWater.SetActive(true);
         }
+
+        handleBigWaterCube();
     }
 
-    void handleWaterCubes()
+    void handleBigWaterCube()
     {
-        switch (waterUnits)
-        {
-            case 0:
-                bigWater.SetActive(false);
-                smallWater.SetActive(false);
-                break;
-            case 1:
-                bigWater.SetActive(true);
-                smallWater.SetActive(true);
-                bigWater.transform.localPosition = new Vector3(bigWater.transform.localPosition.x, 1.5f, bigWater.transform.localPosition.z);
-                break;
-            case 2:
-                bigWater.transform.localPosition = new Vector3(bigWater.transform.localPosition.x, 2.8f, bigWater.transform.localPosition.z);
-                break;
-        }
+        float fillAmount = (timeSinceStarted / fillTime) * 100;
+        float yScale = (fillAmount * maxWaterCubeScale) / 100;
+        bigWater.transform.localScale = new Vector3(bigWater.transform.localScale.x, yScale, bigWater.transform.localScale.z);
     }
 }

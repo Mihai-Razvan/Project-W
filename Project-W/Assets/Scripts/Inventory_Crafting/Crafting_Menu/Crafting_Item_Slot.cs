@@ -17,7 +17,7 @@ public class Crafting_Item_Slot : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     int[] resourcesQuantity;       //quantity required for each resource
 
-    void Start()
+    void Awake()
     {
         Crafting_Menu.onitemSlotChanged += setOutlineEnable;
     }
@@ -36,4 +36,25 @@ public class Crafting_Item_Slot : MonoBehaviour, IPointerClickHandler
         else
             outline.enabled = false;
     }
+
+    public int getItemSlotNumber()
+    {
+        return itemSlotNumber;
+    }
+
+    public int getItemCode()
+    {
+        return itemCode;
+    }
+
+    public int[] getResourcesItemCodes()
+    {
+        return resourcesItemCodes;
+    }
+
+    public int[] getResourcesQuantities()
+    {
+        return resourcesQuantity;
+    }
+       
 }

@@ -35,7 +35,9 @@ public class Crafting_Menu : MonoBehaviour
         categoryPanels[categoryNumber].SetActive(true);
         openedCategory = categoryNumber;
 
-        setSelectedItemSlotNumber(0);
+        selectedItemSlotNumber = categoryPanels[openedCategory].transform.GetChild(1).gameObject.GetComponent<Crafting_Item_Slot>().getItemSlotNumber();
+        onitemSlotChanged();
+        openInitialPanel();
         onCategoryChanged();
     }
 
@@ -44,6 +46,16 @@ public class Crafting_Menu : MonoBehaviour
         this.selectedItemSlotNumber = selectedItemSlotNumber;
         onitemSlotChanged();
     }
+
+    public void openInitialPanel()       //sets the panel when you change the category
+    {
+        GameObject firstItemInMenu = categoryPanels[openedCategory].transform.GetChild(1).gameObject;
+        int itemCode = firstItemInMenu.GetComponent<Crafting_Item_Slot>().getItemCode();
+        int[] resourcesItemCodes = firstItemInMenu.GetComponent<Crafting_Item_Slot>().getResourcesItemCodes();
+        int[] resourcesQuantity = firstItemInMenu.GetComponent<Crafting_Item_Slot>().getResourcesQuantities();
+        FindObjectOfType<Craft_Panel>().setPanel(itemCode, resourcesItemCodes, resourcesQuantity);
+    }
+
     public int getOpenedCategory()
     {
         return openedCategory;
