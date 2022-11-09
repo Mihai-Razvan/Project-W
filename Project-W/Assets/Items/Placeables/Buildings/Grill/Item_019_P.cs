@@ -30,10 +30,7 @@ public class Item_019_P : Building           //grill
         if (colliders.Length == 0)
             changeMaterials(placeableMaterial);
         else
-        {
             changeMaterials(notPlaceableMaterial);
-            Debug.Log(colliders[0].gameObject.name);
-        }
 
         return colliders.Length;
     }

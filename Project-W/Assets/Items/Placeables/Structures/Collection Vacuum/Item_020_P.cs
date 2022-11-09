@@ -69,7 +69,8 @@ public class Item_020_P : Placeable //collection vacuum
 
     bool checkValidMerge(GameObject mergePoint)
     {
-        return mergePoint.transform.parent.tag.Equals("Item_004") || mergePoint.transform.parent.tag.Equals("Item_020"); //collection vacuum can be attached only to another collection vacuum or foundation 
+        return mergePoint.transform.parent.tag.Equals("Item_004") || mergePoint.transform.parent.tag.Equals("Item_007") || mergePoint.transform.parent.tag.Equals("Item_020");
+        //collection vacuum can be attached only to another collection vacuum, foundation or floor
     }
 
     int checkCollision()       //it returns the number of colliding objects, and also handels the green/red materials switch

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6581762447140916314}
   - component: {fileID: 5241183233343659938}
   - component: {fileID: 6479168565996344256}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: EdgesCollider_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 5730312781742082880}
   - component: {fileID: 1710888188541282507}
   - component: {fileID: 4333864861813494441}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Steps_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 8944638345580317540}
   - component: {fileID: 7356993504221004458}
   - component: {fileID: 56877180177532456}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: EdgesCollider_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,8 +339,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.197194, y: 5.372659, z: 2.9137712}
-  m_Center: {x: -3.5944476, y: 3.5585363, z: 0.012117147}
+  m_Size: {x: 6.219385, y: 5.372659, z: 2.9137712}
+  m_Center: {x: -4.083352, y: 3.5585363, z: 0.012117147}
 --- !u!114 &4112211321147446865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbb78a47a2b124408d05547282aca10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeableType: Structure
   structureType: Stairs
 --- !u!1001 &6694969286024271044
 PrefabInstance:
@@ -451,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8d5a7bd159ed6a5478690c7fd7ff1a74, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d5a7bd159ed6a5478690c7fd7ff1a74, type: 3}
@@ -471,8 +472,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.019045161, y: 0.0042468417, z: 0.37935}
-  m_Center: {x: 0.085873276, y: -0.00007321522, z: -0.014135}
+  m_Size: {x: 0.0116437115, y: 0.0042468417, z: 0.37935}
+  m_Center: {x: 0.082172565, y: -0.00007321522, z: -0.014135}
 --- !u!4 &6585377995494388527 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8d5a7bd159ed6a5478690c7fd7ff1a74, type: 3}
