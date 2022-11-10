@@ -6,7 +6,7 @@ public class Item_023: Item //full cup
 {
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && checkSelected() && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && itemCode == selectedItemCode && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
             consume();
     }
 

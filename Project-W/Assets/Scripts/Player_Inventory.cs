@@ -13,7 +13,6 @@ public class Player_Inventory : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI hoveredItemDescription;
     int selectedInventorySlot;
-    int selectedItemCode;
     KeyCode[] keyCodes = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
 
     public delegate void OnItemSelected();       //when a new inventory slot from the inventory bar is selected
@@ -29,7 +28,7 @@ public class Player_Inventory : MonoBehaviour
         hoveredItemName.enabled = false;
         hoveredItemDescription.enabled = false;
         selectedInventorySlot = 0;
-        selectedItemCode = 0;
+        //selectedItemCode = 0;
         onItemDeselected += Item.destroyUsedObject;
     }
 
@@ -53,9 +52,9 @@ public class Player_Inventory : MonoBehaviour
                 break;
             }
 
-        if (newSelection || getPlayerInventoryHolder().GetComponent<Inventory>().getItemCode(selectedInventorySlot) != selectedItemCode)
+        if (newSelection || getPlayerInventoryHolder().GetComponent<Inventory>().getItemCode(selectedInventorySlot) != Item.getSelectedItemCode())
         {
-            selectedItemCode = getPlayerInventoryHolder().GetComponent<Inventory>().getItemCode(selectedInventorySlot);
+            Item.setSelectedItemCode(getPlayerInventoryHolder().GetComponent<Inventory>().getItemCode(selectedInventorySlot));
             onItemDeselected();
             onItemSelected();
         }
@@ -79,12 +78,6 @@ public class Player_Inventory : MonoBehaviour
             hoveredItemDescription.enabled = false;
         }
     }
-
-    public int getSelectedItemCode()  //return the itemCode for the selected item
-    {
-        return getPlayerInventoryHolder().GetComponent<Inventory>().getItemCode(selectedInventorySlot);
-    }
-
     public int getSelectedSlot() 
     {
         return selectedInventorySlot;

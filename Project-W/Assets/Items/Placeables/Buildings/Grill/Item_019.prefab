@@ -334,6 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685a9d79567939646898131ff61120b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemCode: 19
   batteryHole: {fileID: 7267291826222653386}
   foodPrefabPlace: {fileID: 964297422492224522}
   batteryPrefab: {fileID: 5177840168673887925, guid: 3b81ba93b461b744488c6a5bae2fa513, type: 3}

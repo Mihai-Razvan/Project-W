@@ -85,7 +85,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Depth_Color_Fade: 1000
+    - _Depth_Color_Fade: 5000
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -112,7 +112,7 @@ Material:
     - _Surface: 0
     - _Transparency: 1
     - _UVSec: 0
-    - _Wave_Height: 0.07
+    - _Wave_Height: 0.05
     - _Wave_Speed: 0.001
     - _Wave_Strength: 100
     - _WorkflowMode: 1
@@ -120,7 +120,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep_Color: {r: 0.9575472, g: 0.9971698, b: 1, a: 0.42745098}
+    - _Deep_Color: {r: 0.8254717, g: 1, b: 0.9901596, a: 0.42745098}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Shallow_Color: {r: 1, g: 1, b: 1, a: 0.41960785}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

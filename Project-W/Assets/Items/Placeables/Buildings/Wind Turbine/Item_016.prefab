@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb1e11ecc3966d41a4888be34b72655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemCode: 16
   bigCircleAnimator: {fileID: 8996180095896754749}
   smallCircleAnimator: {fileID: 196259728472867798}
   batteryHole: {fileID: 5111978549189911946}

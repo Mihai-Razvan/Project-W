@@ -19,7 +19,7 @@ public class Item_012_P : Placeable     //inclined wall
 
     void Update()
     {
-        if (checkSelected() && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (itemCode == selectedItemCode && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
         {
             checkMerge();
             rotateObject();

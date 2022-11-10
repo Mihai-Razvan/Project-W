@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_024 : MonoBehaviour
+public class Item_024 : Item
 {
     [SerializeField]
     GameObject treePlace;
@@ -68,7 +68,7 @@ public class Item_024 : MonoBehaviour
         switch (status)
         {
             case "EMPTY":
-                if (getIndex(FindObjectOfType<Player_Inventory>().getSelectedItemCode()) != -1)
+                if (getIndex(selectedItemCode) != -1)
                     plant();
                 break;
             case "GROWN":
@@ -82,7 +82,7 @@ public class Item_024 : MonoBehaviour
 
     void plant()
     {
-        index = getIndex(FindObjectOfType<Player_Inventory>().getSelectedItemCode());
+        index = getIndex(selectedItemCode);
         int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
         FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
         treeObject = Instantiate(treesModels[index], treePlace.transform.position, this.gameObject.transform.rotation);

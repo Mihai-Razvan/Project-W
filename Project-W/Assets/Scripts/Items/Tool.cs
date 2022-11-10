@@ -11,7 +11,7 @@ public class Tool : Item
 
     protected void displayPrefab()    
     {
-        if (getUsedObject() == null && checkSelected())
+        if (itemCode == selectedItemCode && getUsedObject() == null)
         {
             GameObject spawnedObject = Instantiate(prefab, parentObject.transform.position, Quaternion.Euler(parentObject.transform.eulerAngles.x, parentObject.transform.eulerAngles.y, parentObject.transform.eulerAngles.z));
             spawnedObject.transform.SetParent(parentObject.transform);

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Item_016 : MonoBehaviour
+public class Item_016 : Item
 {
     [SerializeField]
     Animator bigCircleAnimator;
@@ -53,7 +53,7 @@ public class Item_016 : MonoBehaviour
             batteryPlaced = false;
             chargeText.text = "-";
         }
-        else if(FindObjectOfType<Player_Inventory>().getSelectedItemCode() == 17)   //battery
+        else if(selectedItemCode == 17)   //battery
         {
             int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
             batteryCharge = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getCharge(playerInventorySlot);

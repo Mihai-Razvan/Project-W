@@ -40,7 +40,7 @@ public class Item_002 : Tool   //grappler
 
     void Update()
     {
-        if (checkSelected() && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))     //we use getusedobject() in case the object appears on selected slot when slot is already selected
+        if (itemCode == selectedItemCode && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))     //we use getusedobject() in case the object appears on selected slot when slot is already selected
         {
             beamStartEffect = getUsedObject().transform.GetChild(0).transform.GetChild(1).gameObject;
             rayStartPosition = getUsedObject().transform.GetChild(0).transform.GetChild(0);

@@ -11,7 +11,7 @@ public class Item_016_P : Building           //wind turbine
 
     void Update()
     {
-        if (checkSelected() && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (itemCode == selectedItemCode && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
         {
             placeDummy();
             rotateObject();

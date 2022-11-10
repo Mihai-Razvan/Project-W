@@ -17,7 +17,7 @@ public class Placeable : Item
     
     protected void displayPrefab()
     {
-        if (getUsedObject() == null && checkSelected())
+        if (itemCode == selectedItemCode && getUsedObject() == null)
         {
             GameObject spawnedObject = Instantiate(dummyPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             setUsedObject(spawnedObject, itemCode);

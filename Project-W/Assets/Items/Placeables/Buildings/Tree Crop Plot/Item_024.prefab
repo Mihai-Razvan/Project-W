@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71debbc7ca8bc3a41b9380d3ed7d54ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemCode: 24
   treePlace: {fileID: 4493633260657889523}
   seedsItemCodes: 19000000
   treesModels:

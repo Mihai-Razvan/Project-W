@@ -11,7 +11,7 @@ public class Item_021_P : Building           //water extractor
 
     void Update()
     {
-        if (checkSelected() && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (itemCode == selectedItemCode && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
         {
             placeDummy();
             rotateObject();

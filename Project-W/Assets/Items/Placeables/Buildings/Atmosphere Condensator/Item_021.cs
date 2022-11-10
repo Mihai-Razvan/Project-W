@@ -51,9 +51,9 @@ public class Item_021 : Item   //Atmosphere Condensator
 
     void interaction()
     {
-        if (FindObjectOfType<Player_Inventory>().getSelectedItemCode() == 17)       //battery 
+        if (selectedItemCode == 17)       //battery 
             placeBattery();
-        else if (FindObjectOfType<Player_Inventory>().getSelectedItemCode() == 22 && filled == true)    //empty can
+        else if (selectedItemCode == 22 && filled == true)    //empty can
         {
             int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
             FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().setSlot(playerInventorySlot, 23, 1, 0);   //replace the empty cup with a full cup

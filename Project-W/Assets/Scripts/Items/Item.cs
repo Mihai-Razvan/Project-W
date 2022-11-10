@@ -6,16 +6,12 @@ public class Item : MonoBehaviour
 {
     [SerializeField]
     protected int itemCode;
+    static protected int selectedItemCode;
     static int[] chargingItems = { 17 };      //the list of items that work on charges, like batteries
    
     static int usedObjectItemCode;
     static GameObject usedObject;           //the object that is currently used (ex tools, weapons, building you are placing); is null if it is an object you won't have in hands
                                             //when it is selected from inventory (ex resource)
-
-    protected bool checkSelected()
-    {
-        return FindObjectOfType<Player_Inventory>().getSelectedItemCode() == itemCode;
-    }
 
     public static int getItemCode(string itemTag)
     {
@@ -61,5 +57,13 @@ public class Item : MonoBehaviour
         return usedObjectItemCode;
     }
 
+    public static void setSelectedItemCode(int code)
+    {
+        selectedItemCode = code;
+    }
 
+    public static int getSelectedItemCode()
+    {
+        return selectedItemCode;
+    }
 }

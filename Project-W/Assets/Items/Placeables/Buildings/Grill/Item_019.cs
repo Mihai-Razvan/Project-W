@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Item_019 : MonoBehaviour   //grill
+public class Item_019 : Item   //grill
 {
     [SerializeField]
     GameObject batteryHole;
@@ -64,11 +64,11 @@ public class Item_019 : MonoBehaviour   //grill
 
     void interaction()
     {
-        if(Item.getUsedObjectItemCode() == 17)       //battery 
+        if(getUsedObjectItemCode() == 17)       //battery 
             handleBattery();
         else
         {
-            if (getIndex(FindObjectOfType<Player_Inventory>().getSelectedItemCode()) != -1 && foodPlaced == false)
+            if (getIndex(selectedItemCode) != -1 && foodPlaced == false)
                 putOnGrill();
             else if (foodPlaced == true && cooked == true)
                 collectFood();
@@ -112,9 +112,9 @@ public class Item_019 : MonoBehaviour   //grill
 
     void putOnGrill()
     {
-        GameObject spawnedModel = Instantiate(rawFoodsPrefabs[getIndex(Item.getUsedObjectItemCode())], foodPrefabPlace.transform.position, Quaternion.identity);
+        GameObject spawnedModel = Instantiate(rawFoodsPrefabs[getIndex(getUsedObjectItemCode())], foodPrefabPlace.transform.position, Quaternion.identity);
         spawnedModel.transform.SetParent(foodPrefabPlace.transform);
-        placedFoodItemCode = FindObjectOfType<Player_Inventory>().getSelectedItemCode();
+        placedFoodItemCode = selectedItemCode;
         int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
         FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
         timeOnGrill = 0;
