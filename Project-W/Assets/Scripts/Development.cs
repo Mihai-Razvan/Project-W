@@ -4,11 +4,25 @@ using UnityEngine;
 
 public class Development : MonoBehaviour
 {
+    [SerializeField]
+    GameObject canvas;
+    [SerializeField]
+    CharacterController controller;
+    [SerializeField]
+    GameObject player;
+
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Q))
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(1, 1, 0);
-        else if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.E))
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(2, 1, 0);
+       // if (Input.GetKey(KeyCode.Q))
+      //      Application.Quit();
+
+        if (Input.GetKeyDown(KeyCode.H))
+            canvas.GetComponent<Canvas>().enabled = !canvas.GetComponent<Canvas>().enabled;
+
+    //    if (Input.GetKeyDown(KeyCode.F))
+     //       controller.enabled = !controller.enabled;
+
+        if (Input.GetKeyDown(KeyCode.T))
+            player.transform.position = new Vector3(0, 120, 0);
     }
 }

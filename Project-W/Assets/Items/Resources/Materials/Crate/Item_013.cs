@@ -8,6 +8,8 @@ public class Item_013 : MonoBehaviour
 
     [SerializeField]
     int[] possibleItemCodes;      //the itemCodes for the item that could be found in the falling boxes
+    [SerializeField]
+    int[] chance;
 
     void Start()
     {
@@ -16,15 +18,31 @@ public class Item_013 : MonoBehaviour
 
     void generateResources()
     {
-        int resourcesNumber = Random.Range(1, 3);
+        int resourcesNumber = Random.Range(4, 7);
         int[] itemCodeArray = new int[resourcesNumber];
         int[] quantiyArray = new int[resourcesNumber];
         float[] chargeArray = new float[resourcesNumber];
-       
-        for(int i = 0; i < resourcesNumber; i++)
+
+        for (int i = 0; i < resourcesNumber; i++)
         {
-            itemCodeArray[i] = possibleItemCodes[Random.Range(1, possibleItemCodes.Length)]; 
-            quantiyArray[i] = Random.Range(1, 3);
+            int randVal = Random.Range(0, 101);
+            int count = 0;
+        
+            for (int j = 0; j < chance.Length; j++)
+            {
+                count += chance[j];
+                if (randVal <= count)
+                {
+                    itemCodeArray[i] = possibleItemCodes[j];
+                    break;
+                }
+            }
+        }
+
+        for (int i = 0; i < resourcesNumber; i++)
+        {
+            chargeArray[i] = 0;
+            quantiyArray[i] = 1;
         }
 
         this.gameObject.GetComponent<ResourcesData>().setResourceData(itemCodeArray, quantiyArray, chargeArray);

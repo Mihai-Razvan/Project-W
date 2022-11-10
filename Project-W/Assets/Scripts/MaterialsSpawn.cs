@@ -15,6 +15,8 @@ public class MaterialsSpawn : MonoBehaviour
     float spawnTimeElapsed;      //the time passed since a resource was spawned
     [SerializeField]
     GameObject[] resourcePrefabs;
+    [SerializeField]
+    int[] chance;
     
 
     void Start()
@@ -45,14 +47,16 @@ public class MaterialsSpawn : MonoBehaviour
 
     int chooseMaterial()
     {
-        int randVal =  Random.Range(1, 100);
-        if (randVal <= 31)
-            return 0;
-        else if (randVal <= 62)
-            return 1;
-        else if (randVal <= 93)
-            return 2;
-        else
-            return 3;
+        int randVal =  Random.Range(1, 101);
+        int count = 0;
+        
+        for(int i = 0; i < chance.Length; i++)
+        {
+            count += chance[i];
+            if (randVal <= count)
+                return i;
+        }
+
+        return 0;
     }
 }

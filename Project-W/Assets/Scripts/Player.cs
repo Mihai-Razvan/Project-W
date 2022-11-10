@@ -7,8 +7,6 @@ public class Player : MonoBehaviour
     string movementState;     //how the player is: WALKING, IDLE, RUNNING
     string actionLock;   //what actions are locked: ACTION_LOCK (can't open invenotry, settings etc but can move), "MOVE_LOCK"(or smth) can't moce but can open invenotry
     GameObject groundCheck;   //not used yet, it will be used to check if player is grounded; it is not used for keeping the player on the ground
-    [SerializeField]
-    GameObject canvas;
 
     void Start()
     {
@@ -21,11 +19,6 @@ public class Player : MonoBehaviour
     {
         FindObjectOfType<PlayerMovement>().movement(movementState, transform);
         FindObjectOfType<CameraLook>().rotateCamera(transform);
-
-        if (Input.GetKey(KeyCode.Q))
-            Application.Quit();
-        else if (Input.GetKeyDown(KeyCode.H))
-            canvas.GetComponent<Canvas>().enabled = !canvas.GetComponent<Canvas>().enabled;
     }
 
     public Vector3 getPosition()
