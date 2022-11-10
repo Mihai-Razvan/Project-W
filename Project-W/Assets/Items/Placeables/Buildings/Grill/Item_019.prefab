@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964297422492224522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.541, z: 0}
+  m_LocalPosition: {x: 0, y: 2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -342,7 +342,7 @@ MonoBehaviour:
   - {fileID: 5895493175718288811, guid: 2ed797bafd872af4c938dbcfa50f764f, type: 3}
   cookedFoodsPrefabs:
   - {fileID: 9205056100973135719, guid: 1276621a1be3a214f8f34fd9cbc5be22, type: 3}
-  grillTime: 05000000
+  grillTime: 5a000000
   cookedFoodItemCodes: 12000000
   batteryConsumption: 1
   timeLeftText: {fileID: 7263959889565934048}

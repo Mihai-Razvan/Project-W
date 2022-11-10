@@ -508,7 +508,7 @@ MonoBehaviour:
   waterCylinder: {fileID: 166052923948279855}
   cylinderAnim: {fileID: 9042659807702867069}
   batteryConsumption: 1
-  fillTime: 5
+  fillTime: 90
   maxWaterCubeScale: 2.7
 --- !u!114 &2570136587608139872
 MonoBehaviour:

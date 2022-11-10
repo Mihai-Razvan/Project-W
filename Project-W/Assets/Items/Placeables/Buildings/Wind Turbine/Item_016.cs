@@ -71,7 +71,7 @@ public class Item_016 : MonoBehaviour
         if(batteryPlaced == true && batteryCharge < 100)
         {
             timeSinceCharged += Time.deltaTime;
-            if(timeSinceCharged >= 0.2f)
+            if(timeSinceCharged >= 1.2f)
             {
                 batteryCharge += 1;
                 timeSinceCharged = 0;
