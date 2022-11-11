@@ -14,6 +14,8 @@ public class Item_014 : Item          //crop plot
     [SerializeField]
     int[] plantableItemCodeArray;   //item codes for crops you can plant in this crop plot
     [SerializeField]
+    int[] growingTime;              //this is the growing time per stage; so multiply this with 2 for the total grow time
+    [SerializeField]
     GameObject[] modelStage1;
     [SerializeField]
     GameObject[] modelStage2;
@@ -29,7 +31,7 @@ public class Item_014 : Item          //crop plot
 
     void Update()
     {
-        if(FindObjectOfType<Interactions>().getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if(Interactions.getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -86,14 +88,14 @@ public class Item_014 : Item          //crop plot
         for (int i = 0; i < 3; i++)
         {
             timeArray[i] += Time.deltaTime;
-            if (slotStatusArray[i].Equals("STAGE_1") && timeArray[i] > FindObjectOfType<Plantable_Data>().getGrowingTime(cropItemCodeArray[i]))
+            if (slotStatusArray[i].Equals("STAGE_1") && timeArray[i] > growingTime[cropItemCodeArray[i]])
             {
                 slotStatusArray[i] = "STAGE_2";
                 Destroy(plantingSpots[i].transform.GetChild(1).gameObject);
                 GameObject spawnedModel = Instantiate(modelStage2[getModelIndex(i)], plantingSpots[i].transform.position, Quaternion.identity);
                 spawnedModel.transform.SetParent(plantingSpots[i].transform);
             }
-            else if (slotStatusArray[i].Equals("STAGE_2") && timeArray[i] > FindObjectOfType<Plantable_Data>().getGrowingTime(cropItemCodeArray[i]) * 2)
+            else if (slotStatusArray[i].Equals("STAGE_2") && timeArray[i] > growingTime[cropItemCodeArray[i]] * 2)
             {
                 slotStatusArray[i] = "STAGE_3";
                 Destroy(plantingSpots[i].transform.GetChild(1).gameObject);

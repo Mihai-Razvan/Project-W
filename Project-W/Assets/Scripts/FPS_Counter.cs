@@ -10,6 +10,7 @@ public class FPS_Counter : MonoBehaviour
     public TextMeshProUGUI fpsText;
     public float deltaTime;
 
+
     void Update()
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
@@ -17,6 +18,8 @@ public class FPS_Counter : MonoBehaviour
         fpsText.text = Mathf.Ceil(fps).ToString();
         if (fps <= 45)
             fpsText.color = Color.red;
+        else if (fps < 60)
+            fpsText.color = Color.yellow;
         else
             fpsText.color = Color.green;
     }

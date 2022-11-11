@@ -9,11 +9,11 @@ public class Interactions : MonoBehaviour
     [SerializeField]
     float detectionCapsuleRadius;
     [SerializeField]
-    LayerMask resourcesMask;
-    [SerializeField]
     LayerMask placeablesMask;
+    [SerializeField]
+    LayerMask resourcesMask;
 
-    GameObject inRangeBuilding;   //the building the player CAN interact with; even if it s a non interactable building this will still hold the gameobject
+    static GameObject inRangeBuilding;   //the building the player CAN interact with; even if it s a non interactable building this will still hold the gameobject
 
     void Update()
     {
@@ -61,7 +61,7 @@ public class Interactions : MonoBehaviour
             inRangeBuilding = null;
     }
 
-    public GameObject getInRangeBuilding()   
+    public static GameObject getInRangeBuilding()   
     {
         return inRangeBuilding;
     }

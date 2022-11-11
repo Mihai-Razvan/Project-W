@@ -35,7 +35,7 @@ public class Item_024 : Item
 
     void Update()
     {
-        if (FindObjectOfType<Interactions>().getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Interactions.getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -52,7 +52,7 @@ public class Item_024 : Item
                 dissolve();
                 break;
             case "COLLECTED":
-                if (Input.GetKeyUp(KeyCode.E) || FindObjectOfType<Interactions>().getInRangeBuilding() != this.gameObject && timeSinceStartedCharge != 0)
+                if (Input.GetKeyUp(KeyCode.E) || Interactions.getInRangeBuilding() != this.gameObject && timeSinceStartedCharge != 0)
                 {
                     timeSinceStartedCharge = 0;
                     FindObjectOfType<ChargeRadial>().resetCharge();

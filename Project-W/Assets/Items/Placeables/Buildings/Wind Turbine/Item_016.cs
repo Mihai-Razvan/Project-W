@@ -33,7 +33,7 @@ public class Item_016 : Item
 
     void Update()
     {
-        if (FindObjectOfType<Interactions>().getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Interactions.getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {

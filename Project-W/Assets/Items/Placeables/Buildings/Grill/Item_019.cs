@@ -50,7 +50,7 @@ public class Item_019 : Item   //grill
 
     void Update()
     {
-        if (FindObjectOfType<Interactions>().getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Interactions.getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {

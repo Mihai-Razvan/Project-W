@@ -12169,14 +12169,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23758469bb016e540b0d253aa01c4597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionCapsuleLength: 6
+  detectionCapsuleLength: 5
   detectionCapsuleRadius: 1
-  resourcesMask:
-    serializedVersion: 2
-    m_Bits: 64
   placeablesMask:
     serializedVersion: 2
     m_Bits: 256
+  resourcesMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1644724143
 MonoBehaviour:
   m_ObjectHideFlags: 0
