@@ -24,7 +24,7 @@ public class Item_024 : Item
     float timeSincePlanted;
     float timeSinceStartedCharge;      //when you want to destroy the dree and need to hold mouse to start destroying it
     float timeSinceFall;
-    float sizeGrowPerSec;              //how much the model scale grows
+    float timeSinceResize;
     GameObject treeObject;
 
 
@@ -35,7 +35,7 @@ public class Item_024 : Item
 
     void Update()
     {
-        if (Interactions.getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Interactions.getInRangeBuilding() == this.gameObject && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -55,7 +55,7 @@ public class Item_024 : Item
                 if (Input.GetKeyUp(KeyCode.E) || Interactions.getInRangeBuilding() != this.gameObject && timeSinceStartedCharge != 0)
                 {
                     timeSinceStartedCharge = 0;
-                    FindObjectOfType<ChargeRadial>().resetCharge();
+                    ChargeRadial.resetCharge();
                 }
                 else if (Input.GetKey(KeyCode.E))
                     destroyTree();
@@ -83,21 +83,27 @@ public class Item_024 : Item
     void plant()
     {
         index = getIndex(selectedItemCode);
-        int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
+        int playerInventorySlot = Player_Inventory.getSelectedSlot();
+        Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
         treeObject = Instantiate(treesModels[index], treePlace.transform.position, this.gameObject.transform.rotation);
         treeObject.transform.SetParent(treePlace.transform);
         treeObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         fruitItemCode = fruitsItemCodes[index];
         timeSincePlanted = 0;
+        timeSinceResize = 0;
         status = "GROWING";
     }
 
     void grow()
     {
         timeSincePlanted += Time.deltaTime;
-        float scale = (timeSincePlanted / growingTimes[index]) * 0.9f + 0.1f;
-        treeObject.transform.localScale = new Vector3(scale, scale, scale);
+        timeSinceResize += Time.deltaTime;
+        if (timeSinceResize >= 0.3f)
+        {
+            float scale = (timeSincePlanted / growingTimes[index]) * 0.9f + 0.1f;
+            treeObject.transform.localScale = new Vector3(scale, scale, scale);
+            timeSinceResize = 0;
+        }
 
         if(timeSincePlanted >= growingTimes[index])
         {
@@ -119,7 +125,7 @@ public class Item_024 : Item
             treeObject.GetComponent<ReplaceMats>().replaceDry();
         }
 
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(fruitItemCode, 1, 0);
+        Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(fruitItemCode, 1, 0);
         Destroy(treePlace.transform.GetChild(0).Find("Fruits-Places").GetChild(0).gameObject);  //the plant
     }
 
@@ -136,14 +142,14 @@ public class Item_024 : Item
 
             timeSinceFall = 0;
             timeSinceStartedCharge = 0;
-            FindObjectOfType<ChargeRadial>().resetCharge();
+            ChargeRadial.resetCharge();
         }
     }
 
     void dissolve()
     {
         timeSinceFall += Time.deltaTime;
-        if (timeSinceFall >= 2)
+        if (timeSinceFall >= 1.7f)
         {
             Destroy(treeObject);
             status = "EMPTY";

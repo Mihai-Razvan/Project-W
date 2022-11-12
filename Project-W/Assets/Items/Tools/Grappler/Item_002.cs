@@ -22,8 +22,8 @@ public class Item_002 : Tool   //grappler
     [SerializeField]
     LayerMask resourcesMask;
     GameObject beamStartEffect;
-    Dictionary<GameObject, float> objectsList;   //the second attribute "float" represents the distance between rayStart and object
-    List<GameObject> keyList;    //we use this to store the gameobjects that are keys for the above dictionary so we can delete entries from the dictionary safe 
+    List<GameObject> objectList;
+    List<float> distanceList;
 
      
     void Start()
@@ -34,13 +34,13 @@ public class Item_002 : Tool   //grappler
         laserSize = 0;
         laserState = "UNUSED";
         chargeTime = 0;
-        objectsList = new Dictionary<GameObject, float>();
-        keyList = new List<GameObject>();
+        objectList = new List<GameObject>();
+        distanceList = new List<float>();
     }
 
     void Update()
     {
-        if (itemCode == selectedItemCode && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))     //we use getusedobject() in case the object appears on selected slot when slot is already selected
+        if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)     //we use getusedobject() in case the object appears on selected slot when slot is already selected
         {
             beamStartEffect = getUsedObject().transform.GetChild(0).transform.GetChild(1).gameObject;
             rayStartPosition = getUsedObject().transform.GetChild(0).transform.GetChild(0);
@@ -57,7 +57,7 @@ public class Item_002 : Tool   //grappler
                     else if (Input.GetKeyUp(KeyCode.Mouse0))
                     {
                         laserState = "EXPANDING";
-                        FindObjectOfType<ChargeRadial>().resetCharge();
+                        ChargeRadial.resetCharge();
                     }
                     else
                         beamStartEffect.SetActive(false);
@@ -85,9 +85,9 @@ public class Item_002 : Tool   //grappler
             }
 
             if (chargeTime != 0)
-                FindObjectOfType<Player>().setActionLock("ACTION_LOCKED");   //if chargeTime != 0 it means it is expanding, retracting or charging, so action is locked
+                Player.setActionLock("ACTION_LOCKED");   //if chargeTime != 0 it means it is expanding, retracting or charging, so action is locked
             else
-                FindObjectOfType<Player>().setActionLock("UNLOCKED");
+                Player.setActionLock("UNLOCKED");
         }
       
     }
@@ -122,7 +122,7 @@ public class Item_002 : Tool   //grappler
             if (laserSize > 0)
             {
                 float slowDown = 1;
-                if (keyList.Count != 0)         //if we are retracting objects the retraction speed is slower
+                if (objectList.Count != 0)         //if we are retracting objects the retraction speed is slower
                     slowDown = laserRetractingSlowDown;
 
                 laserSize = laserSize - laserExpansionSpeed * Time.deltaTime * slowDown;
@@ -137,52 +137,51 @@ public class Item_002 : Tool   //grappler
     {
         Collider[] colliders = Physics.OverlapCapsule(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * laserSize, rayRadius, resourcesMask);
 
-        if (colliders.Length != 0)
-            for (int i = 0; i < colliders.Length; i++)
+        if (colliders.Length != 0)    //since we destroy the object's collider when it collides for the first time, if we have multiple retracting objects it won't collide with them anymore
+        {
+            if (colliders[0].gameObject.TryGetComponent(out Rigidbody rigidBody) == true)
             {
-                if (colliders[0].gameObject.TryGetComponent(out Rigidbody rigidBody) == true)
-                    Destroy(rigidBody);
-                else
-                    return;   //it means it is in collection vacuum
+                Destroy(rigidBody);
+                Destroy(colliders[0].gameObject.GetComponent<BoxCollider>());
+            }
+            else
+                return;   //it means it is in collection vacuum
 
-                if (!keyList.Contains(colliders[i].gameObject)) //it means we are in the frame when this object collided for the first time
-                {
-                    colliders[i].transform.position = rayStartPosition.position + rayStartPosition.forward * Vector3.Distance(rayStartPosition.position, colliders[i].transform.position);
-                    objectsList.Add(colliders[i].gameObject, Vector3.Distance(rayStartPosition.position, colliders[i].transform.position));
-                    keyList.Add(colliders[i].gameObject);
-                         colliders[i].gameObject.AddComponent<Outline>();      //it adds the script that creates the encapsulate outline
-                }
+            colliders[0].transform.position = rayStartPosition.position + rayStartPosition.forward * Vector3.Distance(rayStartPosition.position, colliders[0].transform.position);
+            colliders[0].gameObject.AddComponent<Outline>();      //it adds the script that creates the encapsulate outline
+            objectList.Add(colliders[0].gameObject);
+            distanceList.Add(Vector3.Distance(rayStartPosition.position, colliders[0].transform.position));
 
-                if(colliders.Length == 1)
-                {
-                    laserState = "RETRACTING";
-                    laserSize = Vector3.Distance(colliders[0].transform.position, rayStartPosition.position);
-                }         
-            }    
+            if (laserState.Equals("EXPANDING"))    //it means it is the first object we colided with
+            {
+                laserState = "RETRACTING";
+                laserSize = Vector3.Distance(colliders[0].transform.position, rayStartPosition.position);
+            }
+        }
     }
 
     void moveMaterials()
     {
-        for (int i = 0; i < keyList.Count; i++)
-            if (Vector3.Distance(keyList[i].transform.position, rayStartPosition.position) < 0.5f)
-            {
-                int[] itemCodeArray = keyList[i].GetComponent<ResourcesData>().getItemCodeArray();
-                int[] quantityArray = keyList[i].GetComponent<ResourcesData>().getQuantityArray();
-                float[] chargeArray = keyList[i].GetComponent<ResourcesData>().getChargeArray();
-                for (int j = 0; j < itemCodeArray.Length; j++)
-                    FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j], chargeArray[j]);
-
-                objectsList.Remove(keyList[i]);
-                GameObject objectToDestroy = keyList[i];
-                keyList.Remove(keyList[i]);
-                Destroy(objectToDestroy);
-            }
-
-        for (int i = 0; i < keyList.Count; i++)
+        for (int i = 0; i < objectList.Count; i++)
         {
-            objectsList[keyList[i]] = Vector3.Distance(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * (objectsList[keyList[i]] - laserExpansionSpeed * Time.deltaTime * laserRetractingSlowDown));
-            keyList[i].transform.position = rayStartPosition.position + rayStartPosition.forward * objectsList[keyList[i]];
+            distanceList[i] = Vector3.Distance(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * (distanceList[i] - laserExpansionSpeed * Time.deltaTime * laserRetractingSlowDown));
+            objectList[i].transform.position = rayStartPosition.position + rayStartPosition.forward * distanceList[i];
         }
+
+        for (int i = 0; i < objectList.Count; i++)
+            if (Vector3.Distance(objectList[i].transform.position, rayStartPosition.position) < 0.5f)
+            {
+                int[] itemCodeArray = objectList[i].GetComponent<ResourcesData>().getItemCodeArray();
+                int[] quantityArray = objectList[i].GetComponent<ResourcesData>().getQuantityArray();
+                float[] chargeArray = objectList[i].GetComponent<ResourcesData>().getChargeArray();
+                for (int j = 0; j < itemCodeArray.Length; j++)
+                    Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCodeArray[j], quantityArray[j], chargeArray[j]);
+
+                Destroy(objectList[i]);
+                objectList.RemoveAt(i);
+                distanceList.RemoveAt(i);
+                return;
+            }    
     }
 
     void deselectItem()

@@ -6,7 +6,7 @@ public class Item_015 : Item    //patato
 {
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && itemCode == selectedItemCode && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && itemCode == selectedItemCode && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
             consume();
     }
 
@@ -16,7 +16,7 @@ public class Item_015 : Item    //patato
         int thirst = FindObjectOfType<Consumable_Data>().getThirstIncrease(itemCode);
         FindObjectOfType<Player_Stats>().changeSaturation(saturation);
         FindObjectOfType<Player_Stats>().changeThirst(thirst);
-        int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
+        int playerInventorySlot = Player_Inventory.getSelectedSlot();
+        Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
     }
 }

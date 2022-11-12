@@ -19,7 +19,7 @@ public class Item_008_P : Placeable    //stairs
 
     void Update()
     {
-        if (itemCode == selectedItemCode && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             checkMerge();
             rotateObject();

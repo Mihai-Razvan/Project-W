@@ -11,6 +11,11 @@ public class Development : MonoBehaviour
     [SerializeField]
     GameObject player;
 
+    private void Start()
+    {
+        Application.targetFrameRate = 300;
+    }
+
     void Update()
     {
        // if (Input.GetKey(KeyCode.Q))

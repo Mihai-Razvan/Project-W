@@ -50,7 +50,7 @@ public class Item_019 : Item   //grill
 
     void Update()
     {
-        if (Interactions.getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Interactions.getInRangeBuilding() == this.gameObject && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -81,9 +81,9 @@ public class Item_019 : Item   //grill
     {
         if (batteryPlaced == false)
         {
-            int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
-            batteryCharge = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getCharge(playerInventorySlot);
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
+            int playerInventorySlot = Player_Inventory.getSelectedSlot();
+            batteryCharge = Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().getCharge(playerInventorySlot);
+            Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
             GameObject spawnedModel = Instantiate(batteryPrefab, batteryHole.transform.position, Quaternion.identity);
             spawnedModel.transform.SetParent(batteryHole.transform);
             batteryPlaced = true;
@@ -102,7 +102,7 @@ public class Item_019 : Item   //grill
     {
         if(batteryPlaced == true)
         {
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(17, 1, batteryCharge);
+            Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(17, 1, batteryCharge);
             Destroy(batteryHole.transform.GetChild(0).gameObject);
             batteryPlaced = false;
             battertyChargeText.text = "-";
@@ -115,8 +115,8 @@ public class Item_019 : Item   //grill
         GameObject spawnedModel = Instantiate(rawFoodsPrefabs[getIndex(getUsedObjectItemCode())], foodPrefabPlace.transform.position, Quaternion.identity);
         spawnedModel.transform.SetParent(foodPrefabPlace.transform);
         placedFoodItemCode = selectedItemCode;
-        int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
+        int playerInventorySlot = Player_Inventory.getSelectedSlot();
+        Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
         timeOnGrill = 0;
         cooked = false;
         foodPlaced = true;
@@ -127,7 +127,7 @@ public class Item_019 : Item   //grill
 
     void collectFood()
     {
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(cookedFoodItemCodes[getIndex(placedFoodItemCode)], 1, 0);
+        Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(cookedFoodItemCodes[getIndex(placedFoodItemCode)], 1, 0);
         Destroy(foodPrefabPlace.transform.GetChild(0).gameObject);
         foodPlaced = false;
         timeLeftText.text = "-";

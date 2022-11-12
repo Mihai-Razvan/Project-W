@@ -52,7 +52,7 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
             Sprite resourceSprite = FindObjectOfType<ItemsList>().getSprite(resourcesItemCodes[i]);
             resourcesSlots[i].transform.GetChild(1).GetComponent<Image>().sprite = resourceSprite;
 
-            int availableQuantity = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
+            int availableQuantity = Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
             resourcesSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = availableQuantity + "/" + resourcesQuantity[i];
         }
 
@@ -72,12 +72,12 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
         if (allResources() == false)
             return;
 
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCode, 1, 100);  //we also add a charge in case the item is chargeable
+        Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(itemCode, 1, 100);  //we also add a charge in case the item is chargeable
 
         for (int i = 0; i < resourcesItemCodes.Length; i++)   //consume resources
         {
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().consumeItem(resourcesItemCodes[i], resourcesQuantity[i]);
-            int availableQuantity = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
+            Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().consumeItem(resourcesItemCodes[i], resourcesQuantity[i]);
+            int availableQuantity = Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
             resourcesSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = availableQuantity + "/" + resourcesQuantity[i];
         }
     }
@@ -85,7 +85,7 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
     {
         for (int i = 0; i < resourcesItemCodes.Length; i++)
         {
-            int availableQuantity = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
+            int availableQuantity = Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
             if (availableQuantity < resourcesQuantity[i])
                 return false;
         }

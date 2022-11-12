@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class ChargeRadial : MonoBehaviour
 {
+    static Image progressBar;
     [SerializeField]
-    Image progressBar;
+    Image progressBarHelper;
 
     void Start()
     {
-      //  Player_Inventory.onItemDeselected += resetCharge;
+        //  Player_Inventory.onItemDeselected += resetCharge;
+        progressBar = progressBarHelper;
     }
 
-    public void resetCharge()
+    public static void resetCharge()
     {
         progressBar.fillAmount = 0;
     }

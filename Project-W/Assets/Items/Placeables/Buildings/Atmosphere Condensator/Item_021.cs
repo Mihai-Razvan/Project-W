@@ -26,6 +26,7 @@ public class Item_021 : Item   //Atmosphere Condensator
     float batteryCharge;
     bool filled;
     float timeSinceStarted;
+    float timeSinceResize;
     
     void Start()
     {
@@ -37,7 +38,7 @@ public class Item_021 : Item   //Atmosphere Condensator
 
     void Update()
     {
-        if (Interactions.getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Interactions.getInRangeBuilding() == this.gameObject && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -55,10 +56,11 @@ public class Item_021 : Item   //Atmosphere Condensator
             placeBattery();
         else if (selectedItemCode == 22 && filled == true)    //empty can
         {
-            int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().setSlot(playerInventorySlot, 23, 1, 0);   //replace the empty cup with a full cup
+            int playerInventorySlot = Player_Inventory.getSelectedSlot();
+            Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().setSlot(playerInventorySlot, 23, 1, 0);   //replace the empty cup with a full cup
             filled = false;
             timeSinceStarted = 0;
+            timeSinceResize = 0;
             handleBigWaterCube();
             smallWater.SetActive(false);
         }
@@ -70,9 +72,9 @@ public class Item_021 : Item   //Atmosphere Condensator
     {
         if (batteryPlaced == false)
         {
-            int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
-            batteryCharge = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getCharge(playerInventorySlot);
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
+            int playerInventorySlot = Player_Inventory.getSelectedSlot();
+            batteryCharge = Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().getCharge(playerInventorySlot);
+            Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
             GameObject spawnedModel = Instantiate(batteryPrefab, batteryHole.transform.position, Quaternion.identity);
             spawnedModel.transform.SetParent(batteryHole.transform);
             spawnedModel.transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
@@ -96,7 +98,7 @@ public class Item_021 : Item   //Atmosphere Condensator
     {
         if (batteryPlaced == true)
         {
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(17, 1, batteryCharge);
+            Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(17, 1, batteryCharge);
             Destroy(batteryHole.transform.GetChild(0).gameObject);
             batteryPlaced = false;
             waterCylinder.SetActive(false);
@@ -107,6 +109,7 @@ public class Item_021 : Item   //Atmosphere Condensator
     void produceWater()
     {
         timeSinceStarted += Time.deltaTime;
+        timeSinceResize += Time.deltaTime;
         batteryCharge -= batteryConsumption * Time.deltaTime;
         if(batteryCharge <= 0)
         {
@@ -120,7 +123,12 @@ public class Item_021 : Item   //Atmosphere Condensator
             smallWater.SetActive(true);
         }
 
-        handleBigWaterCube();
+        if(timeSinceResize >= 0.3f)
+        {
+            handleBigWaterCube();
+            timeSinceResize = 0;
+        }
+        
     }
 
     void handleBigWaterCube()

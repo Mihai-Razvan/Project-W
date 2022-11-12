@@ -12,7 +12,10 @@ public class Player_Inventory : MonoBehaviour
     TextMeshProUGUI hoveredItemName;
     [SerializeField]
     TextMeshProUGUI hoveredItemDescription;
-    int selectedInventorySlot;
+    static int selectedInventorySlot;
+    static GameObject playerInventoryHolder;
+    [SerializeField]
+    GameObject playerInventoryHolderHelper;
     KeyCode[] keyCodes = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
 
     public delegate void OnItemSelected();       //when a new inventory slot from the inventory bar is selected
@@ -28,6 +31,7 @@ public class Player_Inventory : MonoBehaviour
         hoveredItemName.enabled = false;
         hoveredItemDescription.enabled = false;
         selectedInventorySlot = 0;
+        playerInventoryHolder = playerInventoryHolderHelper;
         //selectedItemCode = 0;
         onItemDeselected += Item.destroyUsedObject;
     }
@@ -39,7 +43,7 @@ public class Player_Inventory : MonoBehaviour
 
     void selectInventorySlot()     //when you press a numeric key on keyboard it will select that slot in inventory bar
     {
-        if (FindObjectOfType<Player>().getActionLock().Equals("ACTION_LOCKED"))
+        if (Player.getActionLock().Equals("ACTION_LOCKED"))
             return;
 
         bool newSelection = false;
@@ -78,14 +82,14 @@ public class Player_Inventory : MonoBehaviour
             hoveredItemDescription.enabled = false;
         }
     }
-    public int getSelectedSlot() 
+    public static int getSelectedSlot() 
     {
         return selectedInventorySlot;
     }
 
-    public GameObject getPlayerInventoryHolder()          //the object that holds the player invenotry script holds also the inventory
+    public static GameObject getPlayerInventoryHolder()          //the object that holds the player invenotry script holds also the inventory
     {
-        return this.gameObject;
+        return playerInventoryHolder;
     }
 
 }

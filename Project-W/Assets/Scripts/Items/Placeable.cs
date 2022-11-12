@@ -27,8 +27,8 @@ public class Placeable : Item
     protected void spawnPlacePrefab()   //used to place the building when you click
     {
         Instantiate(placePrefab, getUsedObject().transform.position, getUsedObject().transform.rotation);
-        int slot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, slot);
+        int slot = Player_Inventory.getSelectedSlot();
+        Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, slot);
     }
 
     protected void changeMaterials(Material material)

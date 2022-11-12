@@ -11,7 +11,7 @@ public class Item_019_P : Building           //grill
 
     void Update()
     {
-        if (itemCode == selectedItemCode && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             placeDummy();
             rotateObject();

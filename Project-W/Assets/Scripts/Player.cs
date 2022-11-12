@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     string movementState;     //how the player is: WALKING, IDLE, RUNNING
-    string actionLock;   //what actions are locked: ACTION_LOCK (can't open invenotry, settings etc but can move), "MOVE_LOCK"(or smth) can't moce but can open invenotry
+    static string actionLock;   //what actions are locked: ACTION_LOCK (can't open invenotry, settings etc but can move), "MOVE_LOCK"(or smth) can't moce but can open invenotry
     GameObject groundCheck;   //not used yet, it will be used to check if player is grounded; it is not used for keeping the player on the ground
 
     void Start()
@@ -36,12 +36,12 @@ public class Player : MonoBehaviour
         return movementState;
     }
 
-    public void setActionLock(string actionLock)
+    public static void setActionLock(string actionLock)
     {
-        this.actionLock = actionLock;
+        Player.actionLock = actionLock;
     }
 
-    public string getActionLock()
+    public static string getActionLock()
     {
         return actionLock;
     }

@@ -19,7 +19,7 @@ public class Item_005_P : Placeable   //wall
 
     void Update()
     {
-        if (itemCode == selectedItemCode && getUsedObject() != null && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             checkMerge();
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))

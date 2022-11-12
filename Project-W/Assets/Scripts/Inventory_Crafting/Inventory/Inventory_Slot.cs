@@ -67,7 +67,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Player.getActionLock().Equals("INVENTORY_OPENED") == false)
             return;
 
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
@@ -84,7 +84,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     public void OnDrop(PointerEventData eventData)     //when the drag ends
     {
-        if (!FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Player.getActionLock().Equals("INVENTORY_OPENED") == false)
             return;
 
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
@@ -96,7 +96,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     public void OnPointerClick(PointerEventData eventData)     //in case a slot is just clicked but without any darg
     {
-        if (!FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Player.getActionLock().Equals("INVENTORY_OPENED") == false)
             return;
 
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
@@ -124,7 +124,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     void setOutlineEnable()
     {
-        if (FindObjectOfType<Player_Inventory>().getSelectedSlot() == slot)
+        if (Player_Inventory.getSelectedSlot() == slot)
             outline.enabled = true;
         else
             outline.enabled = false;

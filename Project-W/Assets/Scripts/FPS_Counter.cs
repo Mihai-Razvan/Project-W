@@ -18,7 +18,7 @@ public class FPS_Counter : MonoBehaviour
         fpsText.text = Mathf.Ceil(fps).ToString();
         if (fps <= 45)
             fpsText.color = Color.red;
-        else if (fps < 60)
+        else if (fps < 80)
             fpsText.color = Color.yellow;
         else
             fpsText.color = Color.green;

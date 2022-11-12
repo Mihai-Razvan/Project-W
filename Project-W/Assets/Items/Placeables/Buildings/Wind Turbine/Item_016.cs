@@ -33,7 +33,7 @@ public class Item_016 : Item
 
     void Update()
     {
-        if (Interactions.getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if (Interactions.getInRangeBuilding() == this.gameObject && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -48,16 +48,16 @@ public class Item_016 : Item
     {
         if(batteryPlaced == true)    
         {
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(17, 1, batteryCharge);
+            Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(17, 1, batteryCharge);
             Destroy(batteryHole.transform.GetChild(0).gameObject);
             batteryPlaced = false;
             chargeText.text = "-";
         }
         else if(selectedItemCode == 17)   //battery
         {
-            int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
-            batteryCharge = FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().getCharge(playerInventorySlot);
-            FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
+            int playerInventorySlot = Player_Inventory.getSelectedSlot();
+            batteryCharge = Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().getCharge(playerInventorySlot);
+            Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
             GameObject spawnedModel = Instantiate(batteryPrefab, batteryHole.transform.position, Quaternion.identity);
             spawnedModel.transform.SetParent(batteryHole.transform);
             batteryPlaced = true;

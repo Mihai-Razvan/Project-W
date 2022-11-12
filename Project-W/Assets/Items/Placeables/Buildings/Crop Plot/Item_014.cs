@@ -31,7 +31,7 @@ public class Item_014 : Item          //crop plot
 
     void Update()
     {
-        if(Interactions.getInRangeBuilding() == this.gameObject && !FindObjectOfType<Player>().getActionLock().Equals("INVENTORY_OPENED"))
+        if(Interactions.getInRangeBuilding() == this.gameObject && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -57,15 +57,15 @@ public class Item_014 : Item          //crop plot
                     if (Item.getUsedObjectItemCode() == plantableItemCodeArray[j])
                     {
                         plant(i, Item.getUsedObjectItemCode());
-                        int playerInventorySlot = FindObjectOfType<Player_Inventory>().getSelectedSlot();
-                        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
+                        int playerInventorySlot = Player_Inventory.getSelectedSlot();
+                        Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
                         return;
                     }
     }
 
     void collectCrop(int plantingSlot)
     {
-        FindObjectOfType<Player_Inventory>().getPlayerInventoryHolder().GetComponent<Inventory>().addItem(cropItemCodeArray[plantingSlot], 2, 0);
+        Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(cropItemCodeArray[plantingSlot], 2, 0);
         cropItemCodeArray[plantingSlot] = 0;
         slotStatusArray[plantingSlot] = "EMPTY";
         Destroy(plantingSpots[plantingSlot].transform.GetChild(0).gameObject);  //the dirt hole
@@ -79,7 +79,7 @@ public class Item_014 : Item          //crop plot
         timeArray[plantingSlot] = 0;
         GameObject dirtHole = Instantiate(dirtHolePrefab, plantingSpots[plantingSlot].transform.position, Quaternion.identity);
         dirtHole.transform.SetParent(plantingSpots[plantingSlot].transform);
-        GameObject spawnedModel = Instantiate(modelStage1[getModelIndex(plantingSlot)], plantingSpots[plantingSlot].transform.position, Quaternion.identity);
+        GameObject spawnedModel = Instantiate(modelStage1[getIndex(plantingSlot)], plantingSpots[plantingSlot].transform.position, Quaternion.identity);
         spawnedModel.transform.SetParent(plantingSpots[plantingSlot].transform);
     }
 
@@ -88,24 +88,24 @@ public class Item_014 : Item          //crop plot
         for (int i = 0; i < 3; i++)
         {
             timeArray[i] += Time.deltaTime;
-            if (slotStatusArray[i].Equals("STAGE_1") && timeArray[i] > growingTime[cropItemCodeArray[i]])
+            if (slotStatusArray[i].Equals("STAGE_1") && timeArray[i] > growingTime[getIndex(i)])
             {
                 slotStatusArray[i] = "STAGE_2";
                 Destroy(plantingSpots[i].transform.GetChild(1).gameObject);
-                GameObject spawnedModel = Instantiate(modelStage2[getModelIndex(i)], plantingSpots[i].transform.position, Quaternion.identity);
+                GameObject spawnedModel = Instantiate(modelStage2[getIndex(i)], plantingSpots[i].transform.position, Quaternion.identity);
                 spawnedModel.transform.SetParent(plantingSpots[i].transform);
             }
-            else if (slotStatusArray[i].Equals("STAGE_2") && timeArray[i] > growingTime[cropItemCodeArray[i]] * 2)
+            else if (slotStatusArray[i].Equals("STAGE_2") && timeArray[i] > growingTime[getIndex(i)] * 2)
             {
                 slotStatusArray[i] = "STAGE_3";
                 Destroy(plantingSpots[i].transform.GetChild(1).gameObject);
-                GameObject spawnedModel = Instantiate(modelStage3[getModelIndex(i)], plantingSpots[i].transform.position, Quaternion.identity);
+                GameObject spawnedModel = Instantiate(modelStage3[getIndex(i)], plantingSpots[i].transform.position, Quaternion.identity);
                 spawnedModel.transform.SetParent(plantingSpots[i].transform);
             }
         }
     }
 
-    int getModelIndex(int plantingSlot)
+    int getIndex(int plantingSlot)
     {
         for (int i = 0; i < plantableItemCodeArray.Length; i++)
             if (plantableItemCodeArray[i] == cropItemCodeArray[plantingSlot])
