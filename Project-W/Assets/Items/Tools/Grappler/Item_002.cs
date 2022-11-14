@@ -137,7 +137,7 @@ public class Item_002 : Tool   //grappler
     {
         Collider[] colliders = Physics.OverlapCapsule(rayStartPosition.position, rayStartPosition.position + rayStartPosition.forward * laserSize, rayRadius, resourcesMask);
 
-        if (colliders.Length != 0)    //since we destroy the object's collider when it collides for the first time, if we have multiple retracting objects it won't collide with them anymore
+        if (colliders.Length != 0 && !colliders[0].tag.Equals("Item_003"))    //since we destroy the object's collider when it collides for the first time, if we have multiple retracting objects it won't collide with them anymore
         {
             if (colliders[0].gameObject.TryGetComponent(out Rigidbody rigidBody) == true)
             {

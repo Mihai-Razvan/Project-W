@@ -98,7 +98,7 @@ public class Item_024 : Item
     {
         timeSincePlanted += Time.deltaTime;
         timeSinceResize += Time.deltaTime;
-        if (timeSinceResize >= 0.3f)
+        if (timeSinceResize >= 0.5f)
         {
             float scale = (timeSincePlanted / growingTimes[index]) * 0.9f + 0.1f;
             treeObject.transform.localScale = new Vector3(scale, scale, scale);
@@ -149,7 +149,7 @@ public class Item_024 : Item
     void dissolve()
     {
         timeSinceFall += Time.deltaTime;
-        if (timeSinceFall >= 1.7f)
+        if (timeSinceFall >= 1.5f)
         {
             Destroy(treeObject);
             status = "EMPTY";

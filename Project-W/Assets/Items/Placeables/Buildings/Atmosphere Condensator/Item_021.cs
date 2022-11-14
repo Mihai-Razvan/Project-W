@@ -123,7 +123,7 @@ public class Item_021 : Item   //Atmosphere Condensator
             smallWater.SetActive(true);
         }
 
-        if(timeSinceResize >= 0.3f)
+        if(timeSinceResize >= 0.5f)
         {
             handleBigWaterCube();
             timeSinceResize = 0;
