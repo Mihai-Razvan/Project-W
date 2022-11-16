@@ -12,11 +12,11 @@ public class Clouds_Spawn : MonoBehaviour
     {
         timeSinceSpawn += Time.deltaTime;
 
-        if(timeSinceSpawn >= 10)
+        if(timeSinceSpawn >= 4)
         {
             timeSinceSpawn = 0;
             float randRotY = Random.Range(0, 360);
-            Instantiate(cloudPrefab, Random.insideUnitSphere * 30 + new Vector3(0, 200, 0), Quaternion.Euler(0, randRotY, 0));
+            Instantiate(cloudPrefab, Random.insideUnitSphere * 70 + new Vector3(0, 130, 0), Quaternion.Euler(0, randRotY, 0));
         }
     }
 }
