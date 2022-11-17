@@ -15,7 +15,7 @@ public class Clouds : MonoBehaviour
     void Update()
     {
         transform.Translate(transform.forward * speed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, new Vector3(0, 90, 0)) > 190)
+        if (Vector3.Distance(transform.position, new Vector3(0, 180, 0)) > 190)
             Destroy(this.gameObject);
     }
 }
