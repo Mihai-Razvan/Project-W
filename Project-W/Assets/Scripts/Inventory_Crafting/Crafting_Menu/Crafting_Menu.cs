@@ -20,7 +20,9 @@ public class Crafting_Menu : MonoBehaviour
         for (int i = 0; i < categoryPanels.Length; i++)
             categoryPanels[i].SetActive(false);
 
-        openedCategory = 0;
+        openCategory(0);
+        setSelectedItemSlotNumber(0);
+        openInitialPanel();
     }
 
 
@@ -35,9 +37,9 @@ public class Crafting_Menu : MonoBehaviour
         categoryPanels[categoryNumber].SetActive(true);
         openedCategory = categoryNumber;
 
-        selectedItemSlotNumber = categoryPanels[openedCategory].transform.GetChild(1).gameObject.GetComponent<Crafting_Item_Slot>().getItemSlotNumber();
+      //  selectedItemSlotNumber = categoryPanels[openedCategory].transform.GetChild(1).gameObject.GetComponent<Crafting_Item_Slot>().getItemSlotNumber();
         onitemSlotChanged();
-        openInitialPanel();
+      //  openInitialPanel();
         onCategoryChanged();
     }
 

@@ -41,6 +41,8 @@ public class Item_024 : Item
             {
                 interaction();
             }
+
+            buttonHintHandle();
         }
 
         switch (status)
@@ -163,5 +165,36 @@ public class Item_024 : Item
                 return i;
 
         return -1;
+    }
+
+    void buttonHintHandle()
+    {
+        switch (status)
+        {
+            case "EMPTY":
+                if (getIndex(selectedItemCode) != -1)
+                {
+                    string text = "Plant '" + FindObjectOfType<ItemsList>().getName(selectedItemCode) + "'";
+                    Button_Hint.setBuildingInteractionHint(text);
+                }
+                else
+                    Button_Hint.clearBuildingInteractionHint();
+                break;
+            case "GROWING":
+                Button_Hint.clearBuildingInteractionHint();
+                break;
+            case "GROWN":
+                {
+                    string text = "Collect '" + FindObjectOfType<ItemsList>().getName(fruitItemCode) + "'";
+                    Button_Hint.setBuildingInteractionHint(text);
+                }
+                break;
+            case "COLLECTED":
+                Button_Hint.setBuildingInteractionHint("Destroy Tree");
+                break;
+            case "DESTROYING":
+                Button_Hint.clearBuildingInteractionHint();
+                break;
+        }
     }
 }

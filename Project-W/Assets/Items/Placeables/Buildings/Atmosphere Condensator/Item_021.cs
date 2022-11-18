@@ -44,6 +44,8 @@ public class Item_021 : Item   //Atmosphere Condensator
             {
                 interaction();
             }
+
+            buttonHintHandle();
         }
 
         if (batteryPlaced == true && batteryCharge > 0 && filled == false)
@@ -136,5 +138,22 @@ public class Item_021 : Item   //Atmosphere Condensator
         float fillAmount = (timeSinceStarted / fillTime) * 100;
         float yScale = (fillAmount * maxWaterCubeScale) / 100;
         bigWater.transform.localScale = new Vector3(bigWater.transform.localScale.x, yScale, bigWater.transform.localScale.z);
+    }
+
+    void buttonHintHandle()
+    {
+        if (selectedItemCode == 17)
+        {
+            if (batteryPlaced == false)
+                Button_Hint.setBuildingInteractionHint("Place 'Battery'");
+            else
+                Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
+        }
+        else if (selectedItemCode == 22 && filled == true)
+            Button_Hint.setBuildingInteractionHint("Fill 'Empty Cup'");
+        else if (batteryPlaced == true)
+            Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
+        else
+            Button_Hint.clearBuildingInteractionHint();
     }
 }

@@ -37,6 +37,8 @@ public class Item_014 : Item          //crop plot
             {
                 interaction();
             }
+
+            buttonHintHandle();
         }
 
         grow();
@@ -112,5 +114,28 @@ public class Item_014 : Item          //crop plot
                 return i;
 
         return -1;
+    }
+
+    void buttonHintHandle()
+    {
+        for (int i = 0; i < 3; i++)       //collects grown crops
+            if (slotStatusArray[i].Equals("STAGE_3"))
+            {
+                string text = "Collect '" + FindObjectOfType<ItemsList>().getName(cropItemCodeArray[i]) + "'";
+                Button_Hint.setBuildingInteractionHint(text);
+                return;
+            }
+
+        for (int i = 0; i < 3; i++)        //plants new crops
+            if (slotStatusArray[i].Equals("EMPTY"))
+                for (int j = 0; j < plantableItemCodeArray.Length; j++)
+                    if (Item.getUsedObjectItemCode() == plantableItemCodeArray[j])
+                    {
+                        string text = "Plant '" + FindObjectOfType<ItemsList>().getName(Item.getUsedObjectItemCode()) + "'";
+                        Button_Hint.setBuildingInteractionHint(text);
+                        return;
+                    }
+
+        Button_Hint.clearBuildingInteractionHint();
     }
 }

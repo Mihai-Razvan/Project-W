@@ -39,6 +39,8 @@ public class Item_016 : Item
             {
                 interaction();
             }
+
+            buttonHintHandle();
         }
 
         charge();
@@ -86,5 +88,15 @@ public class Item_016 : Item
         bigCircleAnimator.speed = animationSpeed;
         smallCircleAnimator.speed = animationSpeed * 3;
         windText.text = FindObjectOfType<Wind>().getSpeed().ToString();
+    }
+
+    void buttonHintHandle()
+    {
+        if (batteryPlaced == true)
+            Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
+        else if (selectedItemCode == 17)
+            Button_Hint.setBuildingInteractionHint("Place 'Battery'");
+        else
+            Button_Hint.clearBuildingInteractionHint();
     }
 }

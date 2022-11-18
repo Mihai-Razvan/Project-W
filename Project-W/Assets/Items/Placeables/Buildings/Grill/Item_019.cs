@@ -56,6 +56,8 @@ public class Item_019 : Item   //grill
             {
                 interaction();             
             }
+
+            buttonHintHandle();
         }
 
         if (foodPlaced == true && cooked == false)
@@ -64,7 +66,7 @@ public class Item_019 : Item   //grill
 
     void interaction()
     {
-        if(getUsedObjectItemCode() == 17)       //battery 
+        if(selectedItemCode == 17)       //battery 
             handleBattery();
         else
         {
@@ -183,5 +185,33 @@ public class Item_019 : Item   //grill
 
         Destroy(coalsPlace.transform.GetChild(0).gameObject);
         spawnedModel.transform.SetParent(coalsPlace.transform);
+    }
+
+    void buttonHintHandle()
+    {
+        if (selectedItemCode == 17)
+        {
+            if(batteryPlaced == false)
+                Button_Hint.setBuildingInteractionHint("Place 'Battery'");
+            else
+                Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
+        }
+        else
+        {
+            if (getIndex(selectedItemCode) != -1 && foodPlaced == false)
+            {
+                string text = "Place '" + FindObjectOfType<ItemsList>().getName(selectedItemCode) + "'";
+                Button_Hint.setBuildingInteractionHint(text);
+            }
+            else if (foodPlaced == true && cooked == true)
+            {
+                string text = "Collect '" + FindObjectOfType<ItemsList>().getName(cookedFoodItemCodes[getIndex(placedFoodItemCode)]) + "'";
+                Button_Hint.setBuildingInteractionHint(text);
+            }
+            else if (batteryPlaced == true)
+                Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
+            else
+                Button_Hint.clearBuildingInteractionHint();
+        }
     }
 }

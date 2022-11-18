@@ -29,7 +29,8 @@ public class Inventory_Crafting_Panel : MonoBehaviour
                     status = "OPENED";
                     Player.setActionLock("INVENTORY_OPENED");
 
-                    FindObjectOfType<Crafting_Menu>().openCategory(0);
+                 //   int openedCategory = FindObjectOfType<Crafting_Menu>().getOpenedCategory();
+                 //   FindObjectOfType<Crafting_Menu>().openCategory(openedCategory);
                     FindObjectOfType<Craft_Panel>().setActive(true);
                 }
             }
