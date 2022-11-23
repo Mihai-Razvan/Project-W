@@ -145,14 +145,14 @@ public class Item_021 : Item   //Atmosphere Condensator
         if (selectedItemCode == 17)
         {
             if (batteryPlaced == false)
-                Button_Hint.setBuildingInteractionHint("Place 'Battery'");
+                Button_Hint.setBuildingInteractionHint("Place\n'Battery'");
             else
-                Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
+                Button_Hint.setBuildingInteractionHint("Collect\n'Battery'");
         }
         else if (selectedItemCode == 22 && filled == true)
-            Button_Hint.setBuildingInteractionHint("Fill 'Empty Cup'");
+            Button_Hint.setBuildingInteractionHint("Fill\n'Empty Cup'");
         else if (batteryPlaced == true)
-            Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
+            Button_Hint.setBuildingInteractionHint("Collect\n'Battery'");
         else
             Button_Hint.clearBuildingInteractionHint();
     }

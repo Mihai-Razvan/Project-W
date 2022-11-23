@@ -18,8 +18,10 @@ public class Building : Placeable
             }
     }
 
-    protected void rotateObject()
+    protected void rotateObject(string buildingName)
     {
+        Button_Hint.setRotateInteractionHint(buildingName);
+
         if (Input.GetKey(KeyCode.R))
             getUsedObject().transform.rotation *= Quaternion.Euler(0, 90 * Time.deltaTime, 0);
     }

@@ -192,24 +192,24 @@ public class Item_019 : Item   //grill
         if (selectedItemCode == 17)
         {
             if(batteryPlaced == false)
-                Button_Hint.setBuildingInteractionHint("Place 'Battery'");
+                Button_Hint.setBuildingInteractionHint("Place\n'Battery'");
             else
-                Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
+                Button_Hint.setBuildingInteractionHint("Collect\n'Battery'");
         }
         else
         {
             if (getIndex(selectedItemCode) != -1 && foodPlaced == false)
             {
-                string text = "Place '" + FindObjectOfType<ItemsList>().getName(selectedItemCode) + "'";
+                string text = "Place\n'" + FindObjectOfType<ItemsList>().getName(selectedItemCode) + "'";
                 Button_Hint.setBuildingInteractionHint(text);
             }
             else if (foodPlaced == true && cooked == true)
             {
-                string text = "Collect '" + FindObjectOfType<ItemsList>().getName(cookedFoodItemCodes[getIndex(placedFoodItemCode)]) + "'";
+                string text = "Collect\n'" + FindObjectOfType<ItemsList>().getName(cookedFoodItemCodes[getIndex(placedFoodItemCode)]) + "'";
                 Button_Hint.setBuildingInteractionHint(text);
             }
             else if (batteryPlaced == true)
-                Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
+                Button_Hint.setBuildingInteractionHint("Collect\n'Battery'");
             else
                 Button_Hint.clearBuildingInteractionHint();
         }

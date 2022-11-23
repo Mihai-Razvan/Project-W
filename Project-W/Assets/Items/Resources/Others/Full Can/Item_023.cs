@@ -6,8 +6,13 @@ public class Item_023: Item //full cup
 {
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && itemCode == selectedItemCode && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
-            consume();
+        if (itemCode == selectedItemCode && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        {
+            Button_Hint.setConsumeInteractionHint("Drink\n'Water'");
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                consume();
+        }
     }
 
     private void consume()

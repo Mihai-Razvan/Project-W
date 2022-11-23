@@ -6,8 +6,13 @@ public class Item_018 : Item  //backed patato
 {
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && itemCode == selectedItemCode && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
-            consume();
+        if (itemCode == selectedItemCode && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        {
+            Button_Hint.setConsumeInteractionHint("Eat\n'Backed Patato'");
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                consume();
+        }
     }
 
     private void consume()

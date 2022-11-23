@@ -104,6 +104,8 @@ public class Item_012_P : Placeable     //inclined wall
 
     void rotateObject()
     {
+        Button_Hint.setRotateInteractionHint("Inclined Wall");
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             getUsedObject().transform.rotation *= Quaternion.Euler(0, 90, 0);

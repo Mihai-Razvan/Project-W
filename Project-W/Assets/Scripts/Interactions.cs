@@ -13,8 +13,6 @@ public class Interactions : MonoBehaviour
     [SerializeField]
     LayerMask resourcesMask;
 
-    static int numOfResources;             //the number of resources you can collect (they are in front of you falling or in collection vacuum)
-    static int resourceItemCode;           //the item code of the resource you can collect
     static GameObject inRangeBuilding;   //the building the player CAN interact with; even if it s a non interactable building this will still hold the gameobject
 
 
@@ -27,10 +25,10 @@ public class Interactions : MonoBehaviour
     void checkResources()
     {
         Collider[] colliders = Physics.OverlapCapsule(Camera.main.transform.position, Camera.main.transform.position + Camera.main.transform.forward * detectionCapsuleLength, detectionCapsuleRadius, resourcesMask);
-        if(colliders.Length > 0)
+        if (colliders.Length > 0)
         {
-            if(Input.GetKeyDown(KeyCode.E))
-                for(int i = 0; i < colliders.Length; i++)
+            if (Input.GetKeyDown(KeyCode.E))
+                for (int i = 0; i < colliders.Length; i++)
                 {
                     int[] itemCodeArray = colliders[i].GetComponent<ResourcesData>().getItemCodeArray();
                     int[] quantityArray = colliders[i].GetComponent<ResourcesData>().getQuantityArray();
@@ -40,10 +38,11 @@ public class Interactions : MonoBehaviour
 
                     Destroy(colliders[i].gameObject);
                 }
-            resourceItemCode = Item.getItemCode(colliders[0].gameObject.tag);
-        }
 
-        numOfResources = colliders.Length;
+            Button_Hint.setCollectResourceInteractionHint(colliders[0].gameObject.tag);
+        }
+        else
+            Button_Hint.clearCollectResourceInteractionHint();
     }
 
     void checkBuildings()

@@ -94,10 +94,11 @@ public class Item_008_P : Placeable    //stairs
 
     void rotateObject()
     {
+        Button_Hint.setRotateInteractionHint("Stairs");
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             getUsedObject().transform.rotation *= Quaternion.Euler(0, 90, 0);
-            
         }
     }
 }

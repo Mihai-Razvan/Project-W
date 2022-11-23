@@ -14,7 +14,7 @@ public class Item_016_P : Building           //wind turbine
         if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             placeDummy();
-            rotateObject();
+            rotateObject("Wind turbine");
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))
                 spawnPlacePrefab();
         }

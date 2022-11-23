@@ -190,7 +190,7 @@ public class Item_024 : Item
                 }
                 break;
             case "COLLECTED":
-                Button_Hint.setBuildingInteractionHint("Destroy Tree");
+                Button_Hint.setBuildingInteractionHint("Destroy Tree\n hold 'E' until destroyed");
                 break;
             case "DESTROYING":
                 Button_Hint.clearBuildingInteractionHint();

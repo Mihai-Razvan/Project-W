@@ -32,6 +32,7 @@ public class Inventory_Crafting_Panel : MonoBehaviour
                  //   int openedCategory = FindObjectOfType<Crafting_Menu>().getOpenedCategory();
                  //   FindObjectOfType<Crafting_Menu>().openCategory(openedCategory);
                     FindObjectOfType<Craft_Panel>().setActive(true);
+                    UnityEngine.Cursor.visible = true;
                 }
             }
             else
@@ -39,7 +40,8 @@ public class Inventory_Crafting_Panel : MonoBehaviour
                 inventoryTab.SetActive(false);
                 craftingMenu.SetActive(false);
                 status = "CLOSED";
-                Player.setActionLock("UNLOCKED");       
+                Player.setActionLock("UNLOCKED");
+                UnityEngine.Cursor.visible = false;
             }
         }
     }

@@ -14,7 +14,7 @@ public class Item_021_P : Building           //water extractor
         if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             placeDummy();
-            rotateObject();
+            rotateObject("Atmosphere condensator");
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))
                 spawnPlacePrefab();
         }

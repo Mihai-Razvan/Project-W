@@ -14,7 +14,7 @@ public class Item_019_P : Building           //grill
         if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             placeDummy();
-            rotateObject();
+            rotateObject("Grill");
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))
                 spawnPlacePrefab();
         }

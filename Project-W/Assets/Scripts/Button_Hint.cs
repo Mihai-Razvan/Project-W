@@ -18,6 +18,9 @@ public class Button_Hint : MonoBehaviour       //this is the script that handles
 
         for (int i = 0; i < hintCategories.Length; i++)
             hintCategories[i].SetActive(false);
+
+        Player_Inventory.onItemSelected += clearRotateInteractionHint;
+        Player_Inventory.onItemSelected += clearConsumeInteractionHint;
     }
 
     void Update()
@@ -35,5 +38,40 @@ public class Button_Hint : MonoBehaviour       //this is the script that handles
     public static void clearBuildingInteractionHint()
     {
         hintCategories[0].SetActive(false);
+    }
+
+    public static void setCollectResourceInteractionHint(string resourceTag)
+    {
+        hintCategories[1].SetActive(true);
+        string hint = "Collect" + "\n'" + FindObjectOfType<ItemsList>().getName(Item.getItemCode(resourceTag));   
+        hintCategories[1].transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = hint;
+    }
+
+    public static void clearCollectResourceInteractionHint()
+    {
+        hintCategories[1].SetActive(false);
+    }
+
+    public static void setRotateInteractionHint(string placeableName)
+    {
+        hintCategories[2].SetActive(true);
+        string hint = placeableName + '\n' + "'R' to rotate";
+        hintCategories[2].transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = hint;
+    }
+
+    public static void clearRotateInteractionHint()
+    {
+        hintCategories[2].SetActive(false);
+    }
+
+    public static void setConsumeInteractionHint(string hint)
+    {
+        hintCategories[3].SetActive(true);
+        hintCategories[3].transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = hint;
+    }
+
+    public static void clearConsumeInteractionHint()
+    {
+        hintCategories[3].SetActive(false);
     }
 }

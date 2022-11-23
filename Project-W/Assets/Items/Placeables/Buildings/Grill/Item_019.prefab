@@ -343,7 +343,7 @@ MonoBehaviour:
   - {fileID: 5895493175718288811, guid: 2ed797bafd872af4c938dbcfa50f764f, type: 3}
   cookedFoodsPrefabs:
   - {fileID: 9205056100973135719, guid: 1276621a1be3a214f8f34fd9cbc5be22, type: 3}
-  grillTime: 3c000000
+  grillTime: 05000000
   cookedFoodItemCodes: 12000000
   batteryConsumption: 1
   timeLeftText: {fileID: 7263959889565934048}
