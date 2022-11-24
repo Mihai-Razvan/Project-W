@@ -8,7 +8,7 @@ public class Item_023: Item //full cup
     {
         if (itemCode == selectedItemCode && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
-            Button_Hint.setConsumeInteractionHint("Drink\n'Water'");
+            Button_Hint.setConsumeInteractionHint("Drink'");
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
                 consume();

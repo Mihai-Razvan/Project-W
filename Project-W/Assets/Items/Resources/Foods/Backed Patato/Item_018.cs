@@ -8,7 +8,7 @@ public class Item_018 : Item  //backed patato
     {
         if (itemCode == selectedItemCode && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
-            Button_Hint.setConsumeInteractionHint("Eat\n'Backed Patato'");
+            Button_Hint.setConsumeInteractionHint("Eat");
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
                 consume();

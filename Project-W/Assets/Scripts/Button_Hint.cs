@@ -43,7 +43,7 @@ public class Button_Hint : MonoBehaviour       //this is the script that handles
     public static void setCollectResourceInteractionHint(string resourceTag)
     {
         hintCategories[1].SetActive(true);
-        string hint = "Collect" + "\n'" + FindObjectOfType<ItemsList>().getName(Item.getItemCode(resourceTag));   
+        string hint = "Collect '"  + FindObjectOfType<ItemsList>().getName(Item.getItemCode(resourceTag)) + "'";   
         hintCategories[1].transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = hint;
     }
 
@@ -55,7 +55,8 @@ public class Button_Hint : MonoBehaviour       //this is the script that handles
     public static void setRotateInteractionHint(string placeableName)
     {
         hintCategories[2].SetActive(true);
-        string hint = placeableName + '\n' + "'R' to rotate";
+        // string hint = placeableName + '\n' + "'R' to rotate";
+        string hint = "Press or hold to rotate smoothly";
         hintCategories[2].transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = hint;
     }
 

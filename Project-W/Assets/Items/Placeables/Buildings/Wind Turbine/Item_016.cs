@@ -93,9 +93,9 @@ public class Item_016 : Item
     void buttonHintHandle()
     {
         if (batteryPlaced == true)
-            Button_Hint.setBuildingInteractionHint("Collect\n'Battery'");
+            Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
         else if (selectedItemCode == 17)
-            Button_Hint.setBuildingInteractionHint("Place\n'Battery'");
+            Button_Hint.setBuildingInteractionHint("Place 'Battery'");
         else
             Button_Hint.clearBuildingInteractionHint();
     }
