@@ -94,7 +94,7 @@ public class Item_008_P : Placeable    //stairs
 
     void rotateObject()
     {
-        Button_Hint.setRotateInteractionHint("Stairs");
+        Button_Hint.setRotateInteractionHint("Press to rotate");
 
         if (Input.GetKeyDown(KeyCode.R))
         {

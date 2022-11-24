@@ -104,7 +104,7 @@ public class Item_012_P : Placeable     //inclined wall
 
     void rotateObject()
     {
-        Button_Hint.setRotateInteractionHint("Inclined Wall");
+        Button_Hint.setRotateInteractionHint("Press to rotate");
 
         if (Input.GetKeyDown(KeyCode.R))
         {

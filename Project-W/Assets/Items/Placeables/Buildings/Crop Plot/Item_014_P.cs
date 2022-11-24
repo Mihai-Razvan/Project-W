@@ -14,7 +14,7 @@ public class Item_014_P : Building           //crop plot
         if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
         {
             placeDummy();
-            rotateObject("Crop plot");
+            rotateObject();
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))
                 spawnPlacePrefab();
         }

@@ -52,11 +52,9 @@ public class Button_Hint : MonoBehaviour       //this is the script that handles
         hintCategories[1].SetActive(false);
     }
 
-    public static void setRotateInteractionHint(string placeableName)
+    public static void setRotateInteractionHint(string hint)
     {
         hintCategories[2].SetActive(true);
-        // string hint = placeableName + '\n' + "'R' to rotate";
-        string hint = "Press or hold to rotate smoothly";
         hintCategories[2].transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = hint;
     }
 

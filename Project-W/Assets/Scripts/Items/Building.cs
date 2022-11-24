@@ -18,9 +18,9 @@ public class Building : Placeable
             }
     }
 
-    protected void rotateObject(string buildingName)
+    protected void rotateObject()
     {
-        Button_Hint.setRotateInteractionHint(buildingName);
+        Button_Hint.setRotateInteractionHint("Press or hold to rotate smoothly");
 
         if (Input.GetKey(KeyCode.R))
             getUsedObject().transform.rotation *= Quaternion.Euler(0, 90 * Time.deltaTime, 0);
