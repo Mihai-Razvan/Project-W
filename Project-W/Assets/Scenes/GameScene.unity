@@ -7023,7 +7023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &278707631
 Transform:
   m_ObjectHideFlags: 0
@@ -12865,7 +12865,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &561364634
 PrefabInstance:
@@ -20584,9 +20584,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 885755179}
+  - component: {fileID: 885755181}
   - component: {fileID: 885755180}
   - component: {fileID: 885755182}
-  - component: {fileID: 885755181}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -20654,10 +20654,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f10122b06145c48a959c5958b9cae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 5
-  runningSpeed: 10
   controller: {fileID: 885755181}
-  gravity: -220
+  groundCheck: {fileID: 560562202}
+  placeableMask:
+    serializedVersion: 2
+    m_Bits: 256
+  walkingSpeed: 10
+  runningSpeed: 15
+  gravity: -20
+  minimumVelocity: -20
+  jumpForce: 9
 --- !u!4 &886366223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7566658814291334610, guid: 04aec7fce5ebd934f874f3b32ff58c90, type: 3}
@@ -20859,7 +20865,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &893920342
 Transform:
   m_ObjectHideFlags: 0
