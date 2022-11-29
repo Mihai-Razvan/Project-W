@@ -40,7 +40,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
         if (itemCode != 0)
         {
             itemImage.gameObject.SetActive(true);
-            itemImage.sprite = FindObjectOfType<ItemsList>().getSprite(itemCode);
+            itemImage.sprite = ItemsList.getSprite(itemCode);
             quantityText.gameObject.SetActive(true);
             quantityText.text = getInventoryHolder().GetComponent<Inventory>().getQuantity(slot).ToString();
             

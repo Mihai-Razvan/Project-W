@@ -200,12 +200,12 @@ public class Item_019 : Item   //grill
         {
             if (getIndex(selectedItemCode) != -1 && foodPlaced == false)
             {
-                string text = "Place '" + FindObjectOfType<ItemsList>().getName(selectedItemCode) + "'";
+                string text = "Place '" + ItemsList.getName(selectedItemCode) + "'";
                 Button_Hint.setBuildingInteractionHint(text);
             }
             else if (foodPlaced == true && cooked == true)
             {
-                string text = "Collect '" + FindObjectOfType<ItemsList>().getName(cookedFoodItemCodes[getIndex(placedFoodItemCode)]) + "'";
+                string text = "Collect '" + ItemsList.getName(cookedFoodItemCodes[getIndex(placedFoodItemCode)]) + "'";
                 Button_Hint.setBuildingInteractionHint(text);
             }
             else if (batteryPlaced == true)

@@ -49,16 +49,16 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
         for (int i = 0; i <= resourcesNumber - 1; i++)         //activate all of them
         {
             resourcesSlots[i].SetActive(true);
-            Sprite resourceSprite = FindObjectOfType<ItemsList>().getSprite(resourcesItemCodes[i]);
+            Sprite resourceSprite = ItemsList.getSprite(resourcesItemCodes[i]);
             resourcesSlots[i].transform.GetChild(1).GetComponent<Image>().sprite = resourceSprite;
 
             int availableQuantity = Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
             resourcesSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = availableQuantity + "/" + resourcesQuantity[i];
         }
 
-        Sprite itemSprite = FindObjectOfType<ItemsList>().getSprite(itemCode);
-        string itemName = FindObjectOfType<ItemsList>().getName(itemCode);
-        string itemdescription = FindObjectOfType<ItemsList>().getDescription(itemCode);
+        Sprite itemSprite = ItemsList.getSprite(itemCode);
+        string itemName = ItemsList.getName(itemCode);
+        string itemdescription = ItemsList.getDescription(itemCode);
 
         itemImage.sprite = itemSprite;
         itemNameText.text = itemName;

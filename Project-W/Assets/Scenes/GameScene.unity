@@ -26873,8 +26873,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Item Description
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -26904,7 +26904,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -33518,8 +33518,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Item Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -33549,7 +33549,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -36845,7 +36845,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 839.4, y: -500}
+  m_AnchoredPosition: {x: 830, y: -500}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1620169427
@@ -46244,7 +46244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e44b88b0d18754e877ccd7f2d04783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteArray:
+  spriteArrayHelper:
   - {fileID: 0}
   - {fileID: 21300000, guid: b3faa96949dcd9b419d59d6ea00f60a0, type: 3}
   - {fileID: 21300000, guid: 28ed7ee536e791e43b359e4bf9f2b233, type: 3}
@@ -46258,7 +46258,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2062ebbc62a133449a6270e69ee2ebd9, type: 3}
   - {fileID: 21300000, guid: 0bfdd9bc8bcc9cd44bf8740ea12adc71, type: 3}
   - {fileID: 21300000, guid: fb063b721a05ef44ebb3ef0883f19316, type: 3}
-  - {fileID: 21300000, guid: e85cc31cbfc4a4844a4a1ccbed1f9b57, type: 3}
+  - {fileID: 21300000, guid: 4f0f5108c61921949b9e27c822f26d59, type: 3}
   - {fileID: 21300000, guid: 70cdacd57764e8f44bc4148be24ff42e, type: 3}
   - {fileID: 21300000, guid: 03575705a17e607409e7672dfe315396, type: 3}
   - {fileID: 21300000, guid: 2c7da31080e16bc4ea9e8663e7a7fc64, type: 3}
@@ -46273,65 +46273,65 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 41323cace44b1f246b2f6b3868bf1bb1, type: 3}
   - {fileID: 21300000, guid: 4f0f5108c61921949b9e27c822f26d59, type: 3}
   - {fileID: 21300000, guid: eb0f7bb765ee1674fa72d7dfddcf1cfe, type: 3}
-  nameArray:
+  nameArrayHelper:
   - 
   - Cobalt
   - Grappler
-  - Dropped Box
+  - 
   - Foundation
   - Wall
   - Pillar
   - Floor
   - Stairs
-  - Shattered Glass
+  - Shattered glass
   - Glass
-  - Scrap Metal
-  - Inclined Wall
-  - Crate
-  - Crop Plot
+  - Scrap metal
+  - Inclined wall
+  - 
+  - Crop plot
   - Patato
-  - Wind Turbine
+  - Wind turbine
   - Battery
-  - Backed Patato
+  - Backed patato
   - Grill
-  - Collection Vacuum
-  - Atmosphere Condensator
-  - Empty Can
-  - Full Can
-  - Tree Crop Plot
-  - Kwaki Seeds
-  - Kwaki Tree
+  - Collection vacuum
+  - Atmosphere condensator
+  - Empty can
+  - Full can
+  - Tree crop plot
+  - Kwaki seeds
+  - 
   - Kwaki
-  descriptionArray:
+  descriptionArrayHelper:
   - 
   - Cobalt Description
-  - Grappler Description
-  - Dropped Box Description
+  - CobaltGrappler
+  - 
   - Foundation Description
   - Wall Description
   - Pillar Description
   - Floor Description
   - Stairs Description
-  - Shattered Glass Description
+  - Shattered glass Description
   - Glass Description
-  - Scrap Metal Description
+  - Scrap metal Description
   - Inclined Wall Description
-  - Crate Description
-  - Crop Plot Description
+  - 
+  - Crop plot Description
   - Patato Description
-  - Wind Turbine Description
+  - Wind turbine Description
   - Battery Description
   - Backed Patato Description
   - Grill Description
-  - Collection Vacuum Description
-  - Atmosphere Condensator Description
-  - Empty Can Description
-  - Full Can Description
-  - Tree Crop Plot Description
-  - Kwaki Seeds Description
-  - Kwaki Tree Description
+  - Collection vacuum Description
+  - Atmosphere condensator Description
+  - Empty cup Description
+  - Full cup Description
+  - Tree crop plot Description
+  - Kwaki seeds Description
+  - 
   - Kwaki Description
-  inventoryLimit: 00000000140000000100000001000000140000001400000014000000140000001400000014000000140000001400000014000000140000001400000014000000140000000100000014000000140000001400000014000000010000000100000014000000140000001400000014000000
+  inventoryLimitHelper: 00000000630000006300000000000000630000006300000063000000630000006300000063000000630000006300000063000000000000006300000063000000630000000100000063000000630000006300000063000000010000000100000063000000630000000000000063000000
 --- !u!1001 &1991531617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47898,7 +47898,6 @@ GameObject:
   - component: {fileID: 2076925087}
   - component: {fileID: 2076925088}
   - component: {fileID: 2076925089}
-  - component: {fileID: 2076925084}
   - component: {fileID: 2076925090}
   m_Layer: 0
   m_Name: Resources-Scripts
@@ -47942,18 +47941,6 @@ MonoBehaviour:
   itemCode: 15
   prefab: {fileID: 759883740299804543, guid: 6f868560d25919349bbe75520153c49c, type: 3}
   parentObject: {fileID: 447373184}
---- !u!114 &2076925084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076925081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6370b3e8b0430243a160d4134c28cd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2076925085
 MonoBehaviour:
   m_ObjectHideFlags: 0

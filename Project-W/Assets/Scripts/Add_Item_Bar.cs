@@ -46,8 +46,8 @@ public class Add_Item_Bar : MonoBehaviour      //used to manage the bars that sh
         spawnedObject.transform.localScale = new Vector3(1, 1, 1);
 
         spawnedObject.transform.Find("Quantity").gameObject.GetComponent<TextMeshProUGUI>().text = "+" + quantity;
-        spawnedObject.transform.Find("Item_Name").gameObject.GetComponent<TextMeshProUGUI>().text = FindObjectOfType<ItemsList>().getName(itemCode);
-        spawnedObject.transform.Find("Item_Image").gameObject.GetComponent<Image>().sprite = FindObjectOfType<ItemsList>().getSprite(itemCode);
+        spawnedObject.transform.Find("Item_Name").gameObject.GetComponent<TextMeshProUGUI>().text = ItemsList.getName(itemCode);
+        spawnedObject.transform.Find("Item_Image").gameObject.GetComponent<Image>().sprite = ItemsList.getSprite(itemCode);
 
         barsList.Insert(0, spawnedObject);
         timeSinceInstantiated.Insert(0, 0);

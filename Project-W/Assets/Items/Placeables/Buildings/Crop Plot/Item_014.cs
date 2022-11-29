@@ -121,7 +121,7 @@ public class Item_014 : Item          //crop plot
         for (int i = 0; i < 3; i++)       //collects grown crops
             if (slotStatusArray[i].Equals("STAGE_3"))
             {
-                string text = "Collect '" + FindObjectOfType<ItemsList>().getName(cropItemCodeArray[i]) + "'";
+                string text = "Collect '" + ItemsList.getName(cropItemCodeArray[i]) + "'";
                 Button_Hint.setBuildingInteractionHint(text);
                 return;
             }
@@ -131,7 +131,7 @@ public class Item_014 : Item          //crop plot
                 for (int j = 0; j < plantableItemCodeArray.Length; j++)
                     if (Item.getUsedObjectItemCode() == plantableItemCodeArray[j])
                     {
-                        string text = "Plant '" + FindObjectOfType<ItemsList>().getName(Item.getUsedObjectItemCode()) + "'";
+                        string text = "Plant '" + ItemsList.getName(Item.getUsedObjectItemCode()) + "'";
                         Button_Hint.setBuildingInteractionHint(text);
                         return;
                     }

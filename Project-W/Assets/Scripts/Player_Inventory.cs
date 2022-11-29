@@ -71,9 +71,9 @@ public class Player_Inventory : MonoBehaviour
             infoSlotImage.enabled = true;
             hoveredItemName.enabled = true;
             hoveredItemDescription.enabled = true;
-            infoSlotImage.sprite = FindObjectOfType<ItemsList>().getSprite(itemCode);
-            hoveredItemName.text = FindObjectOfType<ItemsList>().getName(itemCode);
-            hoveredItemDescription.text = FindObjectOfType<ItemsList>().getDescription(itemCode); 
+            infoSlotImage.sprite = ItemsList.getSprite(itemCode);
+            hoveredItemName.text = ItemsList.getName(itemCode);
+            hoveredItemDescription.text = ItemsList.getDescription(itemCode); 
         }
         else
         {

@@ -43,7 +43,7 @@ public class Button_Hint : MonoBehaviour       //this is the script that handles
     public static void setCollectResourceInteractionHint(string resourceTag)
     {
         hintCategories[1].SetActive(true);
-        string hint = "Collect '"  + FindObjectOfType<ItemsList>().getName(Item.getItemCode(resourceTag)) + "'";   
+        string hint = "Collect '"  + ItemsList.getName(ItemsList.getItemCode(resourceTag)) + "'";   
         hintCategories[1].transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = hint;
     }
 

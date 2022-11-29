@@ -174,7 +174,7 @@ public class Item_024 : Item
             case "EMPTY":
                 if (getIndex(selectedItemCode) != -1)
                 {
-                    string text = "Plant '" + FindObjectOfType<ItemsList>().getName(selectedItemCode) + "'";
+                    string text = "Plant '" + ItemsList.getName(selectedItemCode) + "'";
                     Button_Hint.setBuildingInteractionHint(text);
                 }
                 else
@@ -185,7 +185,7 @@ public class Item_024 : Item
                 break;
             case "GROWN":
                 {
-                    string text = "Collect '" + FindObjectOfType<ItemsList>().getName(fruitItemCode) + "'";
+                    string text = "Collect '" + ItemsList.getName(fruitItemCode) + "'";
                     Button_Hint.setBuildingInteractionHint(text);
                 }
                 break;
