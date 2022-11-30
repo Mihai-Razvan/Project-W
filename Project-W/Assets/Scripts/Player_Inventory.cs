@@ -43,7 +43,7 @@ public class Player_Inventory : MonoBehaviour
 
     void selectInventorySlot()     //when you press a numeric key on keyboard it will select that slot in inventory bar
     {
-        if (Player.getActionLock().Equals("ACTION_LOCKED"))
+        if (ActionLock.getActionLock().Equals("ACTION_LOCKED"))
             return;
 
         bool newSelection = false;

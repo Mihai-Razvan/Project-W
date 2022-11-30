@@ -5,15 +5,24 @@ using UnityEngine;
 public class CameraLook : MonoBehaviour
 {
     [SerializeField]
-    float rotationSpeed;
-    float xRotation = 0f;
+    Transform playerTransformHelper;
+    [SerializeField]
+    Transform cameraTransformHelper;
 
-    private void Start()
+    static Transform playerTransform;
+    static Transform cameraTransform;
+    static float rotationSpeed;
+    static float xRotation;
+
+    void Start()
     {
-        xRotation = 0f;
+        xRotation = 0;
+        rotationSpeed = 150;
+        playerTransform = playerTransformHelper;
+        cameraTransform = cameraTransformHelper;
     }
 
-    public void rotateCamera(Transform playerTransform)
+    public static void rotateCamera()
     {
         float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
@@ -21,7 +30,7 @@ public class CameraLook : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -75f, 80f);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerTransform.Rotate(Vector3.up * mouseX);
     }
 }

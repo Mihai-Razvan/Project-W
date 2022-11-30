@@ -31,7 +31,7 @@ public class Item_014 : Item          //crop plot
 
     void Update()
     {
-        if(Interactions.getInRangeBuilding() == this.gameObject && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        if(Interactions.getInRangeBuilding() == this.gameObject && ActionLock.getActionLock().Equals("UNLOCKED"))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {

@@ -38,7 +38,7 @@ public class Item_021 : Item   //Atmosphere Condensator
 
     void Update()
     {
-        if (Interactions.getInRangeBuilding() == this.gameObject && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        if (Interactions.getInRangeBuilding() == this.gameObject && ActionLock.getActionLock().Equals("UNLOCKED"))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {

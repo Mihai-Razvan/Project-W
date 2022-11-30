@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     Transform groundCheck;
     [SerializeField]
     LayerMask placeableMask;     //groundMask
+    string movementState;
     [SerializeField]
     float walkingSpeed;
     [SerializeField]
@@ -23,16 +24,25 @@ public class PlayerMovement : MonoBehaviour
     float jumpForce;
     bool grounded;
 
+    void Start()
+    {
+        movementState = "WALKING";
+    }
+
     void Update()
     {
-        movement();
+        if (ActionLock.getActionLock().Equals("UI_OPENED") == false)
+        {
+            movement();
+            jump();
+        }
+
         verticalMovement();
-        jump();
     }
 
     void movement()
     {
-        switch (FindObjectOfType<Player>().getMovementState())
+        switch (movementState)
         {
             case "WALKING":
                 walkingState();
@@ -42,13 +52,8 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
 
-   /*     if (Input.GetKey(KeyCode.Z))
-        {
-            transform.position = transform.position + new Vector3(0, 5 * Time.deltaTime, 0);
-            actualGravity = 0;
-        }
-        else if (Input.GetKey(KeyCode.LeftAlt))
-            transform.position = transform.position + new Vector3(0, -2 * Time.deltaTime, 0);*/
+        if (Input.GetKey(KeyCode.Z))       //for development
+            velocity = 10;
     }
 
     void walkingState()
@@ -60,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * walkingSpeed * Time.deltaTime);
 
         if (Input.GetKey(KeyCode.LeftShift))
-            FindObjectOfType<Player>().setState("RUNNING");
+            movementState = "RUNNING";
     }
 
     void runningState()
@@ -72,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * walkingSpeed * Time.deltaTime);     
 
         if (!Input.GetKey(KeyCode.LeftShift))
-            FindObjectOfType<Player>().setState("WALKING");
+            movementState = "WALKING";
     }
 
     void verticalMovement()

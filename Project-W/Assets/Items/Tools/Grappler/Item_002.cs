@@ -40,7 +40,7 @@ public class Item_002 : Tool   //grappler
 
     void Update()
     {
-        if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)     //we use getusedobject() in case the object appears on selected slot when slot is already selected
+        if (itemCode == selectedItemCode && getUsedObject() != null && ActionLock.getActionLock().Equals("UI_OPENED") == false)     //we use getusedobject() in case the object appears on selected slot when slot is already selected
         {
             beamStartEffect = getUsedObject().transform.GetChild(0).transform.GetChild(1).gameObject;
             rayStartPosition = getUsedObject().transform.GetChild(0).transform.GetChild(0);
@@ -53,11 +53,13 @@ public class Item_002 : Tool   //grappler
                     {
                         chargeLaser();
                         beamStartEffect.SetActive(true);
+                        ActionLock.setActionLock("ACTION_LOCKED");
                     }
                     else if (Input.GetKeyUp(KeyCode.Mouse0))
                     {
                         laserState = "EXPANDING";
                         ChargeRadial.resetCharge();
+                        ActionLock.setActionLock("ACTION_LOCKED");
                     }
                     else
                         beamStartEffect.SetActive(false);
@@ -67,27 +69,25 @@ public class Item_002 : Tool   //grappler
                     drawLaser();
                     makeCollider();
                     moveMaterials();
+                    ActionLock.setActionLock("ACTION_LOCKED");
 
                     break;
                 case "RETRACTING":
                     drawLaser();
                     makeCollider();
                     moveMaterials();
+                    ActionLock.setActionLock("ACTION_LOCKED");
 
                     if (laserState.Equals("UNUSED"))   //in case it became UNUSED in drawLaser()
                     {
                         chargeTime = 0;
                         laserLine.positionCount = 0;     //so the ray disappears
                         laserSize = 0;
+                        ActionLock.setActionLock("UNLOCKED");
                     }
 
                     break;
             }
-
-            if (chargeTime != 0)
-                Player.setActionLock("ACTION_LOCKED");   //if chargeTime != 0 it means it is expanding, retracting or charging, so action is locked
-            else
-                Player.setActionLock("UNLOCKED");
         }
       
     }

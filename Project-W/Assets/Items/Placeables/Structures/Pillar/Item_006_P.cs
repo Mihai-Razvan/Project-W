@@ -19,7 +19,7 @@ public class Item_006_P : Placeable     //pillar
 
     void FixedUpdate()
     {
-        if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        if (itemCode == selectedItemCode && getUsedObject() != null && ActionLock.getActionLock().Equals("UNLOCKED"))
         {
             checkMerge();
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))

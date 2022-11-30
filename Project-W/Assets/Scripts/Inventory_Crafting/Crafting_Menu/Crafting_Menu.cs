@@ -25,12 +25,6 @@ public class Crafting_Menu : MonoBehaviour
         openInitialPanel();
     }
 
-
-    void Update()
-    {
-        
-    }
-
     public void openCategory(int categoryNumber)
     {
         categoryPanels[openedCategory].SetActive(false);      //close the currently opened category

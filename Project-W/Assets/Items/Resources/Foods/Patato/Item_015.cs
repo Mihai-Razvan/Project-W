@@ -6,7 +6,7 @@ public class Item_015 : Item    //patato
 {
     void Update()
     {
-        if (itemCode == selectedItemCode && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        if (itemCode == selectedItemCode && ActionLock.getActionLock().Equals("UNLOCKED"))
         {
             Button_Hint.setConsumeInteractionHint("Eat");
 

@@ -1,4 +1,5 @@
 ActionLock: 
--"ACTION_LOCKED": you can't do interactions (can't open invenotry, chests, settings, but you can move), used while using an item (ex grappler)
 -"UNLOCKED": can do anything
--"INVENOTRY_OPENED": not only player inventory, but also chest inventory etc can be opened (can't move, access settings but can interchange items in inventory)
+-"ACTION_LOCKED": you can't do interactions (can't open invenotry, chests, open inventory, settings, but you can move), used while using an item (ex grappler)
+-"UI_OPENED": player inventory, chest inventory, menu, other building ui (can't move, rotate camera, interact with buildings, use items, open other ui, just close
+the opened one)

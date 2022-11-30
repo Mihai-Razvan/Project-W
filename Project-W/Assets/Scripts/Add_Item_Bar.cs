@@ -74,7 +74,7 @@ public class Add_Item_Bar : MonoBehaviour      //used to manage the bars that sh
         for(int i = 0; i < barsList.Count; i++)
         {
             timeSinceInstantiated[i] += Time.deltaTime;
-            if(timeSinceInstantiated[i] >= 5)       //disappear
+            if(timeSinceInstantiated[i] >= 6)       //disappear
             {
                 Destroy(barsList[i].gameObject);
                 barsList.RemoveAt(i);
@@ -82,7 +82,7 @@ public class Add_Item_Bar : MonoBehaviour      //used to manage the bars that sh
                 i--;
                 continue;
             }
-            else if(timeSinceInstantiated[i] >= 2)        //fade
+            else if(timeSinceInstantiated[i] >= 3)        //fade
             {
                 Color newColor = new Color(255, 255, 255, barsList[i].transform.Find("Background").GetComponent<Image>().color.a - decreaseOpacityPerSec * Time.deltaTime);
                 barsList[i].transform.Find("Background").GetComponent<Image>().color = newColor;

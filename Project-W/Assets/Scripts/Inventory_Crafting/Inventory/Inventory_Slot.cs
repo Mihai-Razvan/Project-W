@@ -67,7 +67,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        if (Inventory_Crafting_Panel.getInventoryStatus().Equals("CLOSED"))
             return;
 
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
@@ -84,7 +84,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     public void OnDrop(PointerEventData eventData)     //when the drag ends
     {
-        if (Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        if (Inventory_Crafting_Panel.getInventoryStatus().Equals("CLOSED"))
             return;
 
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);
@@ -96,7 +96,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
 
     public void OnPointerClick(PointerEventData eventData)     //in case a slot is just clicked but without any darg
     {
-        if (Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        if (Inventory_Crafting_Panel.getInventoryStatus().Equals("CLOSED"))
             return;
 
         int itemCode = getInventoryHolder().GetComponent<Inventory>().getItemCode(slot);

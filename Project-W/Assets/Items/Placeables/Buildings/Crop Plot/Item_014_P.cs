@@ -11,7 +11,7 @@ public class Item_014_P : Building           //crop plot
 
     void Update()
     {
-        if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        if (itemCode == selectedItemCode && getUsedObject() != null && ActionLock.getActionLock().Equals("UNLOCKED"))
         {
             placeDummy();
             rotateObject();

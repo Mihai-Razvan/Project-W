@@ -19,7 +19,7 @@ public class Item_020_P : Placeable //collection vacuum
 
     void Update()
     {
-        if (itemCode == selectedItemCode && getUsedObject() != null && Player.getActionLock().Equals("INVENTORY_OPENED") == false)
+        if (itemCode == selectedItemCode && getUsedObject() != null && ActionLock.getActionLock().Equals("UNLOCKED"))
         {
             checkMerge();
             if (checkCollision() == 0 && Input.GetKeyDown(KeyCode.Mouse0))
