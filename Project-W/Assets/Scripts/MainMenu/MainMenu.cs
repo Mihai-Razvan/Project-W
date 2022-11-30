@@ -15,20 +15,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     Button settingsButton;
 
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
-    {
-        
-    }
-
     public void playButtonAction()
     {
-        Debug.Log("sad");
         SceneManager.LoadScene("GameScene");
     }
 
