@@ -8,5 +8,10 @@ public class Item_018_H : Consumable      //backed patato
     {
         Player_Inventory.onItemSelected += displayPrefab;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }
 

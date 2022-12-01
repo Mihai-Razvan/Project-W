@@ -33,4 +33,9 @@ public class Item_016_P : Building           //wind turbine
 
         return colliders.Length;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }

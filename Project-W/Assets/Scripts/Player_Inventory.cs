@@ -92,4 +92,8 @@ public class Player_Inventory : MonoBehaviour
         return playerInventoryHolder;
     }
 
+    void OnDestroy()
+    {
+        onItemDeselected -= Item.destroyUsedObject;
+    }
 }

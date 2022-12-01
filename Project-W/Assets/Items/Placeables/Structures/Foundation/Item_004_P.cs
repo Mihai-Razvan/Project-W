@@ -86,4 +86,9 @@ public class Item_004_P : Placeable  //foundation
 
         return colliders.Length;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }

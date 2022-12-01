@@ -113,4 +113,9 @@ public class Item_012_P : Placeable     //inclined wall
                 getUsedObject().transform.rotation *= Quaternion.Euler(0, 90, 0);
         }
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }

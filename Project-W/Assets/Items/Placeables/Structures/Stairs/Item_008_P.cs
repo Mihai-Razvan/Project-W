@@ -101,4 +101,9 @@ public class Item_008_P : Placeable    //stairs
             getUsedObject().transform.rotation *= Quaternion.Euler(0, 90, 0);
         }
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }

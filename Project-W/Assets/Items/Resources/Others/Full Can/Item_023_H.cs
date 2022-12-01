@@ -8,5 +8,10 @@ public class Item_023_H : Consumable     //full can
     {
         Player_Inventory.onItemSelected += displayPrefab;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }
 

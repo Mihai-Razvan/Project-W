@@ -39,5 +39,5 @@ public class EscMenu : MonoBehaviour       //this script is placed on canvas, no
         status = "CLOSED";
         ActionLock.setActionLock("UNLOCKED");
         UnityEngine.Cursor.visible = false;
-    }
+    }  
 }

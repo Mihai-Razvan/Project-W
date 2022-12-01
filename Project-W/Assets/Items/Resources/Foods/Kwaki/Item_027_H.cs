@@ -8,4 +8,9 @@ public class Item_027_H : Consumable      //kwaki
     {
         Player_Inventory.onItemSelected += displayPrefab;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }

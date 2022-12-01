@@ -204,4 +204,10 @@ public class Item_002 : Tool   //grappler
     {
         return laserState;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+        Player_Inventory.onItemDeselected -= deselectItem;
+    }
 }

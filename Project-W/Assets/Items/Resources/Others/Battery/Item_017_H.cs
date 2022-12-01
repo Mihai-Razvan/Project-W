@@ -8,5 +8,10 @@ public class Item_017_H : Consumable      //battery
     {
         Player_Inventory.onItemSelected += displayPrefab;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }
 

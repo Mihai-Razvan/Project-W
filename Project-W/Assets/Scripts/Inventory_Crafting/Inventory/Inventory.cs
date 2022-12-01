@@ -178,4 +178,9 @@ public class Inventory : MonoBehaviour
     {
         return chargeArray[slot];
     }
+
+    void OnDestroy()
+    {
+        onInventoryChange -= checkEmpty;
+    }
 }

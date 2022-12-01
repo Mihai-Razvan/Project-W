@@ -34,5 +34,10 @@ public class Item_019_P : Building           //grill
 
         return colliders.Length;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }
 

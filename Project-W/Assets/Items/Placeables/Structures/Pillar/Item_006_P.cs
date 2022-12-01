@@ -69,4 +69,9 @@ public class Item_006_P : Placeable     //pillar
 
         return colliders.Length;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }

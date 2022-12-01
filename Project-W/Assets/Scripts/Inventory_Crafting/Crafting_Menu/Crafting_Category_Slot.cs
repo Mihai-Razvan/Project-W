@@ -11,8 +11,9 @@ public class Crafting_Category_Slot : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     Image outline;
 
-    void Start()
+    void Awake()
     {
+        outline.enabled = false;
         Crafting_Menu.onCategoryChanged += setOutlineEnable;
     }
 
@@ -23,9 +24,14 @@ public class Crafting_Category_Slot : MonoBehaviour, IPointerClickHandler
 
     void setOutlineEnable()
     {
-        if (FindObjectOfType<Crafting_Menu>().getOpenedCategory() == categoryNumber)
-            outline.enabled = true;
-        else
-            outline.enabled = false;
+          if (FindObjectOfType<Crafting_Menu>().getOpenedCategory() == categoryNumber)
+             outline.enabled = true;
+          else
+              outline.enabled = false;
+    }
+
+    void OnDestroy()
+    {
+        Crafting_Menu.onCategoryChanged -= setOutlineEnable;
     }
 }

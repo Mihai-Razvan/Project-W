@@ -86,5 +86,10 @@ public class Item_020_P : Placeable //collection vacuum
 
         return colliders.Length;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }
 

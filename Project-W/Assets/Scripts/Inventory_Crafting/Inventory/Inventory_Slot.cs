@@ -30,7 +30,10 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
         onChange();
 
         if (outline != null)    //it means this a player inventory slot bar, all other slots don't have an outline assigned so it's null
+        {
+            outline.enabled = false;
             Player_Inventory.onItemSelected += setOutlineEnable;
+        }
     }
 
     void onChange()
@@ -143,5 +146,13 @@ public class Inventory_Slot : MonoBehaviour, IPointerDownHandler, IDropHandler, 
     public int getSlotNumber()
     {
         return slot;
+    }
+
+    void OnDestroy()
+    {
+        getInventoryHolder().GetComponent<Inventory>().onInventoryChange -= onChange;
+
+        if (outline != null)    
+            Player_Inventory.onItemSelected -= setOutlineEnable;
     }
 }

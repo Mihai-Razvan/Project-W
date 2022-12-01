@@ -34,4 +34,9 @@ public class Item_024_P : Building           //tree crop plot
 
         return colliders.Length;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }

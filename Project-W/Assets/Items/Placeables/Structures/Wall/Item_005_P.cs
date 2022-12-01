@@ -88,4 +88,9 @@ public class Item_005_P : Placeable   //wall
      
         return wallColliders.Length + numOfOtherCollieders;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }

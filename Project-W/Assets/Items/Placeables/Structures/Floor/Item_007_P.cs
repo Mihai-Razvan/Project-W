@@ -71,4 +71,9 @@ public class Item_007_P : Placeable       //floor
 
         return colliders.Length;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }

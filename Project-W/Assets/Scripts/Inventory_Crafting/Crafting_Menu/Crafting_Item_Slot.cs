@@ -19,6 +19,7 @@ public class Crafting_Item_Slot : MonoBehaviour, IPointerClickHandler
 
     void Awake()
     {
+        outline.enabled = false;
         Crafting_Menu.onitemSlotChanged += setOutlineEnable;
     }
 
@@ -56,5 +57,9 @@ public class Crafting_Item_Slot : MonoBehaviour, IPointerClickHandler
     {
         return resourcesQuantity;
     }
-       
+
+    void OnDestroy()
+    {
+        Crafting_Menu.onitemSlotChanged -= setOutlineEnable;
+    }
 }

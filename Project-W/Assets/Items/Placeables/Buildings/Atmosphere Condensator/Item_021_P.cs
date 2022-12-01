@@ -33,4 +33,9 @@ public class Item_021_P : Building           //water extractor
 
         return colliders.Length;
     }
+
+    void OnDestroy()
+    {
+        Player_Inventory.onItemSelected -= displayPrefab;
+    }
 }
