@@ -21,6 +21,8 @@ public class Inventory : MonoBehaviour
     public int addItem(int itemCode, int quantity, float charge)    
     {
         FindObjectOfType<Add_Item_Bar>().addBar(itemCode, quantity);
+        FindObjectOfType<SoundsManager>().playCollectItemSound();
+
         int inventoryLimit = ItemsList.getInventoryLimit(itemCode);
         int addedSlot = -1; //this is used for the items that can be only one per slot so when you add it adds maximum to one slot; used for ex for batteries to know the slot and set slot charge
 

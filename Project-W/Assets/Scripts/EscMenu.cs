@@ -7,6 +7,10 @@ public class EscMenu : MonoBehaviour       //this script is placed on canvas, no
     [SerializeField]
     GameObject escMenuTab;
     static string status;
+    [SerializeField]
+    AudioSource clickSound;
+    [SerializeField]
+    float clickSoundMaxVolume;
 
     void Start()
     {
@@ -42,5 +46,5 @@ public class EscMenu : MonoBehaviour       //this script is placed on canvas, no
         status = "CLOSED";
         ActionLock.setActionLock("UNLOCKED");
         UnityEngine.Cursor.visible = false;
-    }  
+    }
 }

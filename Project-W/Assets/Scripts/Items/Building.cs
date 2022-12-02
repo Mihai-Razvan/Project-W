@@ -6,6 +6,7 @@ public class Building : Placeable
 {
     [SerializeField]
     float checkFoundationDistance;
+
     protected void placeDummy()   //used to place the dummy
     {
         RaycastHit[] hits = Physics.RaycastAll(Camera.main.transform.position, Camera.main.transform.forward, checkFoundationDistance, buildingMask);

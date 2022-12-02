@@ -26,10 +26,14 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
 
     [SerializeField]
     AudioSource craftSound;
+    [SerializeField]
+    float maxCraftSound;
 
     void Start()
     {
         craftButton.onClick.AddListener(craftButtonClick);
+
+        SoundsManager.onUiVolumeChange += changeCraftSoundVolume;
     }
 
     public void setActive(bool active)
@@ -96,5 +100,15 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
         }
 
         return true;
+    }
+
+    void changeCraftSoundVolume(float volume)
+    {
+        craftSound.volume = maxCraftSound * volume;
+    }
+
+    private void OnDestroy()
+    {
+        SoundsManager.onUiVolumeChange -= changeCraftSoundVolume;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_021_P : Building           //water extractor
+public class Item_021_P : Building           //atmosphere condensator
 {
     void Start()
     {

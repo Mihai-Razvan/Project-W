@@ -14,7 +14,7 @@ public class Placeable : Item
     protected UnityEngine.Material notPlaceableMaterial;
     [SerializeField]
     protected LayerMask buildingMask;
-    
+
     protected void displayPrefab()
     {
         if (itemCode == selectedItemCode && getUsedObject() == null)
@@ -29,6 +29,8 @@ public class Placeable : Item
         Instantiate(placePrefab, getUsedObject().transform.position, getUsedObject().transform.rotation);
         int slot = Player_Inventory.getSelectedSlot();
         Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, slot);
+
+        FindObjectOfType<SoundsManager>().playPlacePlaceableSound();
     }
 
     protected void changeMaterials(Material material)
