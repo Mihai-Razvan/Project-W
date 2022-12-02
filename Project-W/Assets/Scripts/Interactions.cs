@@ -38,7 +38,7 @@ public class Interactions : MonoBehaviour
 
                     Destroy(colliders[i].gameObject);
                 }
-
+         
             Button_Hint.setCollectResourceInteractionHint(colliders[0].gameObject.tag);
         }
         else

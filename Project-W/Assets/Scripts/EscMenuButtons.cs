@@ -6,19 +6,19 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class EscMenuButtons : MonoBehaviour       //it also have the methods for the main menu scene settings panel
+public class EscMenuButtons : MonoBehaviour      
 {
     [SerializeField]
     GameObject menuWarningTab;
     [SerializeField]
     GameObject exitWarningTab;
     [SerializeField]
-    GameObject settingsTab;              //also for the main menu scene
+    GameObject settingsTab;            
 
     [SerializeField]
-    GameObject settingsControlsTab;      //also for the main menu scene
+    GameObject settingsControlsTab;    
     [SerializeField]
-    GameObject settingsAudioTab;      //also for the main menu scene
+    GameObject settingsAudioTab;     
 
     [SerializeField]
     Slider uiVolumeSlider;

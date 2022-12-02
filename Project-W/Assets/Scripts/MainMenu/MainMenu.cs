@@ -9,19 +9,34 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    Button playButton;
-    [SerializeField]
-    Button exitButton;
-    [SerializeField]
-    Button settingsButton;
+    GameObject settingsTab;
+
+    void Start()
+    {
+        settingsTab.SetActive(false);
+    }
 
     public void playButtonAction()
     {
+        FindObjectOfType<SoundsManager>().playClickButtonSound();
         SceneManager.LoadScene("GameScene");
     }
 
     public void exitButtonAction()
     {
+        FindObjectOfType<SoundsManager>().playClickButtonSound();
         Application.Quit();
+    }
+
+    public void settingsButtonAction()
+    {
+        settingsTab.SetActive(true);
+        FindObjectOfType<SettingsTab>().controlsButton();
+        FindObjectOfType<SoundsManager>().playClickButtonSound();
+    }
+
+    public GameObject getSettingsTab()
+    {
+        return settingsTab;
     }
 }
