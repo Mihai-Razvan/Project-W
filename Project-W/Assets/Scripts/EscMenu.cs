@@ -29,7 +29,10 @@ public class EscMenu : MonoBehaviour       //this script is placed on canvas, no
                 }
             }
             else
+            {
+                FindObjectOfType<EscMenuButtons>().closeTabs();          //if you press esc while having a warning tab or settings tab opened it closes them so the aren't opened when you open esc menu next time
                 closeMenu();
+            }
         }
     }
 
