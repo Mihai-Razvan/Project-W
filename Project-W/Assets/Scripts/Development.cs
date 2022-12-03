@@ -32,7 +32,7 @@ public class Development : MonoBehaviour
         //       controller.enabled = !controller.enabled;
 
         if (Input.GetKeyDown(KeyCode.T))
-            player.transform.position = new Vector3(0, 120, 0);
+            FindObjectOfType<PlayerMovement>().setPlayerPosition(new Vector3(0, 120, 0));
 
         if (Input.GetKeyDown(KeyCode.B))
             Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(1, 1, 0);

@@ -34,26 +34,26 @@ public class EscMenuButtons : MonoBehaviour
         settingsTab.SetActive(false);
     }
 
-    public void backButton()
+    public void backButtonAction()
     {
         FindObjectOfType<SoundsManager>().playClickButtonSound();
         FindObjectOfType<EscMenu>().closeMenu();
     }
 
-    public void menuButton()
+    public void menuButtonAction()
     {
         menuWarningTab.SetActive(true);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
-    public void settingsButton()
+    public void settingsButtonAction()
     {
         settingsTab.SetActive(true);
-        settingsControlsButton();
+        settingsControlsButtonAction();
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
-    public void exitButton()
+    public void exitButtonAction()
     {
         exitWarningTab.SetActive(true);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
@@ -61,24 +61,24 @@ public class EscMenuButtons : MonoBehaviour
 
     /// //////////////////////////////////////////////////////////
 
-    public void menuWarningYesButton()
+    public void menuWarningYesButtonAction()
     {
         SceneManager.LoadScene("MainMenuScene");
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
-    public void menuWarningNoButton()
+    public void menuWarningNoButtonAction()
     {
         menuWarningTab.SetActive(false);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
-    public void exitWarningYesButton()
+    public void exitWarningYesButtonAction()
     {
         Application.Quit();
     }
 
-    public void exitWarningNoButton()
+    public void exitWarningNoButtonAction()
     {
         exitWarningTab.SetActive(false);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
@@ -86,21 +86,21 @@ public class EscMenuButtons : MonoBehaviour
 
     /////////////////////////////////////////////////// the ones under are fore settings which is also shared by the main menu scene ///////////////////////////////////////////////////////////
     ///
-    public void settingsControlsButton()
+    public void settingsControlsButtonAction()
     {
         settingsAudioTab.SetActive(false);
         settingsControlsTab.SetActive(true);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
-    public void settingsAudioButton()
+    public void settingsAudioButtonAction()
     {
         settingsControlsTab.SetActive(false);
         settingsAudioTab.SetActive(true);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
-    public void settingsBackButton()
+    public void settingsBackButtonAction()
     {
         settingsTab.SetActive(false);
         FindObjectOfType<SoundsManager>().playClickButtonSound();

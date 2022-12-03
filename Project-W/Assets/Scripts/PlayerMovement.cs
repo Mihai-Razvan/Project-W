@@ -97,4 +97,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && grounded == true)
             velocity = jumpForce;
     }
+
+    public void setPlayerPosition(Vector3 newPos)
+    {
+        controller.enabled = false;
+        transform.position = newPos;
+        controller.enabled = true;
+    }
 }

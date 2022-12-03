@@ -16,7 +16,7 @@ public class Player_Stats : MonoBehaviour
     [SerializeField]
     Image thirstFill;
     [SerializeField]
-    Image healtFill;
+    Image healthFill;
     [SerializeField]
     float decreaseTime;     //how many seconds it take to lose 1% of thirst and saturation
     [SerializeField]
@@ -28,7 +28,7 @@ public class Player_Stats : MonoBehaviour
     {
         saturationFill.fillAmount = saturation / 100;
         thirstFill.fillAmount = thirst / 100;
-        healtFill.fillAmount = health / 100;
+        healthFill.fillAmount = health / 100;
     }
 
     void Update()
@@ -55,7 +55,7 @@ public class Player_Stats : MonoBehaviour
             if (saturation == 0 || thirst == 0)
                 changeHealth(-1);
             else
-                changeHealth(1);
+                changeHealth(1);    
         }
     }
 
@@ -87,7 +87,49 @@ public class Player_Stats : MonoBehaviour
             health = 0;
         else if (health > 100)
             health = 100;
-        
-        healtFill.fillAmount = health / 100;
+
+        if (health == 0)
+            FindObjectOfType<Death>().die();
+        else if (health <= 20)
+            FindObjectOfType<SoundsManager>().playHeartBeatSound();
+        else
+            FindObjectOfType<SoundsManager>().pauseHeartBeatSound();
+
+        healthFill.fillAmount = health / 100;
+    }
+
+    public void setSaturation(float saturationChange)
+    {
+        saturation = saturationChange;
+
+        saturationFill.fillAmount = saturation / 100;
+    }
+    public void setThirst(float thirstChange)
+    {
+        thirst = thirstChange;
+
+        thirstFill.fillAmount = thirst / 100;
+    }
+
+    public void setHealth(float healthChange)
+    {
+        health = healthChange;
+
+        healthFill.fillAmount = health / 100;
+    }
+
+    public float getHealth()
+    {
+        return health;
+    }
+
+    public float getSaturation()
+    {
+        return saturation;
+    }
+
+    public float getThirst()
+    {
+        return thirst;
     }
 }

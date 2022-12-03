@@ -43,12 +43,18 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
     [SerializeField]
     float collectItemSoundMaxVolume;
 
+    [SerializeField]
+    AudioSource heartBeatSound;
+    [SerializeField]
+    float heartBeatSoundMaxVolume;
+
 
     void Start()
     {
         onAmbienceVolumeChange += changeWindVolume;
         onSFxVolumeChange += changePlacePlaceableVolume;
-        onSFxVolumeChange += collectItemButtonVolume;
+        onSFxVolumeChange += collectItemVolume;
+        onSFxVolumeChange += heartBeatVolume;
         onUiVolumeChange += changeClickUiButtonVolume;
     }
 
@@ -69,9 +75,14 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
         clickUiButtonSound.volume = clickUiButtonSoundMaxVolume * volume;
     }
 
-    void collectItemButtonVolume(float volume)
+    void collectItemVolume(float volume)
     {
         collectItemSound.volume = collectItemSoundMaxVolume * volume;
+    }
+
+    void heartBeatVolume(float volume)
+    {
+        heartBeatSound.volume = heartBeatSoundMaxVolume * volume;
     }
 
     //play different sounds
@@ -89,6 +100,18 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
     public void playCollectItemSound()
     {
         collectItemSound.Play();
+    }
+
+    public void playHeartBeatSound()
+    {
+        heartBeatSound.Play();
+    }
+
+    //pause different sounds
+
+    public void pauseHeartBeatSound()
+    {
+        heartBeatSound.Pause();
     }
 
     //the getters are used when we create an object and we want to set its sound in Start(); otherwise the sound will be 100% in start no matter the slider value 
@@ -112,7 +135,8 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
     {
         onAmbienceVolumeChange -= changeWindVolume;
         onSFxVolumeChange -= changePlacePlaceableVolume;
-        onSFxVolumeChange -= collectItemButtonVolume;
+        onSFxVolumeChange -= collectItemVolume;
+        onSFxVolumeChange -= heartBeatVolume;
         onUiVolumeChange -= changeClickUiButtonVolume;
     }
 }
