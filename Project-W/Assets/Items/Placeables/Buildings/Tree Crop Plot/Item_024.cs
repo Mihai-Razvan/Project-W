@@ -24,7 +24,6 @@ public class Item_024 : Item
     float timeSincePlanted;
     float timeSinceStartedCharge;      //when you want to destroy the dree and need to hold mouse to start destroying it
     float timeSinceFall;
-    float timeSinceResize;
     GameObject treeObject;
 
 
@@ -91,23 +90,16 @@ public class Item_024 : Item
         treeObject.transform.SetParent(treePlace.transform);
         treeObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         fruitItemCode = fruitsItemCodes[index];
-        timeSincePlanted = 0;
-        timeSinceResize = 0;
-        status = "GROWING";
+        timeSincePlanted = 0;        status = "GROWING";
     }
 
     void grow()
     {
         timeSincePlanted += Time.deltaTime;
-        timeSinceResize += Time.deltaTime;
-        if (timeSinceResize >= 0.5f)
-        {
-            float scale = (timeSincePlanted / growingTimes[index]) * 0.9f + 0.1f;
-            treeObject.transform.localScale = new Vector3(scale, scale, scale);
-            timeSinceResize = 0;
-        }
+        float scale = (timeSincePlanted / growingTimes[index]) * 0.9f + 0.1f;
+        treeObject.transform.localScale = new Vector3(scale, scale, scale);
 
-        if(timeSincePlanted >= growingTimes[index])
+        if (timeSincePlanted >= growingTimes[index])
         {
             status = "GROWN";
             GameObject fruitsParent = treeObject.transform.Find("Fruits-Places").gameObject;

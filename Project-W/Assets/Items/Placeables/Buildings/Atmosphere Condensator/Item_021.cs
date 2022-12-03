@@ -26,7 +26,6 @@ public class Item_021 : Item   //Atmosphere Condensator
     float batteryCharge;
     bool filled;
     float timeSinceStarted;
-    float timeSinceResize;
     
     void Start()
     {
@@ -62,7 +61,6 @@ public class Item_021 : Item   //Atmosphere Condensator
             Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().setSlot(playerInventorySlot, 23, 1, 0);   //replace the empty cup with a full cup
             filled = false;
             timeSinceStarted = 0;
-            timeSinceResize = 0;
             handleBigWaterCube();
             smallWater.SetActive(false);
         }
@@ -111,7 +109,6 @@ public class Item_021 : Item   //Atmosphere Condensator
     void produceWater()
     {
         timeSinceStarted += Time.deltaTime;
-        timeSinceResize += Time.deltaTime;
         batteryCharge -= batteryConsumption * Time.deltaTime;
         if(batteryCharge <= 0)
         {
@@ -125,12 +122,7 @@ public class Item_021 : Item   //Atmosphere Condensator
             smallWater.SetActive(true);
         }
 
-        if(timeSinceResize >= 0.5f)
-        {
-            handleBigWaterCube();
-            timeSinceResize = 0;
-        }
-        
+        handleBigWaterCube();    
     }
 
     void handleBigWaterCube()

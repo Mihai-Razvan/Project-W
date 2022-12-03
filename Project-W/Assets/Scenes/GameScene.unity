@@ -29334,33 +29334,33 @@ MonoBehaviour:
   - Kwaki
   descriptionArrayHelper:
   - 
-  - Cobalt Description
-  - CobaltGrappler
+  - A stone with precious crystals. Who knows where this is coming from...
+  - A very useful tools used to gather resources
   - 
-  - Foundation Description
-  - Wall Description
-  - Pillar Description
-  - Floor Description
-  - Stairs Description
-  - Shattered glass Description
-  - Glass Description
-  - Scrap metal Description
-  - Inclined Wall Description
+  - Used to expand your base bottom floor
+  - Just a wall
+  - A pillar that helps you extend your base with another floor
+  - Used to expand your base secondary floors
+  - Climb them till you reach...
+  - A broken piece of glass
+  - Some shattered glass but...not shattered
+  - Some old rusted metal
+  - A wall, but inclined
   - 
-  - Crop plot Description
-  - Patato Description
-  - Wind turbine Description
-  - Battery Description
-  - Backed Patato Description
-  - Grill Description
-  - Collection vacuum Description
-  - Atmosphere condensator Description
-  - Empty cup Description
-  - Full cup Description
-  - Tree crop plot Description
-  - Kwaki seeds Description
+  - Grow plants inside it
+  - Just a boring patato
+  - Harvests wind energy and recharges batteries
+  - Powers different buildings
+  - A cooked patato
+  - Cooks food
+  - Catches resources that fall into it
+  - Turns water vapors into water
+  - Just an empty cup. What about filling it with some water:)
+  - An empty cup, but full with fresh water
+  - Grows trees inside it
+  - Put them in a tree crop plot and grow a kwaki tree
   - 
-  - Kwaki Description
+  - A delicious fruit
   inventoryLimitHelper: 00000000630000006300000000000000630000006300000063000000630000006300000063000000630000006300000063000000000000006300000063000000630000000100000063000000630000006300000063000000010000000100000063000000630000000000000063000000
 --- !u!4 &1992819145 stripped
 Transform:
