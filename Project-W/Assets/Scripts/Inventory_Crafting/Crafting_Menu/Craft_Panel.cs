@@ -24,16 +24,9 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
     int[] resourcesItemCodes;
     int[] resourcesQuantity;
 
-    [SerializeField]
-    AudioSource craftSound;
-    [SerializeField]
-    float maxCraftSound;
-
     void Start()
     {
         craftButton.onClick.AddListener(craftButtonClick);
-
-        SoundsManager.onUiVolumeChange += changeCraftSoundVolume;
     }
 
     public void setActive(bool active)
@@ -87,8 +80,6 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
             int availableQuantity = Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().getTotalQuantity(resourcesItemCodes[i]);
             resourcesSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = availableQuantity + "/" + resourcesQuantity[i];
         }
-
-        craftSound.Play();
     }
     public bool allResources()
     {
@@ -100,15 +91,5 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
         }
 
         return true;
-    }
-
-    void changeCraftSoundVolume(float volume)
-    {
-        craftSound.volume = maxCraftSound * volume;
-    }
-
-    private void OnDestroy()
-    {
-        SoundsManager.onUiVolumeChange -= changeCraftSoundVolume;
     }
 }
