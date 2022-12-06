@@ -25,17 +25,26 @@ public class Item_002 : Tool   //grappler
     List<GameObject> objectList;
     List<float> distanceList;
 
-     
+
+    [SerializeField]
+    AudioSource raySound;
+    [SerializeField]
+    float maxRaySoundVolume;
+
+
     void Start()
     {
-        Player_Inventory.onItemSelected += displayPrefab;
-        Player_Inventory.onItemDeselected += deselectItem;
-
         laserSize = 0;
         laserState = "UNUSED";
         chargeTime = 0;
         objectList = new List<GameObject>();
         distanceList = new List<float>();
+
+        Player_Inventory.onItemSelected += displayPrefab;
+        Player_Inventory.onItemDeselected += deselectItem;
+
+        changeRaySoundVolume(FindObjectOfType<SoundsManager>().getSFxVolume());
+        SoundsManager.onSFxVolumeChange += changeRaySoundVolume;
     }
 
     void Update()
@@ -58,6 +67,7 @@ public class Item_002 : Tool   //grappler
                     else if (Input.GetKeyUp(KeyCode.Mouse0))
                     {
                         laserState = "EXPANDING";
+                        raySound.Play();
                         ChargeRadial.resetCharge();
                         ActionLock.setActionLock("ACTION_LOCKED");
                     }
@@ -84,6 +94,7 @@ public class Item_002 : Tool   //grappler
                         laserLine.positionCount = 0;     //so the ray disappears
                         laserSize = 0;
                         ActionLock.setActionLock("UNLOCKED");
+                        raySound.Stop();
                     }
 
                     break;
@@ -205,9 +216,15 @@ public class Item_002 : Tool   //grappler
         return laserState;
     }
 
+    void changeRaySoundVolume(float volume)
+    {
+        raySound.volume = maxRaySoundVolume * volume;
+    }
+
     void OnDestroy()
     {
         Player_Inventory.onItemSelected -= displayPrefab;
         Player_Inventory.onItemDeselected -= deselectItem;
+        SoundsManager.onSFxVolumeChange -= changeRaySoundVolume;
     }
 }

@@ -48,13 +48,19 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
     [SerializeField]
     float heartBeatSoundMaxVolume;
 
+    [SerializeField]
+    AudioSource eatSound;
+    [SerializeField]
+    float eatSoundMaxVolume;
+
 
     void Start()
     {
         onAmbienceVolumeChange += changeWindVolume;
         onSFxVolumeChange += changePlacePlaceableVolume;
-        onSFxVolumeChange += collectItemVolume;
-        onSFxVolumeChange += heartBeatVolume;
+        onSFxVolumeChange += changeCollectItemVolume;
+        onSFxVolumeChange += changeHeartBeatVolume;
+        onSFxVolumeChange += changeEatVolume;
         onUiVolumeChange += changeClickUiButtonVolume;
     }
 
@@ -75,14 +81,19 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
         clickUiButtonSound.volume = clickUiButtonSoundMaxVolume * volume;
     }
 
-    void collectItemVolume(float volume)
+    void changeCollectItemVolume(float volume)
     {
         collectItemSound.volume = collectItemSoundMaxVolume * volume;
     }
 
-    void heartBeatVolume(float volume)
+    void changeHeartBeatVolume(float volume)
     {
         heartBeatSound.volume = heartBeatSoundMaxVolume * volume;
+    }
+
+    void changeEatVolume(float volume)
+    {
+        eatSound.volume = eatSoundMaxVolume * volume;
     }
 
     //play different sounds
@@ -105,6 +116,11 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
     public void playHeartBeatSound()
     {
         heartBeatSound.Play();
+    }
+
+    public void playEatSound()
+    {
+        eatSound.Play();
     }
 
     //pause different sounds
@@ -135,8 +151,9 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
     {
         onAmbienceVolumeChange -= changeWindVolume;
         onSFxVolumeChange -= changePlacePlaceableVolume;
-        onSFxVolumeChange -= collectItemVolume;
-        onSFxVolumeChange -= heartBeatVolume;
+        onSFxVolumeChange -= changeCollectItemVolume;
+        onSFxVolumeChange -= changeHeartBeatVolume;
+        onSFxVolumeChange -= changeEatVolume;
         onUiVolumeChange -= changeClickUiButtonVolume;
     }
 }

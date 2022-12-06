@@ -23,5 +23,7 @@ public class Item_027 : Item    //kwaki
         FindObjectOfType<Player_Stats>().changeThirst(thirst);
         int playerInventorySlot = Player_Inventory.getSelectedSlot();
         Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
+
+        FindObjectOfType<SoundsManager>().playEatSound();
     }
 }

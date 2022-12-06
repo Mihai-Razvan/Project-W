@@ -10146,7 +10146,7 @@ MonoBehaviour:
   ambienceVolumeSlider: {fileID: 1026768082}
   sfxVolumeSlider: {fileID: 3652866}
   windSound: {fileID: 580578003}
-  windSoundMaxVolume: 0.15
+  windSoundMaxVolume: 0.2
   placeSound: {fileID: 1961523976}
   placeSoundMaxVolume: 1
   clickUiButtonSound: {fileID: 580108847}
@@ -13064,7 +13064,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cf5b4fccedcad6744b732cd49fd54281, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0

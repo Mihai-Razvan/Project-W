@@ -23,6 +23,8 @@ public class Item_023: Item //full cup
         FindObjectOfType<Player_Stats>().changeThirst(thirst);
         int playerInventorySlot = Player_Inventory.getSelectedSlot();
         Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().setSlot(playerInventorySlot, 22, 1, 0);   //replace the full cup with a full empty
+
+        FindObjectOfType<SoundsManager>().playEatSound();
     }
 }
 

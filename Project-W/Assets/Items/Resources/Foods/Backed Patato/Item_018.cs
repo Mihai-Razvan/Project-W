@@ -23,6 +23,8 @@ public class Item_018 : Item  //backed patato
         FindObjectOfType<Player_Stats>().changeThirst(thirst);
         int playerInventorySlot = Player_Inventory.getSelectedSlot();
         Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().decreaseQuantity(1, playerInventorySlot);
+
+        FindObjectOfType<SoundsManager>().playEatSound();
     }
 }
 

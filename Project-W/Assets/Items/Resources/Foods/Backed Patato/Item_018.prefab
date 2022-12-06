@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemCode: 18
+  eatSound: {fileID: 8696663497850749019, guid: 27a8be75b21b7494b924ae0c9787e568, type: 3}
+  maxEatSoundVolume: 1
 --- !u!1 &9098158648606742954
 GameObject:
   m_ObjectHideFlags: 0

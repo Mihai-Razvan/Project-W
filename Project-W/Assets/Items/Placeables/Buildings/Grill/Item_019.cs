@@ -40,19 +40,11 @@ public class Item_019 : Item   //grill
     GameObject coals;
     [SerializeField]
     GameObject fireCoals;
-
-    [SerializeField]
-    AudioSource fireSound;
-    [SerializeField]
-    float maxFireSoundVolume;
    
     void Start()
     {
         timeLeftText.text = "-";
         battertyChargeText.text = "-";
-
-        changeFireSoundVolume(FindObjectOfType<SoundsManager>().getSFxVolume());
-        SoundsManager.onSFxVolumeChange += changeFireSoundVolume;
     }
 
 
@@ -106,7 +98,6 @@ public class Item_019 : Item   //grill
             collectBattery();   //in case you have a battery placed and in the same time a battery in hand
 
         replaceCoals();
-        handleFireSound();
     }
 
     void collectBattery()
@@ -118,7 +109,6 @@ public class Item_019 : Item   //grill
             batteryPlaced = false;
             battertyChargeText.text = "-";
             replaceCoals();
-            handleFireSound();
         }
     }
 
@@ -135,7 +125,6 @@ public class Item_019 : Item   //grill
         int time = grillTime[getIndex(placedFoodItemCode)];
         timeLeftText.text = (time / 60) + ":" + (time % 60);
         replaceCoals();
-        handleFireSound();
     }
 
     void collectFood()
@@ -157,7 +146,6 @@ public class Item_019 : Item   //grill
         {
             battertyChargeText.text = "EMPTY";
             replaceCoals();
-            handleFireSound();
         }
         else
             battertyChargeText.text = ((int)batteryCharge).ToString();
@@ -170,7 +158,6 @@ public class Item_019 : Item   //grill
             cooked = true;
             timeLeftText.text = "DONE";
             replaceCoals();
-            handleFireSound();
         }
         else
         {
@@ -200,14 +187,6 @@ public class Item_019 : Item   //grill
         spawnedModel.transform.SetParent(coalsPlace.transform);
     }
 
-    void handleFireSound()        //enables or disables the sound; DOES NOT CHANGE THE VOLUME
-    {
-        if (foodPlaced == true && cooked == false && batteryPlaced == true && batteryCharge > 0)
-            fireSound.Play();
-        else
-            fireSound.Pause();
-    }
-
     void buttonHintHandle()
     {
         if (selectedItemCode == 17)
@@ -234,15 +213,5 @@ public class Item_019 : Item   //grill
             else
                 Button_Hint.clearBuildingInteractionHint();
         }
-    }
-
-    void changeFireSoundVolume(float volume)
-    {
-        fireSound.volume = maxFireSoundVolume * volume;
-    }
-
-    void OnDestroy()
-    {
-        SoundsManager.onSFxVolumeChange -= changeFireSoundVolume;
     }
 }
