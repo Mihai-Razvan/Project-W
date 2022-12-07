@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemCode: 1
-  despawnLevel: 30
+  despawnLevel: -30
   fallVelocity: -7
   buildingMask:
     serializedVersion: 2

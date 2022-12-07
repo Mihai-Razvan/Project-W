@@ -32,6 +32,9 @@ public class Craft_Panel : MonoBehaviour      //this script is not attached to t
     public void setActive(bool active)
     {
         craftPanel.SetActive(active);
+
+        if (active == true)       //to update the craft panel when opening it
+            setPanel(itemCode, resourcesItemCodes, resourcesQuantity);
     }
 
     public void setPanel(int itemCode, int[] resourcesItemCodes, int[] resourcesQuantity)

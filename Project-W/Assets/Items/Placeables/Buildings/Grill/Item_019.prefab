@@ -344,7 +344,7 @@ MonoBehaviour:
   - {fileID: 5895493175718288811, guid: 2ed797bafd872af4c938dbcfa50f764f, type: 3}
   cookedFoodsPrefabs:
   - {fileID: 9205056100973135719, guid: 1276621a1be3a214f8f34fd9cbc5be22, type: 3}
-  grillTime: 05000000
+  grillTime: 3c000000
   cookedFoodItemCodes: 12000000
   batteryConsumption: 1
   timeLeftText: {fileID: 7263959889565934048}
@@ -352,8 +352,6 @@ MonoBehaviour:
   coalsPlace: {fileID: 7360163493622427300}
   coals: {fileID: 2120093482907691839, guid: 32102a81507935f4c88eaa501c2adbc6, type: 3}
   fireCoals: {fileID: 5490441617392378965, guid: a0fe77682547e854b849d842cafcdd73, type: 3}
-  fireSound: {fileID: 6040118576133296506}
-  maxFireSoundVolume: 1
 --- !u!114 &7993470553964190858
 MonoBehaviour:
   m_ObjectHideFlags: 0
