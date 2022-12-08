@@ -90,10 +90,10 @@ public class Player_Stats : MonoBehaviour
 
         if (health == 0)
             FindObjectOfType<Death>().die();
-        else if (health <= 20)
+
+        if (healthChange < 0)       //you lose health 
             FindObjectOfType<SoundsManager>().playHeartBeatSound();
-        else
-            FindObjectOfType<SoundsManager>().pauseHeartBeatSound();
+
 
         healthFill.fillAmount = health / 100;
     }

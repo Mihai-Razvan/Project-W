@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     Transform groundCheck;
     [SerializeField]
+    float groundCheckSize;
+    [SerializeField]
     LayerMask placeableMask;     //groundMask
     string movementState;
     [SerializeField]
@@ -92,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
     void jump()
     {
-        grounded = Physics.CheckSphere(groundCheck.position, 0.2f, placeableMask);
+        grounded = Physics.CheckSphere(groundCheck.position, groundCheckSize, placeableMask);
 
         if (Input.GetKeyDown(KeyCode.Space) && grounded == true)
             velocity = jumpForce;

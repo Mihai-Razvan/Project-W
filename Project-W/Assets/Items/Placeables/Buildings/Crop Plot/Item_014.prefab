@@ -101,7 +101,7 @@ MonoBehaviour:
   - {fileID: 8015051158642868941}
   - {fileID: 5056306850632500915}
   plantableItemCodeArray: 0f000000
-  growingTime: 3c000000
+  growingTime: 05000000
   modelStage1:
   - {fileID: 1127833694933083663, guid: 26dd90746d8945c49a4ca24699defa40, type: 3}
   modelStage2:
