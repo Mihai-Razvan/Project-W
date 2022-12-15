@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Item_001
+  - Item_002
+  - Item_003
+  - Item_004
+  - Item_005
+  - Item_006
+  - Item_007
+  - Item_008
+  - Item_009
+  - Item_011
+  - Item_012
+  - Item_013
+  - Item_014
+  - Item_016
+  - Item_019
+  - Item_020
+  - Item_021
+  - Item_024
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Resource
+  - PrefabMergePoint
+  - Placeable
+  - PostProcessing
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
