@@ -26,8 +26,8 @@ public class Item_021 : Item   //Atmosphere Condensator
     float batteryCharge;
     bool filled;
     float timeSinceStarted;
-    
-    void Start()
+
+    void Awake()  //we use awake because if we use start it is called before load from the save file
     {
         waterCylinder.SetActive(false);
         cylinderAnim.enabled = false;
@@ -110,6 +110,7 @@ public class Item_021 : Item   //Atmosphere Condensator
     {
         timeSinceStarted += Time.deltaTime;
         batteryCharge -= batteryConsumption * Time.deltaTime;
+
         if(batteryCharge <= 0)
         {
             waterCylinder.SetActive(false);
@@ -127,8 +128,8 @@ public class Item_021 : Item   //Atmosphere Condensator
 
     void handleBigWaterCube()
     {
-        float fillAmount = (timeSinceStarted / fillTime) * 100;
-        float yScale = (fillAmount * maxWaterCubeScale) / 100;
+        float fillAmount = (timeSinceStarted / fillTime) * 100; 
+        float yScale = Mathf.Min(fillAmount * maxWaterCubeScale / 100, maxWaterCubeScale);      //in case fill time gets reduced, when we load then the cube would be bigger that maxScale
         bigWater.transform.localScale = new Vector3(bigWater.transform.localScale.x, yScale, bigWater.transform.localScale.z);
     }
 
@@ -147,5 +148,39 @@ public class Item_021 : Item   //Atmosphere Condensator
             Button_Hint.setBuildingInteractionHint("Collect 'Battery'");
         else
             Button_Hint.clearBuildingInteractionHint();
+    }
+
+
+
+    public ArrayList getSaveData()
+    {
+        return new ArrayList() { batteryPlaced, batteryCharge, filled, timeSinceStarted };
+    }
+
+    public void loadData(bool batteryPlaced, float batteryCharge, bool filled, float timeSinceStarted)     //used when we are loading this object from file
+    {
+        this.batteryPlaced = batteryPlaced;
+        this.batteryCharge = batteryCharge;
+        this.filled = filled;
+        this.timeSinceStarted = timeSinceStarted;
+
+        if(batteryPlaced == true)
+        {
+            GameObject spawnedModel = Instantiate(batteryPrefab, batteryHole.transform.position, Quaternion.identity);
+            spawnedModel.transform.SetParent(batteryHole.transform);
+            spawnedModel.transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
+
+            if(batteryCharge > 0)
+            {
+                waterCylinder.SetActive(true);
+                cylinderAnim.enabled = true;
+            }
+        }
+
+
+        if (filled == true)
+            smallWater.SetActive(true);
+
+        handleBigWaterCube();
     }
 }

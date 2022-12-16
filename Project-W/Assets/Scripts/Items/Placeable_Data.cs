@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Placeable_Data : MonoBehaviour
+public class Placeable_Data : MonoBehaviour           //placeable data in game
 {
     [SerializeField]
     string placeableType;     //structurse, building etc

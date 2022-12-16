@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourcesData : MonoBehaviour
 {
-    //this script is attached to resources to know their code an quantities; it is required for resources that give you more resources (liek falling box)
+    //this script is attached to resources to know their code an quantities; it is required for resources that give you more resources (like falling box)
 
     [SerializeField]
     int[] itemCodeArray;

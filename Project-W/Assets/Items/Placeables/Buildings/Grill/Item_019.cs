@@ -40,8 +40,8 @@ public class Item_019 : Item   //grill
     GameObject coals;
     [SerializeField]
     GameObject fireCoals;
-   
-    void Start()
+
+    void Awake()  //we use awake because if we use start it is called before load from the save file
     {
         timeLeftText.text = "-";
         battertyChargeText.text = "-";
@@ -213,5 +213,56 @@ public class Item_019 : Item   //grill
             else
                 Button_Hint.clearBuildingInteractionHint();
         }
+    }
+
+
+    public ArrayList getSaveData()
+    {
+        return new ArrayList() { placedFoodItemCode, batteryPlaced, foodPlaced, batteryCharge, timeOnGrill, cooked };
+    }
+
+    public void loadData(int placedFoodItemCode, bool batteryPlaced, bool foodPlaced, float batteryCharge, float timeOnGrill, bool cooked)     //used when we are loading this object from file
+    {
+        this.placedFoodItemCode = placedFoodItemCode;
+        this.batteryPlaced = batteryPlaced;
+        this.foodPlaced = foodPlaced;
+        this.batteryCharge = batteryCharge;
+        this.timeOnGrill = timeOnGrill;
+        this.cooked = cooked;
+
+        if(batteryPlaced == true)
+        {
+            GameObject spawnedModel = Instantiate(batteryPrefab, batteryHole.transform.position, Quaternion.identity);
+            spawnedModel.transform.SetParent(batteryHole.transform);
+            if (batteryCharge > 0)
+                battertyChargeText.text = ((int)batteryCharge).ToString();
+            else
+                battertyChargeText.text = "EMPTY";
+        }
+        else
+            battertyChargeText.text = "-";
+
+
+        if (foodPlaced == true)
+        {
+            GameObject spawnedModel;
+
+            if (cooked == false)
+            {
+                spawnedModel = Instantiate(rawFoodsPrefabs[getIndex(placedFoodItemCode)], foodPrefabPlace.transform.position, Quaternion.identity);
+                int secondsLeft = (int)(grillTime[getIndex(placedFoodItemCode)] - timeOnGrill);
+                timeLeftText.text = (secondsLeft / 60) + ":" + (secondsLeft % 60);
+            }
+            else
+            {
+                spawnedModel = Instantiate(cookedFoodsPrefabs[getIndex(placedFoodItemCode)], foodPrefabPlace.transform.position, Quaternion.identity);
+                timeLeftText.text = "DONE";
+            }
+
+            spawnedModel.transform.SetParent(foodPrefabPlace.transform);
+        }
+
+
+        replaceCoals();
     }
 }

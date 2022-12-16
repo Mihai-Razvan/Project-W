@@ -132,4 +132,15 @@ public class Player_Stats : MonoBehaviour
     {
         return thirst;
     }
+
+    public void loadData(float saturation, float thirst, float health)
+    {
+        this.saturation = saturation;
+        this.thirst = thirst;
+        this.health = health;
+
+        saturationFill.fillAmount = saturation / 100;
+        thirstFill.fillAmount = thirst / 100;
+        healthFill.fillAmount = health / 100;
+    }
 }

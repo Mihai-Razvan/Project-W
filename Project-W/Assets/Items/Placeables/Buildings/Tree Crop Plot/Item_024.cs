@@ -27,7 +27,7 @@ public class Item_024 : Item
     GameObject treeObject;
 
 
-    void Start()
+    void Awake()  //we use awake because if we use start it is called before load from the save file
     {
         status = "EMPTY";
     }
@@ -90,7 +90,8 @@ public class Item_024 : Item
         treeObject.transform.SetParent(treePlace.transform);
         treeObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         fruitItemCode = fruitsItemCodes[index];
-        timeSincePlanted = 0;        status = "GROWING";
+        timeSincePlanted = 0;       
+        status = "GROWING";
     }
 
     void grow()
@@ -187,6 +188,47 @@ public class Item_024 : Item
             case "DESTROYING":
                 Button_Hint.clearBuildingInteractionHint();
                 break;
+        }
+    }
+
+    public ArrayList getSaveData()
+    {
+        return new ArrayList() { status, index, fruitItemCode, timeSincePlanted };
+    }
+
+    public void loadData(string status, int index, int fruitItemCode, float timeSincePlanted)     //used when we are loading this object from file
+    {
+        this.status = status;
+        this.index = index;
+        this.fruitItemCode = fruitItemCode;
+        this.timeSincePlanted = timeSincePlanted;
+
+        if (!status.Equals("EMPTY"))
+        {
+            treeObject = Instantiate(treesModels[index], treePlace.transform.position, this.gameObject.transform.rotation);
+            treeObject.transform.SetParent(treePlace.transform);
+
+            float scale = 1;
+
+            switch (status)
+            {
+                case "GROWING":
+                    scale = Mathf.Min((timeSincePlanted / growingTimes[index]), 1) * 0.9f + 0.1f;
+                    break;
+                case "GROWN":
+                    GameObject fruitsParent = treeObject.transform.Find("Fruits-Places").gameObject;
+                    for (int i = 0; i < fruitsParent.transform.childCount; i++)
+                    {
+                        GameObject spawnedFruit = Instantiate(fruitsModels[index], fruitsParent.transform.GetChild(i).transform.position, fruitsParent.transform.GetChild(i).transform.rotation);
+                        spawnedFruit.transform.parent = fruitsParent.transform.GetChild(i).transform;
+                    }
+                    break;
+                case "COLLECTED":
+                    treeObject.GetComponent<ReplaceMats>().replaceDry();
+                    break;
+            }
+
+            treeObject.transform.localScale = new Vector3(scale, scale, scale);
         }
     }
 }

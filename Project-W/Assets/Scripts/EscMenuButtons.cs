@@ -75,6 +75,7 @@ public class EscMenuButtons : MonoBehaviour
 
     public void exitWarningYesButtonAction()
     {
+        SaveSystem.Save();
         Application.Quit();
     }
 
@@ -126,5 +127,33 @@ public class EscMenuButtons : MonoBehaviour
     public void onSFxeVolumeChange()
     {
         SoundsManager.onSFxVolumeChange(sfxVolumeSlider.value);
+    }
+
+
+
+    public List<float> saveData()
+    {
+        return new List<float>() { ambienceVolumeSlider.value, sfxVolumeSlider.value, uiVolumeSlider.value };
+    }
+
+    public void loadData()         //this is done using PlayerPrefs, so it isn't linked to the file save system, excepting SaveSettings() ehich is in SaveSysyem class
+    {
+        if (PlayerPrefs.HasKey("Settings_Sound_Ambience_Volume"))
+        {
+            ambienceVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_Ambience_Volume");
+            onAmbienceVolumeChange();
+        }
+
+        if (PlayerPrefs.HasKey("Settings_Sound_SFX_Volume"))
+        {
+            sfxVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_SFX_Volume");
+            onSFxeVolumeChange();
+        }
+
+        if (PlayerPrefs.HasKey("Settings_Sound_UI_Volume"))
+        {
+            uiVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_UI_Volume");
+            onUiVolumeChange();
+        }
     }
 }

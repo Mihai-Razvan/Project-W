@@ -185,4 +185,18 @@ public class Inventory : MonoBehaviour
     {
         onInventoryChange -= checkEmpty;
     }
+
+    public ArrayList getSaveData()
+    {
+        return new ArrayList() { itemCodeArray, quantityArray, chargeArray };
+    }
+
+    public void loadData(int[] itemCodeArray, int[] quantityArray, float[] chargeArray) //this is called by the invenyory "manager" loadData; for player inventory manager by Player_Inventory, for chest by chest script etc
+    {
+        this.itemCodeArray = itemCodeArray;
+        this.quantityArray = quantityArray;
+        this.chargeArray = chargeArray;
+
+        onInventoryChange();
+    }
 }

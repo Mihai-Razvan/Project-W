@@ -22,7 +22,7 @@ public class Item_014 : Item          //crop plot
     [SerializeField]
     GameObject[] modelStage3;
 
-    void Start()
+    void Awake()  //we use awake because if we use start it is called before load from the save file
     {
         cropItemCodeArray = new int[3];
         slotStatusArray = new string[] { "EMPTY", "EMPTY", "EMPTY" };
@@ -40,7 +40,7 @@ public class Item_014 : Item          //crop plot
 
             buttonHintHandle();
         }
-
+       
         grow();
     }
 
@@ -138,4 +138,42 @@ public class Item_014 : Item          //crop plot
 
         Button_Hint.clearBuildingInteractionHint();
     }
+
+
+    public ArrayList getSaveData()
+    {
+        return new ArrayList() { cropItemCodeArray, slotStatusArray, timeArray };
+    }
+
+    public void loadData(int[] cropItemCodeArray, string[] slotStatusArray, float[] timeArray)     //used when we are loading this object from file
+    {
+        this.cropItemCodeArray = cropItemCodeArray;
+        this.slotStatusArray = slotStatusArray;
+        this.timeArray = timeArray;
+
+        for (int i = 0; i < 3; i++)
+            if (!slotStatusArray[i].Equals("EMPTY"))
+            {
+                GameObject dirtHole = Instantiate(dirtHolePrefab, plantingSpots[i].transform.position, Quaternion.identity);
+                dirtHole.transform.SetParent(plantingSpots[i].transform);
+
+                GameObject spawnedModel = new GameObject();
+
+                switch (slotStatusArray[i])
+                {
+                    case "STAGE_1":
+                        spawnedModel = Instantiate(modelStage1[getIndex(i)], plantingSpots[i].transform.position, Quaternion.identity);
+                        break;
+                    case "STAGE_2":
+                        spawnedModel = Instantiate(modelStage2[getIndex(i)], plantingSpots[i].transform.position, Quaternion.identity);
+                        break;
+                    case "STAGE_3":
+                        spawnedModel = Instantiate(modelStage3[getIndex(i)], plantingSpots[i].transform.position, Quaternion.identity);
+                        break;
+                }
+
+                spawnedModel.transform.SetParent(plantingSpots[i].transform);
+            }
+    }
+
 }

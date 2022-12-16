@@ -24,7 +24,7 @@ public class Item_016 : Item
     float batteryCharge;
     float timeSinceCharged;
 
-    void Start()
+    void Awake()     //we use awake because if we use start it is called before load from the save file
     {
         chargeText.text = "-";
         windText.text = "10";
@@ -98,5 +98,23 @@ public class Item_016 : Item
             Button_Hint.setBuildingInteractionHint("Place 'Battery'");
         else
             Button_Hint.clearBuildingInteractionHint();
+    }
+
+    public ArrayList getSaveData()
+    {
+        return new ArrayList() { batteryPlaced, batteryCharge, timeSinceCharged };
+    }
+
+    public void loadData(bool batteryPlaced, float batteryCharge, float timeSinceCharged)     //used when we are loading this object from file
+    {
+        this.batteryPlaced = batteryPlaced;
+        this.batteryCharge = batteryCharge;
+        this.timeSinceCharged = timeSinceCharged;
+
+        if(batteryPlaced == true)
+        {
+            GameObject spawnedModel = Instantiate(batteryPrefab, batteryHole.transform.position, Quaternion.identity);
+            spawnedModel.transform.SetParent(batteryHole.transform);
+        }
     }
 }

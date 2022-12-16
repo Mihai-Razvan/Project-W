@@ -25,7 +25,7 @@ public class Player_Inventory : MonoBehaviour
 
 
 
-    private void Awake()
+    void Awake()
     {
         infoSlotImage.enabled = false;
         hoveredItemName.enabled = false;
@@ -96,4 +96,11 @@ public class Player_Inventory : MonoBehaviour
     {
         onItemDeselected -= Item.destroyUsedObject;
     }
+
+    public void loadData()
+    {
+        PlayerInventoryData data = Loader.loadedData.playerInventoryData;
+        getPlayerInventoryHolder().GetComponent<Inventory>().loadData(data.itemCodeArray, data.quantityArray, data.chargeArray);
+    }
+
 }

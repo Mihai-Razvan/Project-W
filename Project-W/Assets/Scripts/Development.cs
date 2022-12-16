@@ -11,16 +11,13 @@ public class Development : MonoBehaviour
     [SerializeField]
     GameObject player;
 
-    private void Start()
-    {
-        //  Application.targetFrameRate = 300;
-    }
-
     void Update()
     {
        
         if (Input.GetKeyDown(KeyCode.H))
             canvas.GetComponent<Canvas>().enabled = !canvas.GetComponent<Canvas>().enabled;
+
+        development();
     }
 
     void development()

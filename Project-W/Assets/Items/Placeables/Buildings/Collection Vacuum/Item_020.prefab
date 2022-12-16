@@ -126,6 +126,12 @@ MonoBehaviour:
   resourceMask:
     serializedVersion: 2
     m_Bits: 64
+  prefabsItemCodes: 01000000090000000b0000000d000000
+  resourcesPrefabs:
+  - {fileID: 2247620941352713416, guid: ee61a40595fbe0c4daa99f59628ca2bc, type: 3}
+  - {fileID: 2931920097550189217, guid: 02782aba8d341ec43b6cd0727a311697, type: 3}
+  - {fileID: 746358726732504016, guid: 7aff66f1474e7f14aaa13cd693382f9f, type: 3}
+  - {fileID: 7283300774002538992, guid: 14a91e78805e6f746a19ac6ee55c60d7, type: 3}
 --- !u!1 &2075581255852240026
 GameObject:
   m_ObjectHideFlags: 0
