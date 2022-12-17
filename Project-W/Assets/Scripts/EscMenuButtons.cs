@@ -27,6 +27,7 @@ public class EscMenuButtons : MonoBehaviour
     [SerializeField]
     Slider sfxVolumeSlider;
 
+
     void Start()
     {
         menuWarningTab.SetActive(false);
@@ -38,6 +39,12 @@ public class EscMenuButtons : MonoBehaviour
     {
         FindObjectOfType<SoundsManager>().playClickButtonSound();
         FindObjectOfType<EscMenu>().closeMenu();
+    }
+
+    public void saveButtonAction()
+    {
+        FindObjectOfType<SoundsManager>().playClickButtonSound();
+        SaveSystem.Save();
     }
 
     public void menuButtonAction()
@@ -63,11 +70,16 @@ public class EscMenuButtons : MonoBehaviour
 
     public void menuWarningYesButtonAction()
     {
+        SaveSystem.Save();
         SceneManager.LoadScene("MainMenuScene");
-        FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
     public void menuWarningNoButtonAction()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
+    public void menuWarningCancelButtonAction()
     {
         menuWarningTab.SetActive(false);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
@@ -80,6 +92,11 @@ public class EscMenuButtons : MonoBehaviour
     }
 
     public void exitWarningNoButtonAction()
+    {
+        Application.Quit();
+    }
+
+    public void exitWarningCancelButtonAction()
     {
         exitWarningTab.SetActive(false);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
@@ -117,21 +134,24 @@ public class EscMenuButtons : MonoBehaviour
     public void onUiVolumeChange()
     {
         SoundsManager.onUiVolumeChange(uiVolumeSlider.value);
+     //   SaveSystem.SaveSettings();
     }
 
     public void onAmbienceVolumeChange()
     {
-        SoundsManager.onAmbienceVolumeChange(ambienceVolumeSlider.value); 
+        SoundsManager.onAmbienceVolumeChange(ambienceVolumeSlider.value);
+      //  SaveSystem.SaveSettings();
     }
 
     public void onSFxeVolumeChange()
     {
         SoundsManager.onSFxVolumeChange(sfxVolumeSlider.value);
+     //   SaveSystem.SaveSettings();
     }
 
 
 
-    public List<float> saveData()
+  /*  public List<float> saveData()
     {
         return new List<float>() { ambienceVolumeSlider.value, sfxVolumeSlider.value, uiVolumeSlider.value };
     }
@@ -141,19 +161,19 @@ public class EscMenuButtons : MonoBehaviour
         if (PlayerPrefs.HasKey("Settings_Sound_Ambience_Volume"))
         {
             ambienceVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_Ambience_Volume");
-            onAmbienceVolumeChange();
+            SoundsManager.onAmbienceVolumeChange(PlayerPrefs.GetFloat("Settings_Sound_Ambience_Volume"));
         }
 
         if (PlayerPrefs.HasKey("Settings_Sound_SFX_Volume"))
         {
             sfxVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_SFX_Volume");
-            onSFxeVolumeChange();
+            SoundsManager.onSFxVolumeChange(PlayerPrefs.GetFloat("Settings_Sound_SFX_Volume"));
         }
 
         if (PlayerPrefs.HasKey("Settings_Sound_UI_Volume"))
         {
             uiVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_UI_Volume");
-            onUiVolumeChange();
+            SoundsManager.onUiVolumeChange(PlayerPrefs.GetFloat("Settings_Sound_UI_Volume"));
         }
-    }
+    }*/
 }

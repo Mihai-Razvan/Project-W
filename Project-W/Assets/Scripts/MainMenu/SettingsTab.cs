@@ -17,11 +17,6 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
     [SerializeField]
     Slider sfxVolumeSlider;
 
-    void Start()
-    {
-        loadData();
-    }
-
     public void controlsButton()
     {
         settingsAudioTab.SetActive(false);
@@ -45,22 +40,22 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
     public void onUiVolumeChange()
     {
         SoundsManager.onUiVolumeChange(uiVolumeSlider.value);
-        SaveSystem.SaveSettings();
+     //   SaveSystem.SaveSettings();
     }
 
     public void onAmbienceVolumeChange()
     {
         SoundsManager.onAmbienceVolumeChange(ambienceVolumeSlider.value);
-        SaveSystem.SaveSettings();
+    //    SaveSystem.SaveSettings();
     }
 
     public void onSFxeVolumeChange()
     {
         SoundsManager.onSFxVolumeChange(sfxVolumeSlider.value);
-        SaveSystem.SaveSettings();
+    //    SaveSystem.SaveSettings();
     }
 
-    public List<float> saveData()
+  /*  public List<float> saveData()
     {
         return new List<float>() { ambienceVolumeSlider.value, sfxVolumeSlider.value, uiVolumeSlider.value };
     }
@@ -84,5 +79,5 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
             uiVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_UI_Volume");
             onUiVolumeChange();
         }     
-    }
+    }*/
 }

@@ -2,26 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Loader : MonoBehaviour          
+public class Loader : MonoBehaviour           //this script is placed on scripts manager -> saveSystem
 {
     public static GameData loadedData;
 
+    [SerializeField]
+    GameObject foundationPrefab;          //used to instantiate the initial foundations when you create a new world
+
     void Start()
     {
-        loadedData = SaveSystem.Load();
-
-        if (loadedData != null)
+        if (PlayerPrefs.HasKey("Save_Exist") && PlayerPrefs.GetString("Save_Exist").Equals("True"))  //there is a save; otherwise it means it's a new world
         {
-            load_Player_Data();
-            load_Player_Inventory();
-            load_Structures();
-            load_item_014();
-            load_item_016();
-            load_item_019();
-            load_item_020();
-            load_item_021();
-            load_item_024();
+            loadedData = SaveSystem.Load();
+
+            if (loadedData != null)
+            {
+                load_Player_Data();
+                load_Player_Inventory();
+                load_Structures();
+                load_item_014();
+                load_item_016();
+                load_item_019();
+                load_item_020();
+                load_item_021();
+                load_item_024();
+            }
         }
+        else
+            loadNewWorld();                  
+    }
+
+    void loadNewWorld()
+    {
+        Instantiate(foundationPrefab, new Vector3(1.9f, 75, -1.9f), Quaternion.identity);
+        Instantiate(foundationPrefab, new Vector3(-1.9f, 75, -1.9f), Quaternion.identity);
+        Instantiate(foundationPrefab, new Vector3(-1.9f, 75, 1.9f), Quaternion.identity);
+        Instantiate(foundationPrefab, new Vector3(1.9f, 75, 1.9f), Quaternion.identity);
+
+        SaveSystem.Save();
     }
 
     void load_Player_Data()
