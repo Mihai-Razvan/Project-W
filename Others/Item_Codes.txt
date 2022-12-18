@@ -29,3 +29,4 @@ Item Name - "copper"
 25 - kwaki seeds
 26 - kwaki tree
 27 - kwaki
+28 - chest

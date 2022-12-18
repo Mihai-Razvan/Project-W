@@ -25,26 +25,34 @@ public class Inventory_Crafting_Panel : MonoBehaviour
             {
                 if (ActionLock.getActionLock().Equals("UNLOCKED"))
                 {
-                    inventoryTab.SetActive(true);
-                    craftingMenu.SetActive(true);
-                    status = "OPENED";
-                    ActionLock.setActionLock("UI_OPENED");
+                    open();
 
-                 //   int openedCategory = FindObjectOfType<Crafting_Menu>().getOpenedCategory();
-                 //   FindObjectOfType<Crafting_Menu>().openCategory(openedCategory);
-                    FindObjectOfType<Craft_Panel>().setActive(true);
+                    ActionLock.setActionLock("UI_OPENED");
                     UnityEngine.Cursor.visible = true;
                 }
             }
             else
             {
-                inventoryTab.SetActive(false);
-                craftingMenu.SetActive(false);
-                status = "CLOSED";
+                close();
                 ActionLock.setActionLock("UNLOCKED");
                 UnityEngine.Cursor.visible = false;
             }
         }
+    }
+
+    public void open()
+    {
+        inventoryTab.SetActive(true);
+        craftingMenu.SetActive(true);
+        FindObjectOfType<Craft_Panel>().setActive(true);
+        status = "OPENED";
+    }
+
+    public void close()
+    {
+        inventoryTab.SetActive(false);
+        craftingMenu.SetActive(false);
+        status = "CLOSED";
     }
 
     public static string getInventoryStatus()

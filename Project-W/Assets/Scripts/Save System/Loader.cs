@@ -26,6 +26,7 @@ public class Loader : MonoBehaviour           //this script is placed on scripts
                 load_item_020();
                 load_item_021();
                 load_item_024();
+                load_item_028();
             }
         }
         else
@@ -171,6 +172,22 @@ public class Loader : MonoBehaviour           //this script is placed on scripts
             Vector3 rotation = new Vector3(data[i].rotation[0], data[i].rotation[1], data[i].rotation[2]);
             GameObject spawnedObject = Instantiate(GameDataHelper.getStructures(24), pos, Quaternion.Euler(rotation));
             spawnedObject.GetComponent<Item_024>().loadData(data[i].status, data[i].index, data[i].fruitItemCode, data[i].timeSincePlanted);
+        }
+    }
+
+    void load_item_028()
+    {
+        List<Item_028_SaveData> data = loadedData.item_028_Data;
+
+        if (data == null)
+            return;
+
+        for (int i = 0; i < data.Count; i++)
+        {
+            Vector3 pos = new Vector3(data[i].position[0], data[i].position[1], data[i].position[2]);
+            Vector3 rotation = new Vector3(data[i].rotation[0], data[i].rotation[1], data[i].rotation[2]);
+            GameObject spawnedObject = Instantiate(GameDataHelper.getStructures(28), pos, Quaternion.Euler(rotation));
+            spawnedObject.GetComponent<Item_028>().loadData(data[i].itemCodeArray, data[i].quantityArray, data[i].chargeArray);
         }
     }
 }
