@@ -30,3 +30,10 @@ Item Name - "copper"
 26 - kwaki tree
 27 - kwaki
 28 - chest
+29 - Tech Christmas Tree
+30 - Christmas Tree
+31 - Small Gift
+32 - Large Gift
+33 - Candy
+34 - Gift Crate
+35 - Ice Grappler

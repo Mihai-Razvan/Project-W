@@ -27,6 +27,10 @@ public class Loader : MonoBehaviour           //this script is placed on scripts
                 load_item_021();
                 load_item_024();
                 load_item_028();
+                load_item_029();
+                load_item_030();
+                load_item_031();
+                load_item_032();
             }
         }
         else
@@ -188,6 +192,66 @@ public class Loader : MonoBehaviour           //this script is placed on scripts
             Vector3 rotation = new Vector3(data[i].rotation[0], data[i].rotation[1], data[i].rotation[2]);
             GameObject spawnedObject = Instantiate(GameDataHelper.getStructures(28), pos, Quaternion.Euler(rotation));
             spawnedObject.GetComponent<Item_028>().loadData(data[i].itemCodeArray, data[i].quantityArray, data[i].chargeArray);
+        }
+    }
+
+    void load_item_029()
+    {
+        List<PlaceableData> data = loadedData.item_029_Data;
+
+        if (data == null)
+            return;
+
+        for (int i = 0; i < data.Count; i++)
+        {
+            Vector3 pos = new Vector3(data[i].position[0], data[i].position[1], data[i].position[2]);
+            Vector3 rotation = new Vector3(data[i].rotation[0], data[i].rotation[1], data[i].rotation[2]);
+            Instantiate(GameDataHelper.getStructures(29), pos, Quaternion.Euler(rotation));
+        }
+    }
+
+    void load_item_030()
+    {
+        List<PlaceableData> data = loadedData.item_030_Data;
+
+        if (data == null)
+            return;
+
+        for (int i = 0; i < data.Count; i++)
+        {
+            Vector3 pos = new Vector3(data[i].position[0], data[i].position[1], data[i].position[2]);
+            Vector3 rotation = new Vector3(data[i].rotation[0], data[i].rotation[1], data[i].rotation[2]);
+            Instantiate(GameDataHelper.getStructures(30), pos, Quaternion.Euler(rotation));
+        }
+    }
+
+    void load_item_031()
+    {
+        List<PlaceableData> data = loadedData.item_031_Data;
+
+        if (data == null)
+            return;
+
+        for (int i = 0; i < data.Count; i++)
+        {
+            Vector3 pos = new Vector3(data[i].position[0], data[i].position[1], data[i].position[2]);
+            Vector3 rotation = new Vector3(data[i].rotation[0], data[i].rotation[1], data[i].rotation[2]);
+            Instantiate(GameDataHelper.getStructures(31), pos, Quaternion.Euler(rotation));
+        }
+    }
+
+    void load_item_032()
+    {
+        List<PlaceableData> data = loadedData.item_032_Data;
+
+        if (data == null)
+            return;
+
+        for (int i = 0; i < data.Count; i++)
+        {
+            Vector3 pos = new Vector3(data[i].position[0], data[i].position[1], data[i].position[2]);
+            Vector3 rotation = new Vector3(data[i].rotation[0], data[i].rotation[1], data[i].rotation[2]);
+            Instantiate(GameDataHelper.getStructures(32), pos, Quaternion.Euler(rotation));
         }
     }
 }

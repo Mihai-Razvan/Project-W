@@ -23,6 +23,13 @@ TagManager:
   - Item_021
   - Item_024
   - Item_028
+  - Item_029
+  - Item_030
+  - Item_031
+  - Item_032
+  - Item_033
+  - Item_034
+  - Item_035
   layers:
   - Default
   - TransparentFX
