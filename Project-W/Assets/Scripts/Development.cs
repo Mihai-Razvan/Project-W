@@ -39,5 +39,8 @@ public class Development : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
             Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(11, 1, 0);
+
+        if (Input.GetKeyDown(KeyCode.V))
+            Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().addItem(33, 1, 0);
     }
 }

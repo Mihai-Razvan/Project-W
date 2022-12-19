@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4807163165590408738}
   - component: {fileID: 5729983895163215939}
   - component: {fileID: 3295900643887688390}
+  - component: {fileID: 4766361151222186142}
   m_Layer: 6
   m_Name: Item_033
   m_TagString: Item_034
@@ -67,8 +68,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6719245597448002910, guid: 24b1ca7f5c495db4180bdef6e4590d7c, type: 3}
-  - {fileID: -2576351621781090297, guid: 24b1ca7f5c495db4180bdef6e4590d7c, type: 3}
+  - {fileID: 2100000, guid: 86708998dbffea149a6fc52d0199d48f, type: 2}
+  - {fileID: 2100000, guid: 736955b0c9b295e41887c4e6e549ca56, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -178,3 +179,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   candyItemCode: 33
+--- !u!114 &4766361151222186142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4825700140264658098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e6c8cd7e350fc448c4b726096c2afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possbileColors:
+  - {fileID: 2100000, guid: dca3a75c668d52c4a960a7282d1b47b7, type: 2}
+  - {fileID: 2100000, guid: fd92b406871b95d42a665ac95d790a90, type: 2}
+  - {fileID: 2100000, guid: 5a0e491b3f41b6c4295b9c93b08f2796, type: 2}
+  - {fileID: 2100000, guid: 5942d899c8e4b244298081f347054f29, type: 2}
+  - {fileID: 2100000, guid: 8bbc32e9109d62b47b65d04ad4125ae9, type: 2}
+  - {fileID: 2100000, guid: 86708998dbffea149a6fc52d0199d48f, type: 2}
+  commonMaterial: {fileID: 2100000, guid: 736955b0c9b295e41887c4e6e549ca56, type: 2}

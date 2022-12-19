@@ -8282,7 +8282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.data[0]
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.data[1]
@@ -10507,7 +10507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.data[0]
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.data[1]
@@ -10803,7 +10803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.data[0]
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.data[1]
@@ -19839,7 +19839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908690de47b204e41b1e2b4932720cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCodeArray: 0200000004000000050000000600000007000000080000000c0000000e000000100000001300000014000000150000001800000001000000090000000a0000000b0000000f0000001900000011000000000000000000000000000000
+  itemCodeArray: 0200000004000000050000000600000007000000080000000c0000000e000000100000001300000014000000150000001800000001000000090000000a00000021000000210000002100000011000000000000000000000000000000
   quantityArray: 0100000063000000630000006300000063000000630000006300000063000000630000006300000063000000630000006300000063000000630000006300000063000000630000006300000001000000000000000000000000000000
   chargeArray:
   - 0
@@ -26592,7 +26592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.data[0]
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.data[1]
@@ -30691,7 +30691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.data[0]
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4863080120515879559, guid: 37d2ebac2ecf2a34e9f08bff0908ce73, type: 3}
       propertyPath: resourcesQuantity.Array.data[1]
@@ -31932,7 +31932,6 @@ MonoBehaviour:
   playerTransform: {fileID: 885755179}
   spawnHeight: 60
   spawnRadius: 20
-  spawnTimeInterval: 2
   giftCratePrefab: {fileID: 4825700140264658098, guid: 7f5b49a6f5a61494e99c516a112ba91e, type: 3}
 --- !u!114 &2060531632
 MonoBehaviour:

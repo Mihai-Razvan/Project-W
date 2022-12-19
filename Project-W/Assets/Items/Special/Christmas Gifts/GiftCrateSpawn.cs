@@ -11,8 +11,6 @@ public class GiftCrateSpawn : MonoBehaviour
     [SerializeField]
     float spawnRadius;
     [SerializeField]
-    float spawnTimeInterval;        //the interval between 2 resources spawn
-    [SerializeField]
     GameObject giftCratePrefab;
     float spawnTimeElapsed;      //the time passed since a resource was spawned
 
@@ -30,13 +28,17 @@ public class GiftCrateSpawn : MonoBehaviour
     {
         spawnTimeElapsed += Time.deltaTime;
 
-        if (spawnTimeElapsed >= spawnTimeInterval)
+        if (spawnTimeElapsed >= 1f)    //every second it choses if to spawn or not
         {
-            Vector2 randomPos = new Vector2(playerTransform.position.x, playerTransform.position.z) + Random.insideUnitCircle * spawnRadius;
-            Vector3 spawnPos = new Vector3(randomPos.x, playerTransform.position.y + spawnHeight, randomPos.y);
-            float ranRot = Random.Range(0, 180);
+            int randVal = Random.Range(1, 30);   
 
-            Instantiate(giftCratePrefab, spawnPos, Quaternion.Euler(ranRot, ranRot, ranRot));
+            if (randVal == 1)
+            {
+                Vector2 randomPos = new Vector2(playerTransform.position.x, playerTransform.position.z) + Random.insideUnitCircle * spawnRadius;
+                Vector3 spawnPos = new Vector3(randomPos.x, playerTransform.position.y + spawnHeight, randomPos.y);
+                float ranRot = Random.Range(0, 180);
+                Instantiate(giftCratePrefab, spawnPos, Quaternion.Euler(ranRot, ranRot, ranRot));
+            }
 
             spawnTimeElapsed = 0f;
         }

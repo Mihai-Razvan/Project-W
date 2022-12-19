@@ -15,7 +15,7 @@ public class Item_034 : MonoBehaviour
 
     void generateResources()
     {
-        int resourcesNumber = Random.Range(1, 4);
+        int resourcesNumber = Random.Range(1, 5);
         int[] itemCodeArray = new int[1] { candyItemCode };
         int[] quantiyArray = new int[1] { resourcesNumber };
         float[] chargeArray = new float[1] { 0 };
