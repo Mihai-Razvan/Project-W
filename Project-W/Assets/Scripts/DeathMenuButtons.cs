@@ -82,7 +82,14 @@ public class DeathMenuButtons : MonoBehaviour
 
     void respawn()
     {
+        FindObjectOfType<Player_Stats>().setSaturation(50);
+        FindObjectOfType<Player_Stats>().setThirst(50);
         FindObjectOfType<Player_Stats>().setHealth(100);
+
+        for (int i = 0; i < 23; i++)
+            Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().setSlot(i, 0, 0, 0);
+         
+        Player_Inventory.getPlayerInventoryHolder().GetComponent<Inventory>().setSlot(0, 2, 1, 0);       //gives you the grappler
 
         FindObjectOfType<PlayerMovement>().setPlayerPosition(respawnPosition.position);
         UnityEngine.Cursor.visible = false;

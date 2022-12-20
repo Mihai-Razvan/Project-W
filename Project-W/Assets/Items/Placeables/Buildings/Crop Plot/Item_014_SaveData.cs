@@ -24,7 +24,7 @@ public class Item_014_SaveData : PlaceableData
         int k = 0;
 
         for (int i = 0; i < colliders.Length; i++)
-            if (ItemsList.getItemCode(colliders[i].gameObject.tag) == 14)
+            if (colliders[i] is BoxCollider && ItemsList.getItemCode(colliders[i].gameObject.tag) == 14)  //we check to be a boxCollider in case that object got other colliders to, otherwise the object would be saved once for every collider
             {
                 item_014_Data.Add(new Item_014_SaveData(colliders[i].gameObject.GetComponent<Item_014>().getSaveData()));
                 item_014_Data[k].itemCode = ItemsList.getItemCode(colliders[i].gameObject.tag);

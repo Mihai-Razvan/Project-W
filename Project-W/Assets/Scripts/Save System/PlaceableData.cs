@@ -23,7 +23,7 @@ public class PlaceableData           //placeable data for the save system
         int k = 0;
 
         for (int i = 0; i < colliders.Length; i++)
-            if (itemCodes.Contains(ItemsList.getItemCode(colliders[i].gameObject.tag)))
+            if (colliders[i] is BoxCollider && itemCodes.Contains(ItemsList.getItemCode(colliders[i].gameObject.tag)))  //we check to be a boxCollider in case that object got other colliders to, otherwise the object would be saved once for every collider
                 {
                     placeableData.Add(new PlaceableData());
                     placeableData[k].itemCode = ItemsList.getItemCode(colliders[i].gameObject.tag);

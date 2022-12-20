@@ -35,5 +35,5 @@ Item Name - "copper"
 31 - Small Gift
 32 - Large Gift
 33 - Candy
-34 - Gift Crate
+34 - Gift        (gift crate)
 35 - Ice Grappler

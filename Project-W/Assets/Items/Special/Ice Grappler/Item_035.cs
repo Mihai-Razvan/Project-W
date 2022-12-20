@@ -27,9 +27,9 @@ public class Item_035 : Tool   //ice grappler
 
 
     [SerializeField]
-    AudioSource raySound;
+    AudioSource iceRaySound;
     [SerializeField]
-    float maxRaySoundVolume;
+    float maxIceRaySoundVolume;
 
 
     void Start()
@@ -67,7 +67,7 @@ public class Item_035 : Tool   //ice grappler
                     else if (Input.GetKeyUp(KeyCode.Mouse0))
                     {
                         laserState = "EXPANDING";
-                        raySound.Play();
+                        iceRaySound.Play();
                         ChargeRadial.resetCharge();
                         ActionLock.setActionLock("ACTION_LOCKED");
                     }
@@ -94,7 +94,7 @@ public class Item_035 : Tool   //ice grappler
                         laserLine.positionCount = 0;     //so the ray disappears
                         laserSize = 0;
                         ActionLock.setActionLock("UNLOCKED");
-                        raySound.Stop();
+                        iceRaySound.Stop();
                     }
 
                     break;
@@ -219,7 +219,7 @@ public class Item_035 : Tool   //ice grappler
 
     void changeRaySoundVolume(float volume)
     {
-        raySound.volume = maxRaySoundVolume * volume;
+        iceRaySound.volume = maxIceRaySoundVolume * volume;
     }
 
     void OnDestroy()

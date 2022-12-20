@@ -18,14 +18,19 @@ public class EscMenuButtons : MonoBehaviour
     [SerializeField]
     GameObject settingsControlsTab;    
     [SerializeField]
-    GameObject settingsAudioTab;     
-
+    GameObject settingsAudioTab;
     [SerializeField]
+    GameObject settingsVideoTab;
+
+    [SerializeField]        //slider for audio settings
     Slider uiVolumeSlider;
     [SerializeField]
     Slider ambienceVolumeSlider;
     [SerializeField]
     Slider sfxVolumeSlider;
+
+    [SerializeField]         //slider for video settings
+    Slider headBobbingSlider;
 
 
     void Start()
@@ -106,15 +111,22 @@ public class EscMenuButtons : MonoBehaviour
     ///
     public void settingsControlsButtonAction()
     {
-        settingsAudioTab.SetActive(false);
+        closeSettingsTabs();
         settingsControlsTab.SetActive(true);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
     public void settingsAudioButtonAction()
     {
-        settingsControlsTab.SetActive(false);
+        closeSettingsTabs();
         settingsAudioTab.SetActive(true);
+        FindObjectOfType<SoundsManager>().playClickButtonSound();
+    }
+
+    public void settingsVideoButtonAction()
+    {
+        closeSettingsTabs();
+        settingsVideoTab.SetActive(true);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
@@ -143,12 +155,23 @@ public class EscMenuButtons : MonoBehaviour
       //  SaveSystem.SaveSettings();
     }
 
-    public void onSFxeVolumeChange()
+    public void onSFxVolumeChange()
     {
         SoundsManager.onSFxVolumeChange(sfxVolumeSlider.value);
      //   SaveSystem.SaveSettings();
     }
 
+    public void onHeadBobbingChange()
+    {
+        FindObjectOfType<HeadBobController>().changeBobAmount(headBobbingSlider.value);
+    }
+
+    void closeSettingsTabs()
+    {
+        settingsControlsTab.SetActive(false);
+        settingsAudioTab.SetActive(false);
+        settingsVideoTab.SetActive(false);
+    }
 
 
   /*  public List<float> saveData()

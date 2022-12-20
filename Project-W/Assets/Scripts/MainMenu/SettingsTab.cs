@@ -8,7 +8,9 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
     [SerializeField]
     GameObject settingsControlsTab;      
     [SerializeField]
-    GameObject settingsAudioTab;      
+    GameObject settingsAudioTab;
+    [SerializeField]
+    GameObject settingsVideoTab;
 
     [SerializeField]
     Slider uiVolumeSlider;
@@ -17,17 +19,27 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
     [SerializeField]
     Slider sfxVolumeSlider;
 
+    [SerializeField]         //slider for video settings
+    Slider headBobbingSlider;
+
     public void controlsButton()
     {
-        settingsAudioTab.SetActive(false);
+        closeSettingsTabs();
         settingsControlsTab.SetActive(true);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
     public void audioButton()
     {
-        settingsControlsTab.SetActive(false);
+        closeSettingsTabs();
         settingsAudioTab.SetActive(true);
+        FindObjectOfType<SoundsManager>().playClickButtonSound();
+    }
+
+    public void videoButtonAction()
+    {
+        closeSettingsTabs();
+        settingsVideoTab.SetActive(true);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
@@ -35,6 +47,13 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
     {
         FindObjectOfType<SoundsManager>().playClickButtonSound();
         FindObjectOfType<MainMenu>().getSettingsTab().SetActive(false);
+    }
+
+    void closeSettingsTabs()
+    {
+        settingsControlsTab.SetActive(false);
+        settingsAudioTab.SetActive(false);
+        settingsVideoTab.SetActive(false);
     }
 
     public void onUiVolumeChange()
@@ -53,6 +72,11 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
     {
         SoundsManager.onSFxVolumeChange(sfxVolumeSlider.value);
     //    SaveSystem.SaveSettings();
+    }
+
+    public void onHeadBobbingChange()
+    {
+        Debug.Log("Head bobing value changed");
     }
 
   /*  public List<float> saveData()

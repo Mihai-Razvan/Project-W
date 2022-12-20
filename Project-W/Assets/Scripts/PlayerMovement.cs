@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     float groundCheckSize;
     [SerializeField]
     LayerMask placeableMask;     //groundMask
-    string movementState;
+    static string movementState;
     [SerializeField]
     float walkingSpeed;
     [SerializeField]
@@ -105,5 +105,10 @@ public class PlayerMovement : MonoBehaviour
         controller.enabled = false;
         transform.position = newPos;
         controller.enabled = true;
+    }
+
+    public static string getMovementState()      //we need this for camera bob
+    {
+        return movementState;
     }
 }

@@ -30,7 +30,7 @@ public class GiftCrateSpawn : MonoBehaviour
 
         if (spawnTimeElapsed >= 1f)    //every second it choses if to spawn or not
         {
-            int randVal = Random.Range(1, 30);   
+            int randVal = Random.Range(1, 31);   
 
             if (randVal == 1)
             {
