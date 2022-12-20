@@ -31,6 +31,8 @@ public class EscMenuButtons : MonoBehaviour
 
     [SerializeField]         //slider for video settings
     Slider headBobbingSlider;
+    [SerializeField]
+    Toggle showFPsToggle;
 
 
     void Start()
@@ -165,6 +167,13 @@ public class EscMenuButtons : MonoBehaviour
     {
         FindObjectOfType<HeadBobController>().changeBobAmount(headBobbingSlider.value);
     }
+
+    public void onShowFPsChange()
+    {
+        FindObjectOfType<FPS_Counter>().setFPsTextEnabled(showFPsToggle.isOn);
+        FindObjectOfType<SoundsManager>().playClickButtonSound();
+    }
+
 
     void closeSettingsTabs()
     {

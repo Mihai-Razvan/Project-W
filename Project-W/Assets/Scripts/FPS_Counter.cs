@@ -7,8 +7,8 @@ using TMPro;
 public class FPS_Counter : MonoBehaviour
 {
     [SerializeField]
-    public TextMeshProUGUI fpsText;
-    public float deltaTime;
+    TextMeshProUGUI fpsText;
+    float deltaTime;
 
 
     void Update()
@@ -22,5 +22,10 @@ public class FPS_Counter : MonoBehaviour
             fpsText.color = Color.yellow;
         else
             fpsText.color = Color.green;
+    }
+
+    public void  setFPsTextEnabled(bool enabled)
+    {
+        fpsText.enabled = enabled;
     }
 }

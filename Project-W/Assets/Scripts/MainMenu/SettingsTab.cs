@@ -21,6 +21,8 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
 
     [SerializeField]         //slider for video settings
     Slider headBobbingSlider;
+    [SerializeField]
+    Toggle showFPsToggle;
 
     public void controlsButton()
     {
@@ -79,29 +81,35 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
         Debug.Log("Head bobing value changed");
     }
 
-  /*  public List<float> saveData()
+    public void onShowFPsChange()
     {
-        return new List<float>() { ambienceVolumeSlider.value, sfxVolumeSlider.value, uiVolumeSlider.value };
+        FindObjectOfType<FPS_Counter>().setFPsTextEnabled(showFPsToggle.isOn);
+        FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
 
-    public void loadData()         //this is done using PlayerPrefs, so it isn't linked to the file save system, excepting SaveSettings() ehich is in SaveSysyem class
-    {
-        if(PlayerPrefs.HasKey("Settings_Sound_Ambience_Volume"))
-        {
-            ambienceVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_Ambience_Volume");
-            onAmbienceVolumeChange();
-        }
+    /*  public List<float> saveData()
+      {
+          return new List<float>() { ambienceVolumeSlider.value, sfxVolumeSlider.value, uiVolumeSlider.value };
+      }
 
-        if (PlayerPrefs.HasKey("Settings_Sound_SFX_Volume"))
-        {
-            sfxVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_SFX_Volume");
-            onSFxeVolumeChange();
-        }
+      public void loadData()         //this is done using PlayerPrefs, so it isn't linked to the file save system, excepting SaveSettings() ehich is in SaveSysyem class
+      {
+          if(PlayerPrefs.HasKey("Settings_Sound_Ambience_Volume"))
+          {
+              ambienceVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_Ambience_Volume");
+              onAmbienceVolumeChange();
+          }
 
-        if (PlayerPrefs.HasKey("Settings_Sound_UI_Volume"))
-        {
-            uiVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_UI_Volume");
-            onUiVolumeChange();
-        }     
-    }*/
+          if (PlayerPrefs.HasKey("Settings_Sound_SFX_Volume"))
+          {
+              sfxVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_SFX_Volume");
+              onSFxeVolumeChange();
+          }
+
+          if (PlayerPrefs.HasKey("Settings_Sound_UI_Volume"))
+          {
+              uiVolumeSlider.value = PlayerPrefs.GetFloat("Settings_Sound_UI_Volume");
+              onUiVolumeChange();
+          }     
+      }*/
 }
