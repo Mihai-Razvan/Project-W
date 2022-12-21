@@ -44,6 +44,17 @@ public class Placeable : Item
                 materials[i] = material;
 
             usedObjectRenderer.materials = materials;
+
+            for (int grandChild = 0; grandChild < getUsedObject().transform.GetChild(child).childCount; grandChild++)       //we did this initially for the chest to be able to do its animation on dummy
+            {
+                Renderer usedObjectRenderer2 = getUsedObject().transform.GetChild(child).GetChild(grandChild).gameObject.GetComponent<Renderer>();
+                Material[] materials2 = new Material[usedObjectRenderer2.materials.Length];
+
+                for (int i = 0; i < materials2.Length; i++)
+                    materials2[i] = material;
+
+                usedObjectRenderer2.materials = materials2;
+            }
         }
     }
 }

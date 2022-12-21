@@ -100,7 +100,7 @@ MonoBehaviour:
   fruitsItemCodes: 1b000000
   fruitsModels:
   - {fileID: 5342876978489627839, guid: 56df36627977fa947a98bc214c8b5ef5, type: 3}
-  growingTimes: 0a000000
+  growingTimes: b4000000
   driedMaterial: {fileID: 2100000, guid: d7934f39e25150b4aabd8649f41cf301, type: 2}
 --- !u!114 &5230935952758141604
 MonoBehaviour:
