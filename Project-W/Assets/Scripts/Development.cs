@@ -17,7 +17,7 @@ public class Development : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
             canvas.GetComponent<Canvas>().enabled = !canvas.GetComponent<Canvas>().enabled;
 
-      //  development();
+        development();
     }
 
     void development()
