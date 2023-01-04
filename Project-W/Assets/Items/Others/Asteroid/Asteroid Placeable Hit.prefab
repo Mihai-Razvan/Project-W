@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3241774099265435927}
   - component: {fileID: 8485400434051381349}
   m_Layer: 0
-  m_Name: Asteroid Hit
+  m_Name: Asteroid Placeable Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10073,8 +10073,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 30
-      minScalar: 7
+      scalar: 20
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10126,8 +10126,8 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 30
-      minScalar: 7
+      scalar: 20
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10179,8 +10179,8 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 30
-      minScalar: 7
+      scalar: 20
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10765,8 +10765,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 10
-        minScalar: 5
+        scalar: 5
+        minScalar: 4
         maxCurve:
           serializedVersion: 2
           m_Curve:

@@ -867,7 +867,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 80
+      scalar: 30
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -10491,8 +10491,8 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 80
-      minScalar: 60
+      scalar: 60
+      minScalar: 50
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14447,7 +14447,7 @@ GameObject:
   - component: {fileID: 210982307834308783}
   - component: {fileID: 1013742530457690984}
   - component: {fileID: 1591483931143999429}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Item_036
   m_TagString: Item_036
   m_Icon: {fileID: 0}
@@ -14484,7 +14484,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1591483931143999429
 MonoBehaviour:
@@ -14499,12 +14499,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  collisionSphereRadius: 2
+  collisionSphereRadius: 3
   placeableMask:
     serializedVersion: 2
     m_Bits: 256
   asteroidHitPrefab: {fileID: 1291001054753265850, guid: 066c19edd46e4ac42931532c1cc559e3, type: 3}
-  playerDistanceDamage: 3
+  playerDistanceDamage: 5
   playerHitDamage: 50
   despawnLevel: -30
 --- !u!1 &8105062499855843173

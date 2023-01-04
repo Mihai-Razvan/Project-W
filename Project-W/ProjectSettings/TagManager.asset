@@ -31,6 +31,7 @@ TagManager:
   - Item_034
   - Item_035
   - Item_036
+  - Item_037
   layers:
   - Default
   - TransparentFX
@@ -42,7 +43,7 @@ TagManager:
   - PrefabMergePoint
   - Placeable
   - PostProcessing
-  - 
+  - Asteroid
   - 
   - 
   - 

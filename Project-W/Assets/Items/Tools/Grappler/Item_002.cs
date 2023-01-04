@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_002 : Tool   //grappler
+public class Item_002 : Item  //grappler
 {
     LineRenderer laserLine;
     float laserSize;   //the laser isn't full size since beginning, it is expanding during a few seconds; it starts from 0 and then increase, until reaches it final destination
@@ -17,14 +17,13 @@ public class Item_002 : Tool   //grappler
     float laserRetractingSlowDown;     //retracting is slower when we got object retracting
     [SerializeField]
     float rayRadius;               //the radius for the capsule collider that si cheking for the ray collision
-    string laserState;
+    string laserState;           //UNUSED, EXAPANDING, RETRACTING
     Transform rayStartPosition;
     [SerializeField]
     LayerMask resourcesMask;
     GameObject beamStartEffect;
     List<GameObject> objectList;
     List<float> distanceList;
-
 
     [SerializeField]
     AudioSource raySound;
@@ -40,16 +39,13 @@ public class Item_002 : Tool   //grappler
         objectList = new List<GameObject>();
         distanceList = new List<float>();
 
-        Player_Inventory.onItemSelected += displayPrefab;
-        Player_Inventory.onItemDeselected += deselectItem;
-
         changeRaySoundVolume(FindObjectOfType<SoundsManager>().getSFxVolume());
         SoundsManager.onSFxVolumeChange += changeRaySoundVolume;
     }
 
     void Update()
     {
-        if (itemCode == selectedItemCode && getUsedObject() != null && ActionLock.getActionLock().Equals("UI_OPENED") == false)     //we use getusedobject() in case the object appears on selected slot when slot is already selected
+        if (getUsedObject() != null && ActionLock.getActionLock().Equals("UI_OPENED") == false)     
         {
             beamStartEffect = getUsedObject().transform.GetChild(0).transform.GetChild(1).gameObject;
             rayStartPosition = getUsedObject().transform.GetChild(0).transform.GetChild(0);
@@ -195,27 +191,6 @@ public class Item_002 : Tool   //grappler
             }    
     }
 
-    void deselectItem()
-    {
-        chargeTime = 0;  
-        laserSize = 0;
-    }
-
-    public float getChargeTime()
-    {
-        return chargeTime;
-    }
-
-    public float getMaxChargeTime()
-    {
-        return maxChargeTime;
-    }
-
-    public string getLaserState()
-    {
-        return laserState;
-    }
-
     void changeRaySoundVolume(float volume)
     {
         raySound.volume = maxRaySoundVolume * volume;
@@ -223,8 +198,6 @@ public class Item_002 : Tool   //grappler
 
     void OnDestroy()
     {
-        Player_Inventory.onItemSelected -= displayPrefab;
-        Player_Inventory.onItemDeselected -= deselectItem;
         SoundsManager.onSFxVolumeChange -= changeRaySoundVolume;
     }
 }

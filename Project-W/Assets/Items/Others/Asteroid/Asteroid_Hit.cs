@@ -15,7 +15,7 @@ public class Asteroid_Hit : MonoBehaviour
     {
         timeSinceSpawned += Time.deltaTime;
 
-        if (timeSinceSpawned >= 15)
+        if (timeSinceSpawned >= 10)
             Destroy(this.gameObject);
     }
 }
