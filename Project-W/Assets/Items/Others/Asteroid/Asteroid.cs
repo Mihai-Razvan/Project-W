@@ -23,10 +23,18 @@ public class Asteroid : MonoBehaviour
     float despawnLevel;
     bool playerAlreadyHit;       //so the player doesn't get damage in consecutive frames; player can get damage only once by an asteroid
 
+    [SerializeField]
+    AudioSource asteroidSound;
+    [SerializeField]
+    float maxAsteroidSoundVolume;
+
     void Start()
     {
         transform.LookAt(hitPoint);
         playerAlreadyHit = false;
+
+        changeAsteroidSoundVolume(FindObjectOfType<SoundsManager>().getSFxVolume());
+        SoundsManager.onSFxVolumeChange += changeAsteroidSoundVolume;
     }
 
     void Update()
@@ -60,7 +68,10 @@ public class Asteroid : MonoBehaviour
         }
 
         if (hitObjectGetsDestroyed == true)
+        {
+            FindObjectOfType<SoundsManager>().playAsteroidExplosionSound();
             Destroy(this.gameObject);
+        }
 
     }
 
@@ -86,5 +97,15 @@ public class Asteroid : MonoBehaviour
     public void setHitObject(GameObject obj)
     {
         hitObject = obj;
+    }
+
+    void changeAsteroidSoundVolume(float volume)
+    {
+        asteroidSound.volume = maxAsteroidSoundVolume * volume;
+    }
+
+    void OnDestroy()
+    {
+        SoundsManager.onSFxVolumeChange -= changeAsteroidSoundVolume;
     }
 }

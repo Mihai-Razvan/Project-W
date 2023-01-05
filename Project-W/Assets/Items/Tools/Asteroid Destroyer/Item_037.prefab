@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2521975492171429780}
-  m_LocalRotation: {x: 0.0005371957, y: -0.009748366, z: 0.7550553, w: 0.6555885}
-  m_LocalPosition: {x: -0.00035, y: 0.00067, z: 0.0364}
-  m_LocalScale: {x: 0.1306612, y: 0.073613144, z: 0.44464955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.00019, y: 0.00088, z: 0.0718}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2690021212974896736}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -87.664, y: -15.179, z: -170.418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3323428543556357338
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,10 +203,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a56563426e7427242be13744353003ba, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 724bbe5765c74a34e89aceb2671dfeb4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
-  m_Pitch: 2.5
+  m_Volume: 0.5
+  m_Pitch: 0.4
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -306,8 +306,8 @@ MonoBehaviour:
   raySpeed: 1
   rayRadius: 35
   projectilePrefab: {fileID: 4487566993300070492, guid: 285a908a460039d4997e8b3f8a666630, type: 3}
-  raySound: {fileID: 939094201134749918}
-  maxRaySoundVolume: 0.8
+  shootSound: {fileID: 939094201134749918}
+  maxShootSoundVolume: 0.5
 --- !u!1 &5436888990588197270
 GameObject:
   m_ObjectHideFlags: 0

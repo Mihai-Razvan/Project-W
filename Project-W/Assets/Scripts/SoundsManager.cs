@@ -53,6 +53,11 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
     [SerializeField]
     float eatSoundMaxVolume;
 
+    [SerializeField]
+    AudioSource asteroidExplosionSound;
+    [SerializeField]
+    float asteroidExplosionSoundMaxVolume;
+
 
     void Start()
     {
@@ -61,6 +66,7 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
         onSFxVolumeChange += changeCollectItemVolume;
         onSFxVolumeChange += changeHeartBeatVolume;
         onSFxVolumeChange += changeEatVolume;
+        onSFxVolumeChange += changeAsteroidExplosionVolume;
         onUiVolumeChange += changeClickUiButtonVolume;
     }
 
@@ -96,6 +102,11 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
         eatSound.volume = eatSoundMaxVolume * volume;
     }
 
+    void changeAsteroidExplosionVolume(float volume)
+    {
+        asteroidExplosionSound.volume = asteroidExplosionSoundMaxVolume * volume;
+    }
+
     //play different sounds
 
     public void playPlacePlaceableSound()
@@ -121,6 +132,11 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
     public void playEatSound()
     {
         eatSound.Play();
+    }
+
+    public void playAsteroidExplosionSound()
+    {
+        asteroidExplosionSound.Play();
     }
 
     //pause different sounds
@@ -154,6 +170,7 @@ public class SoundsManager : MonoBehaviour         //used to handle the change o
         onSFxVolumeChange -= changeCollectItemVolume;
         onSFxVolumeChange -= changeHeartBeatVolume;
         onSFxVolumeChange -= changeEatVolume;
+        onSFxVolumeChange += changeAsteroidExplosionVolume;
         onUiVolumeChange -= changeClickUiButtonVolume;
     }
 }

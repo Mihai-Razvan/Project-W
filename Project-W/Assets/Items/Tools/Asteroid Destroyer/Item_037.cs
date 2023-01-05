@@ -18,9 +18,9 @@ public class Item_037 : Item
     GameObject projectilePrefab;
 
     [SerializeField]
-    AudioSource raySound;
+    AudioSource shootSound;
     [SerializeField]
-    float maxRaySoundVolume;
+    float maxShootSoundVolume;
 
 
     void Start()
@@ -28,8 +28,8 @@ public class Item_037 : Item
         laserState = "UNUSED";
         chargeTime = 0;
 
-        changeRaySoundVolume(FindObjectOfType<SoundsManager>().getSFxVolume());
-        SoundsManager.onSFxVolumeChange += changeRaySoundVolume;
+        changeShootSoundVolume(FindObjectOfType<SoundsManager>().getSFxVolume());
+        SoundsManager.onSFxVolumeChange += changeShootSoundVolume;
     }
 
     void Update()
@@ -60,7 +60,7 @@ public class Item_037 : Item
                     if(chargeTime >= maxChargeTime)
                     {
                         shoot();               
-                        raySound.Play();
+                        shootSound.Play();
                     }
 
                     chargeTime = 0;
@@ -87,13 +87,13 @@ public class Item_037 : Item
         GameObject spawnedObject = Instantiate(projectilePrefab, projectileStartPosition.position, projectileStartPosition.rotation);
     }
 
-    void changeRaySoundVolume(float volume)
+    void changeShootSoundVolume(float volume)
     {
-        raySound.volume = maxRaySoundVolume * volume;
+        shootSound.volume = maxShootSoundVolume * volume;
     }
 
     void OnDestroy()
     {
-        SoundsManager.onSFxVolumeChange -= changeRaySoundVolume;
+        SoundsManager.onSFxVolumeChange -= changeShootSoundVolume;
     }
 }

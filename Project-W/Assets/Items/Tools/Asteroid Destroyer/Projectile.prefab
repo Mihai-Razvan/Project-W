@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 126247773089632748}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.15, z: 0.1}
+  m_LocalScale: {x: 0.13, y: 0.6, z: 0.13}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9073671499872465351}
@@ -128,9 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcd89a6cc2915548bc286a3de88717c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 30
   asteroidHitPrefab: {fileID: 1291001054753265850, guid: 61f16f640f866c84fbeb8868a8c03f5b, type: 3}
   asteroidMask:
     serializedVersion: 2
     m_Bits: 1024
   collisionSphereRadius: 8
+  projectileExplosionPrefab: {fileID: 1291001054753265850, guid: 6bc34742a8a9d6f449e6a8253cab3f02, type: 3}

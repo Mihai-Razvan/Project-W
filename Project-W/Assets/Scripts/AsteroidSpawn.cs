@@ -11,6 +11,8 @@ public class AsteroidSpawn : MonoBehaviour
     [SerializeField]
     LayerMask placeableMask;
     float timeSinceSpawned;
+    [SerializeField]
+    float spawnHeight;
     
     void Update()
     {
@@ -49,7 +51,7 @@ public class AsteroidSpawn : MonoBehaviour
 
         float randXDistance = Random.Range(-150, 150);
         float randZDistance = Random.Range(-150, 150);
-        Vector3 spawnPoint = hitPoint + new Vector3(randXDistance, 100, randZDistance);
+        Vector3 spawnPoint = hitPoint + new Vector3(randXDistance, spawnHeight, randZDistance);
 
         GameObject spawnedObject = Instantiate(asteroidPrefab, spawnPoint, Quaternion.identity);
         spawnedObject.GetComponent<Asteroid>().setHitPoint(hitPoint);

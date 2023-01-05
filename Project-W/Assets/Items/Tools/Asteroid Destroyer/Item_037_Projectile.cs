@@ -13,6 +13,8 @@ public class Item_037_Projectile : MonoBehaviour
     [SerializeField]
     float collisionSphereRadius;
     float timeSinceSpawned;
+    [SerializeField]
+    GameObject projectileExplosionPrefab;
 
     void Start()
     {
@@ -23,8 +25,11 @@ public class Item_037_Projectile : MonoBehaviour
     {
         timeSinceSpawned += Time.deltaTime;
 
-        if (timeSinceSpawned >= 15)
+        if (timeSinceSpawned >= 5)
+        {
+            Instantiate(projectileExplosionPrefab, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+        }
 
         transform.position = transform.position + transform.forward * speed * Time.deltaTime;
         checkAsteroidCollision();
@@ -37,7 +42,9 @@ public class Item_037_Projectile : MonoBehaviour
         if(colliders.Length > 0)
         {
             Instantiate(asteroidHitPrefab, colliders[0].gameObject.transform.position, Quaternion.identity);
+            Instantiate(projectileExplosionPrefab, this.transform.position, Quaternion.identity);
             Destroy(colliders[0].gameObject);
+            FindObjectOfType<SoundsManager>().playAsteroidExplosionSound();
             Destroy(this.gameObject);
         }
     }
