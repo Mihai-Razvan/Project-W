@@ -13,6 +13,9 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
     GameObject settingsVideoTab;
 
     [SerializeField]
+    Slider mouseSensitivitySlider;
+
+    [SerializeField]
     Slider uiVolumeSlider;
     [SerializeField]
     Slider ambienceVolumeSlider;
@@ -56,6 +59,19 @@ public class SettingsTab : MonoBehaviour    //handles the settings tab for the M
         settingsControlsTab.SetActive(false);
         settingsAudioTab.SetActive(false);
         settingsVideoTab.SetActive(false);
+    }
+
+    public void onMouseSensitivityChange()
+    {
+        float value = mouseSensitivitySlider.value;
+        float newSensitivityVal;
+
+        if (value > 0.5f)
+            newSensitivityVal = 1 + (value - 0.5f) * 10;
+        else
+            newSensitivityVal = 1 / Mathf.Pow(1.5f, (0.5f - value) * 10);
+
+        CameraLook.setSensitivity(newSensitivityVal);
     }
 
     public void onUiVolumeChange()

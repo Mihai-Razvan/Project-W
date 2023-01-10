@@ -6,8 +6,8 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class EscMenuButtons : MonoBehaviour      
-{
+public class EscMenuButtons : MonoBehaviour          //this script is placed on esc menu
+{ 
     [SerializeField]
     GameObject menuWarningTab;
     [SerializeField]
@@ -21,6 +21,9 @@ public class EscMenuButtons : MonoBehaviour
     GameObject settingsAudioTab;
     [SerializeField]
     GameObject settingsVideoTab;
+
+    [SerializeField]
+    Slider mouseSensitivitySlider;
 
     [SerializeField]        //slider for audio settings
     Slider uiVolumeSlider;
@@ -145,6 +148,19 @@ public class EscMenuButtons : MonoBehaviour
         settingsTab.SetActive(false);
     }
 
+    public void onMouseSensitivityChange()
+    {
+        float value = mouseSensitivitySlider.value;
+        float newSensitivityVal;
+
+        if (value > 0.5f)
+            newSensitivityVal = 1 + (value - 0.5f) * 10;
+        else
+            newSensitivityVal = 1 / Mathf.Pow(1.5f, (0.5f - value) * 10);
+
+        CameraLook.setSensitivity(newSensitivityVal);
+    }
+
     public void onUiVolumeChange()
     {
         SoundsManager.onUiVolumeChange(uiVolumeSlider.value);
@@ -173,7 +189,6 @@ public class EscMenuButtons : MonoBehaviour
         FindObjectOfType<FPS_Counter>().setFPsTextEnabled(showFPsToggle.isOn);
         FindObjectOfType<SoundsManager>().playClickButtonSound();
     }
-
 
     void closeSettingsTabs()
     {

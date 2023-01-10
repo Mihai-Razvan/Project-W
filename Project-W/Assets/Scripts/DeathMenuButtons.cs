@@ -54,28 +54,37 @@ public class DeathMenuButtons : MonoBehaviour
 
     public void menuWarningYesButtonAction()
     {
-        FindObjectOfType<SoundsManager>().playClickButtonSound();
+        SaveSystem.Save();
         AudioListener.volume = 1;
         SceneManager.LoadScene("MainMenuScene");
     }
 
     public void menuWarningNoButtonAction()
     {
-        FindObjectOfType<SoundsManager>().playClickButtonSound();
+        AudioListener.volume = 1;
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
+    public void menuWarningCancelButtonAction()
+    {
         menuWarningTab.SetActive(false);
     }
 
     public void exitWarningYesButtonAction()
     {
+        SaveSystem.Save();
         Application.Quit();
     }
 
     public void exitWarningNoButtonAction()
     {
-        FindObjectOfType<SoundsManager>().playClickButtonSound();
-        exitWarningTab.SetActive(false);
+        Application.Quit();
     }
 
+    public void exitWarningCancelButtonAction()
+    {
+        exitWarningTab.SetActive(false);
+    }
 
     //////////////////////////////////////
 

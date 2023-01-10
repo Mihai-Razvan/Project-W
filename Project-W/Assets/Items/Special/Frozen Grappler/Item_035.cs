@@ -156,6 +156,7 @@ public class Item_035 : Item  //frozen grappler
 
             colliders[0].transform.position = rayStartPosition.position + rayStartPosition.forward * Vector3.Distance(rayStartPosition.position, colliders[0].transform.position);
             colliders[0].gameObject.AddComponent<Outline>();      //it adds the script that creates the encapsulate outline
+            colliders[0].gameObject.GetComponent<Outline>().outlineColor = new Color(0, 1, 18);
             objectList.Add(colliders[0].gameObject);
             distanceList.Add(Vector3.Distance(rayStartPosition.position, colliders[0].transform.position));
 
