@@ -38,4 +38,4 @@ Item Name - "copper"
 34 - Gift        (gift crate)
 35 - Frozen Grappler
 36 - Asteroid
-37 - Asteroid Destroyer
+37 - Plasma Blaster
