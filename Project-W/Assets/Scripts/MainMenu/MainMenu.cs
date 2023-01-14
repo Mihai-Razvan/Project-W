@@ -24,6 +24,17 @@ public class MainMenu : MonoBehaviour
         loadWorldButton.GetComponent<Button>().interactable = checkSaveExist();
     }
 
+    public void multiplayerButtonAction()
+    {
+        if (checkSaveExist() == true)             //if there is already a save it shows the warning menu
+            newWorldWarningTab.SetActive(true);
+        else           //otherwise it send you to the game scene as a new save
+        {
+            PlayerPrefs.SetString("Save_Exist", "False");
+            SceneManager.LoadScene("MultiplayerGameScene");
+        }
+    }
+
     public void newWorldButtonAction()
     {
         if(checkSaveExist() == true)             //if there is already a save it shows the warning menu
